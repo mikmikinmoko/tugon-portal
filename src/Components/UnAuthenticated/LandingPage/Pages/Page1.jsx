@@ -12,7 +12,7 @@ const Page1 = () => {
   return (
     <>
       <Navigation />
-      <section className="bg-[url('src/Assets/img/home.png')] font-medium bg-cover bg-center h-[800px] flex items-center justify-center text-[#ffffff] text-center">
+      <section className="bg-[url('src/Assets/img/home.png')] font-medium bg-cover bg-center h-[994px] flex items-center justify-center text-[#ffffff] text-center">
         <div className="px-7">
           <h1 className="text-[42px] font-medium">
             Taytay Unified Governance & Outreach Network
@@ -27,16 +27,16 @@ const Page1 = () => {
           </button>
         </div>
       </section>
-      <div className="flex justify-between items-center px-16  mt-[-10px]">
-        <div className="flex justify-center items-center flex-col pb-24">
+      <div className="flex justify-between items-center mx-16">
+        <div className="flex justify-center items-center flex-col ">
           <img src={image1} alt="valid id" />
           <img src={validId} alt="" />
         </div>
-        <div className="flex justify-center items-center flex-col mt-16">
+        <div className="flex justify-center items-center flex-col pt-44">
           <img src={image2} alt="valid id" />
           <img src={atmCard} alt="" />
         </div>
-        <div className="flex justify-center items-center flex-col pb-24">
+        <div className="flex justify-center items-center flex-col">
           <img src={image3} alt="valid id" />
           <img src={socialcard} alt="valid id" />
         </div>
