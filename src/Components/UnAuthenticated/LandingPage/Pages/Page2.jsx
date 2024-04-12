@@ -31,7 +31,7 @@ const Page2 = () => {
             </div>
           </div>
           <div>
-            <img src={tugoncard} />
+            <img src={tugoncard} alt="tugon card" />
           </div>
           <div className="grid grid-cols-1 grid-rows-3 gap-20 mt-3">
             <div className="pr-[15rem]">

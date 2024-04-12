@@ -15,6 +15,9 @@ import step1 from "../Assets/img/step1.png";
 import step2 from "../Assets/img/step2.png";
 import smtaytay from "../Assets/img/smtaytay.png";
 import passport from "../Assets/img/passport.png";
+import page3Img from "../Assets/img/page3-img.png";
+import page3Img2 from "../Assets/img/page3-img2.png";
+import page5Img from "../Assets/img/page5.png";
 
 export {
   image1,
@@ -34,4 +37,7 @@ export {
   smtaytay,
   passport,
   tugoncard,
+  page3Img,
+  page3Img2,
+  page5Img,
 };
