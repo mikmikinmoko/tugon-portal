@@ -18,8 +18,22 @@ import passport from "../Assets/img/passport.png";
 import page3Img from "../Assets/img/page3-img.png";
 import page3Img2 from "../Assets/img/page3-img2.png";
 import page5Img from "../Assets/img/page5.png";
+import logo from "../Assets/img/logo.png";
+import logo2 from "../Assets/img/logo2.png";
+import homeAuth from "../Assets/img/homeAuth.png";
+import taytayFull from "../Assets/img/taytayFull.png";
+import mayor from "../Assets/img/mayor.png";
+import aboutImg from "../Assets/img/aboutImg.png";
+import Vector from "../Assets/img/Vector.png";
 
 export {
+  logo,
+  logo2,
+  Vector,
+  homeAuth,
+  mayor,
+  taytayFull,
+  aboutImg,
   image1,
   image2,
   image3,

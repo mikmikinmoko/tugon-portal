@@ -5,7 +5,7 @@ const Navigation = () => {
     <div className="py-3 px-5 sm:px-5 md:px-14 text-[#787878] text-[16px] ">
       <div className="flex justify-between items-center">
         <div>
-          <Logo />
+          <Logo width="100px" />
         </div>
         <div className="hidden md:flex gap-12">
           <ul className="flex gap-8 items-center ">
