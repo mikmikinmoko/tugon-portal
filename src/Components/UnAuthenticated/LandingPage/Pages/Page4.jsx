@@ -41,9 +41,11 @@ const tugonId = [
 
 const Page4 = () => {
   return (
-    <section className="w-full h-full font-roboto text-[#274C5B] flex justify-center items-start py-10 px-12  bg-[#F4F9FF]">
+    <section className="w-full h-full font-roboto text-[#274C5B] flex justify-center items-start py-10 px-5 lg:px-12  bg-[#F4F9FF]">
       <div className="flex flex-col items-center text-center gap-4">
-        <h1 className="text-[3rem] font-bold">TUGON VALID {`ID's`}</h1>
+        <h1 className="lg:text-[3rem] text-[2rem] font-bold">
+          TUGON VALID {`ID's`}
+        </h1>
 
         <div className="pt-10">
           <img src={smtaytay} alt="Procedure 1" />

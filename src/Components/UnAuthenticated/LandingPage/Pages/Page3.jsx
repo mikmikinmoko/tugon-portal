@@ -2,9 +2,11 @@ import { page3Img, page3Img2 } from "../../../../helpers/image";
 
 const Page3 = () => {
   return (
-    <section className="w-full h-full font-roboto text-[#274C5B] flex justify-center items-start py-16 px-16 overflow-hidden">
+    <section className="w-full h-full font-roboto text-[#274C5B] flex justify-center items-start py-16 px-5 lg:px-16 overflow-hidden">
       <div className="flex flex-col items-center text-center gap-2">
-        <h1 className="text-[3rem] font-bold">TUGON Application Procedure</h1>
+        <h1 className="lg:text-[3rem] text-[2rem] font-bold">
+          TUGON Application Procedure
+        </h1>
         <div>
           <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est nobis,
