@@ -2,8 +2,8 @@ import { Vector, aboutImg, mayor, taytayFull } from "../../../helpers/image";
 
 const AboutUs = () => {
   return (
-    <section className="font-normal w-full h-full bg-[#F4F9FF] font-['Poppins'] lg:py-36 flex flex-col items-center">
-      <div className="lg:flex lg:justify-between lg:items-center px-16 text-justify gap-6">
+    <section className="font-normal w-full h-full bg-[#F4F9FF] font-['Poppins'] lg:py-36">
+      <div className="lg:flex lg:justify-between lg:items-center lg:px-20 px-6 text-justify gap-6">
         <div className="flex-1">
           <div className="flex gap-2 item-center justify-start py-4  text-[#234F8B]">
             <div className="pt-1">
@@ -38,8 +38,8 @@ const AboutUs = () => {
           </p>
         </div>
         <div className="flex-1">
-          <div className="lg:grid lg:grid-cols-2 lg:grid-rows-2 gap-4">
-            <div className=" lg:row-span-2 py-2">
+          <div className="lg:grid lg:grid-cols-2 lg:grid-rows-2 gap-4 md:grid md:grid-cols-2 md:grid-rows-2">
+            <div className=" row-span-2 py-2">
               <img src={mayor} width="100%" />
             </div>
             <div className="py-2">

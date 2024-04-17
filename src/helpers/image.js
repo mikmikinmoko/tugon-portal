@@ -25,11 +25,19 @@ import taytayFull from "../Assets/img/taytayFull.png";
 import mayor from "../Assets/img/mayor.png";
 import aboutImg from "../Assets/img/aboutImg.png";
 import Vector from "../Assets/img/Vector.png";
+import laurelwreath from "../Assets/img/laurelwreath.png";
+import tugonId1 from "../Assets/img/tugonId1.png";
+import tugonId2 from "../Assets/img/tugonId2.png";
+import tugonId3 from "../Assets/img/tugonId3.png";
 
 export {
   logo,
   logo2,
+  tugonId1,
+  tugonId2,
+  tugonId3,
   Vector,
+  laurelwreath,
   homeAuth,
   mayor,
   taytayFull,

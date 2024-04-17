@@ -8,20 +8,24 @@
 // import Registration from "./Registration";
 
 import AboutUs from "../../../Authenticated/Pages/AboutUs";
+import Achievements from "../../../Authenticated/Pages/Achievements";
 import Home from "../../../Authenticated/Pages/Home";
+import TugonId from "../../../Authenticated/Pages/TugonId";
 
 const Main = () => {
   return (
     <>
       <Home />
       <AboutUs />
+      <Achievements />
+      <TugonId />
       {/* <LoginForm />
       <Registration />
       <Page1 />
       <Page2 />
       <Page3 />
       <Page4 />
-      <Page5 /> */}
+    <Page5 /> */}
     </>
   );
 };
