@@ -29,7 +29,7 @@ import laurelwreath from "../Assets/img/laurelwreath.png";
 import tugonId1 from "../Assets/img/tugonId1.png";
 import tugonId2 from "../Assets/img/tugonId2.png";
 import tugonId3 from "../Assets/img/tugonId3.png";
-
+import announcement from "../Assets/img/announcement.png";
 export {
   logo,
   logo2,
@@ -62,4 +62,5 @@ export {
   page3Img,
   page3Img2,
   page5Img,
+  announcement,
 };

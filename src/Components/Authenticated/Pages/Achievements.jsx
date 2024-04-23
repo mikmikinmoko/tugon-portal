@@ -1,16 +1,10 @@
-import { Vector, laurelwreath } from "../../../helpers/image";
+import Title from "../../../Reusable/Title";
+import { laurelwreath } from "../../../helpers/image";
 
 const Achievements = () => {
   return (
     <section className="w-full h-full lg:p-8 text-[16px] font-['Poppins'] text-[#2E2E2E] py-6 px-5 lg:px-14 lg:py-20">
-      <div className="flex gap-2 item-center justify-start text-[#234F8B] pb-2">
-        <div className="pt-1">
-          <img src={Vector} />
-        </div>
-        <div className="text-[28px]">
-          <h1 className="">Achievements</h1>
-        </div>
-      </div>
+      <Title title="Achievements" />
       <div className="flex justify-center flex-col items-center text-center">
         <div className="sm:grid sm:grid-cols-2 md:grid md:grid-cols-3 lg:grid lg:grid-flow-col lg:grid-cols-4  gap-3 lg:grid-rows-2 place-items-center ">
           <div className="flex-1 py-2">

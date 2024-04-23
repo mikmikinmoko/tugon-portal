@@ -1,29 +1,34 @@
-import Page1 from "../Pages/Page1";
+// import Page1 from "../Pages/Page1";
 // import LoginForm from "./LoginForm";
-import Page2 from "./Page2";
-import Page3 from "./Page3";
-import Page4 from "./Page4";
+// import Page2 from "./Page2";
+// import Page3 from "./Page3";
+// import Page4 from "./Page4";
 import Page5 from "./Page5";
-import Registration from "./Registration";
+// import Registration from "./Registration";
 
-// import AboutUs from "../../../Authenticated/Pages/AboutUs";
-// import Achievements from "../../../Authenticated/Pages/Achievements";
-// import Home from "../../../Authenticated/Pages/Home";
-// import TugonId from "../../../Authenticated/Pages/TugonId";
+import AboutUs from "../../../Authenticated/Pages/AboutUs";
+import Achievements from "../../../Authenticated/Pages/Achievements";
+import Features from "../../../Authenticated/Pages/Features";
+import Home from "../../../Authenticated/Pages/Home";
+import TugonId from "../../../Authenticated/Pages/TugonId";
+import Announcement from "../../../Authenticated/Pages/Announcement";
 
 const Main = () => {
   return (
     <>
-      {/* <Home />
+      <Home />
       <AboutUs />
       <Achievements />
-      <TugonId /> */}
+      <TugonId />
+      <Features />
+      <Announcement />
       {/* <LoginForm /> */}
-      <Registration />
-      <Page1 />
+      {/* <Registration /> */}
+      {/* <Page1 />
       <Page2 />
       <Page3 />
       <Page4 />
+      <Page5 /> */}
       <Page5 />
     </>
   );

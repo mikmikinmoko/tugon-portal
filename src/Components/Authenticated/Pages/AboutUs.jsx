@@ -2,14 +2,14 @@ import { Vector, aboutImg, mayor, taytayFull } from "../../../helpers/image";
 
 const AboutUs = () => {
   return (
-    <section className="font-normal w-full h-full bg-[#F4F9FF] font-['Poppins'] lg:py-36">
-      <div className="lg:flex lg:justify-between lg:items-center lg:px-20 px-6 text-justify gap-6">
+    <section className="font-normal w-full h-full bg-[#F4F9FF] px-5 lg:px-14 font-['Poppins'] lg:py-36">
+      <div className="lg:flex lg:justify-between lg:items-center text-justify gap-6">
         <div className="flex-1">
           <div className="flex gap-2 item-center justify-start py-4  text-[#234F8B]">
             <div className="pt-1">
               <img src={Vector} />
             </div>
-            <div className="text-[28px]">
+            <div className="text-[28px] font-medium">
               <h1 className="">About Us</h1>
             </div>
           </div>
