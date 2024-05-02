@@ -30,6 +30,7 @@ import tugonId1 from "../Assets/img/tugonId1.png";
 import tugonId2 from "../Assets/img/tugonId2.png";
 import tugonId3 from "../Assets/img/tugonId3.png";
 import announcement from "../Assets/img/announcement.png";
+import registrationImg from "../Assets/img/registrationImg.png";
 export {
   logo,
   logo2,
@@ -63,4 +64,5 @@ export {
   page3Img2,
   page5Img,
   announcement,
+  registrationImg,
 };

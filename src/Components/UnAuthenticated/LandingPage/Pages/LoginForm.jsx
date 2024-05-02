@@ -1,6 +1,7 @@
 import { Checkbox, Form, Input } from "antd";
 import Logo from "../Logo/Logo";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { NavLink } from "react-router-dom";
 
 const LoginForm = () => {
   return (
@@ -77,9 +78,7 @@ const LoginForm = () => {
                   </button>
                   <div className="font-['Poppins']">
                     {`Don't`} have an account?{" "}
-                    <a href="" className="text-blue-500 ">
-                      Sign Up
-                    </a>
+                    <NavLink to="/registration">Sign Up</NavLink>
                   </div>
                 </div>
               </Form.Item>

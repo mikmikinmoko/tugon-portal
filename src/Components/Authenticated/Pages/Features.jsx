@@ -44,7 +44,7 @@ const Features = () => {
       {features.map((feat) => (
         <div
           key={feat.id}
-          className=" lg:px-52 px-5 py-7 flex flex-col lg:flex-row gap-4 text-[#234F8B] font-['Kanit']"
+          className=" lg:px-52  py-7 flex flex-col lg:flex-row gap-4 text-[#234F8B] font-['Kanit']"
         >
           <div className="flex lg:flex-row gap-2 flex-col flex-1 border-b-2 pb-4">
             <div className=" text-3xl">{feat.id}.</div>

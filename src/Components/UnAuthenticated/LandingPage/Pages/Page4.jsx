@@ -51,11 +51,14 @@ const Page4 = () => {
           <img src={smtaytay} alt="Procedure 1" />
         </div>
         <div className="grid w-full lg:grid-cols-3 lg:grid-rows-3 place-items-center sm:grid-cols-2 sm:grid-rows-5 md:grid-cols-2 md:grid-rows-3 gap-4 font-semibold font-['Poppins']">
-          {tugonId.map((id) => (
+          {tugonId.map((e) => (
             <>
-              <div className="bg-[#FFFFFF] w-full p-3 rounded-3xl flex items-center gap-6">
+              <div
+                className="bg-[#FFFFFF] w-full p-3 rounded-3xl flex items-center gap-6"
+                key={e.id}
+              >
                 <div className="bg-[#3452AE] p-3 rounded-full"></div>
-                <p className="text-[#000000] text-[21px]">{id.label}</p>
+                <p className="text-[#000000] text-[21px]">{e.label}</p>
               </div>
             </>
           ))}

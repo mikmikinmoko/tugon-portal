@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Vector } from "../helpers/image";
 
 const Title = ({ title }) => {
@@ -15,6 +16,10 @@ const Title = ({ title }) => {
       </div>
     </div>
   );
+};
+
+Title.propTypes = {
+  title: PropTypes.node,
 };
 
 export default Title;

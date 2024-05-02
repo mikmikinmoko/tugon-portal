@@ -41,7 +41,7 @@ const announce = [
 
 const Announcement = () => {
   return (
-    <div className="w-full h-full px-5 lg:px-10 font-['Poppins']">
+    <div className="w-full h-full px-5 lg:px-10 font-['Poppins'] overflow-hidden">
       <Title title="Announcement" />
       <div className=" text-[#808080] flex items-center gap-2 justify-end">
         <a href="#">View all</a>
