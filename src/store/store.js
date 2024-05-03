@@ -3,9 +3,9 @@ import createSagaMiddleware from "@redux-saga/core";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-import authSlice from "./slices/auth-slice";
+import authSlice from "../store/slice/auth-slice";
 
-import authSaga from "./sagas/auth-saga";
+import authSaga from "../store/saga/auth-saga";
 
 const rootPersistConfig = {
   key: "root-dgs",

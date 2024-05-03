@@ -7,9 +7,24 @@ import {
   sendOtp,
   submitOtp,
   changePassword,
+  signupCitizen,
 } from "../api/auth-api";
+import { message } from "antd";
 ///
 ///
+function* signupCitizenRequest({ payload }) {
+  const { signupCitizenSuccess, requestError } = authActions;
+
+  const result = yield call(signupCitizen, payload);
+  console.log(result);
+  if (result?.name === "AxiosError") {
+    message.success(result?.data?.message);
+    yield put(requestError(result?.response));
+  } else {
+    message.success(result?.data?.message);
+    yield put(signupCitizenSuccess(result?.data));
+  }
+}
 
 function* loginRequest({ payload }) {
   const { authenticate, loginError } = authActions;
@@ -70,6 +85,7 @@ function* changePasswordRequest({ payload }) {
 // Export the saga (todo-saga)
 export default function* authSaga() {
   yield takeLatest(`auth/login`, loginRequest);
+  yield takeLatest(`auth/signupCitizen`, signupCitizenRequest);
   yield takeLatest(`auth/changePass`, changePassRequest);
   yield takeLatest(`auth/sendOtp`, sendOtpRequest);
   yield takeLatest(`auth/submitOtp`, submitOtpRequest);

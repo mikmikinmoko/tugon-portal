@@ -7,6 +7,8 @@ import {
   socialcard,
   validId,
 } from "../../../../helpers/image";
+import { Button } from "antd";
+import { NavLink } from "react-router-dom";
 
 const Page1 = () => {
   return (
@@ -24,9 +26,13 @@ const Page1 = () => {
               outreach activites.
             </p>
           </div>
-          <button className=" mt-24 px-6 py-2 bg-[#ffffff] text-[#274C5B] rounded-md ">
-            Register
-          </button>
+          <div className=" mt-24 px-6 py-2  rounded-md w-full ">
+            <NavLink to="/registration">
+              <Button type="primary" size="large" className=" w-1/5 ">
+                Register
+              </Button>
+            </NavLink>
+          </div>
         </div>
       </section>
       <div className="lg:flex justify-between items-center mx-16">

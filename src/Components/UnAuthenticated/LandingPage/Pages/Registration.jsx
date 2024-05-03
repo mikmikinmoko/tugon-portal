@@ -5,6 +5,10 @@ import TitleForm from "../../../../Reusable/TitleForm";
 import { useEffect, useState } from "react";
 import { getMunicipalities } from "../../../../store/api/auth-api";
 import refbrgy from "../../../../Assets/Resources/json/refbrgy.json";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../../../store/store";
+
+const { signupCitizen } = authActions;
 // import refcitymun from "../../../../Assets/Resources/json/refcitymun.json";
 // import refprovince from "../../../../Assets/Resources/json/refprovince.json";
 // import refregion from "../../../../Assets/Resources/json/refregion.json";
@@ -23,10 +27,9 @@ const suffix = [
 
 const Registration = () => {
   const [form] = Form.useForm();
-  const lgu = Form.useWatch("cityId", form);
+  const dispatch = useDispatch();
 
-  console.log(lgu);
-  console.log(refbrgy.filter((b) => b.citymunCode === lgu).map((s) => s));
+  const lgu = Form.useWatch("cityId", form);
 
   const [municipalities, setMunicipalities] = useState([]);
   const [fetchMunicipalitiesLoading, setFetchMunicipalitiesLoading] =
@@ -46,9 +49,26 @@ const Registration = () => {
   useEffect(() => {
     fetchMunicipalities();
   }, []);
+  console.log(municipalities);
+  console.log(
+    refbrgy
+      .filter((f) => f.provCode === municipalities.provCode)
+      .map((s) => s.provCode)
+  );
 
   const onFinish = (values) => {
-    console.log(values);
+    dispatch(
+      signupCitizen({
+        body: {
+          ...values,
+          lguCode: "0001",
+          regionId: "01",
+          provinceId: "0128",
+          mobileNumber: "63" + values.mobileNumber,
+          birthdate: values.birthdate.format("YYYY-MM-DD"),
+        },
+      })
+    );
   };
 
   useEffect(() => {
@@ -199,7 +219,7 @@ const Registration = () => {
                 <div>
                   <Form.Item
                     label="Birth Date"
-                    name="birthDate"
+                    name="birthdate"
                     rules={[
                       {
                         required: true,

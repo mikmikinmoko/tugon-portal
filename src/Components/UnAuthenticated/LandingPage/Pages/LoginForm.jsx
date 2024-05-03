@@ -1,17 +1,21 @@
-import { Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input } from "antd";
 import Logo from "../Logo/Logo";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 
 const LoginForm = () => {
+  const [form] = Form.useForm();
+
+  const onFinish = (values) => {
+    console.log(values);
+  };
+
   return (
     <div>
-      <div className=" bg-[#234F8B] font-['Poppins'] w-full h-screen flex justify-center items-center p-8">
-        <div className="w-[450px] bg-[#ffffff] px-8 py-16 flex flex-col items-center justify-center rounded-lg">
-          <div className="pt-8">
-            <Logo width="253px" height="79px" />
-          </div>
-          <div className="text-center py-4">
+      <div className=" bg-[#234F8B] font-['Poppins'] w-full h-full py-32 flex justify-center items-center px-8">
+        <div className="w-[450px] bg-[#ffffff] p-4 lg:px-8  lg:py-16 flex flex-col items-center justify-center rounded-lg">
+          <Logo width="253px" height="79px" />
+          <div className="text-center ">
             <p>
               Please log in to securely access your account and enjoy
               personalized services.
@@ -19,11 +23,11 @@ const LoginForm = () => {
           </div>
           <div className=" w-full ">
             <Form
-              name="form"
+              form={form}
               initialValues={{
                 remember: true,
               }}
-              // onFinish={onFinish}
+              onFinish={onFinish}
             >
               <Form.Item
                 name="username"
@@ -73,9 +77,12 @@ const LoginForm = () => {
               </div>
               <Form.Item>
                 <div className="flex flex-col items-center gap-2">
-                  <button className=" sm:text-[16px] md:text-[18px] lg:text-[20px] px-16 py-2  font-['Poppins']  text-[#ffffff] rounded-md bg-[#234F8B]">
+                  <Button
+                    type="primary"
+                    className="lg:px-10 lg:text-[20px] lg:pb-10"
+                  >
                     Sign In
-                  </button>
+                  </Button>
                   <div className="font-['Poppins']">
                     {`Don't`} have an account?{" "}
                     <NavLink to="/registration">Sign Up</NavLink>

@@ -11,12 +11,19 @@ const initialState = {
   otpToken: null,
   validOTP: false,
   recoveryEmail: null,
+  signUpLoading: false,
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    signupCitizen(state) {
+      state.signUpLoading = true;
+    },
+    signupCitizenSuccess(state) {
+      state.signUpLoading = false;
+    },
     setMode(state, { payload }) {
       state.mode = payload;
     },

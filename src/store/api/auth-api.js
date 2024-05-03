@@ -36,6 +36,15 @@ export const getMunicipalities = async () => {
   }
 };
 
+export const signupCitizen = async ({ body }) => {
+  try {
+    const result = await axios.post("signupCitizen", body);
+    return result;
+  } catch (err) {
+    return;
+  }
+};
+
 export const changePasswordWithToken = async (payload) => {
   try {
     const store = getStore();
