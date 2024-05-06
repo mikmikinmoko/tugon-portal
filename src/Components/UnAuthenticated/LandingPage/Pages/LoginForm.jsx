@@ -1,13 +1,21 @@
 import { Button, Checkbox, Form, Input } from "antd";
 import Logo from "../Logo/Logo";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../../../../store/store";
 
 const LoginForm = () => {
   const [form] = Form.useForm();
+  const { isLoading } = useSelector((s) => s.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { login } = authActions;
 
   const onFinish = (values) => {
-    console.log(values);
+    dispatch(login(values));
+    navigate("/");
   };
 
   return (
@@ -22,13 +30,7 @@ const LoginForm = () => {
             </p>
           </div>
           <div className=" w-full ">
-            <Form
-              form={form}
-              initialValues={{
-                remember: true,
-              }}
-              onFinish={onFinish}
-            >
+            <Form form={form} onFinish={onFinish}>
               <Form.Item
                 name="username"
                 rules={[
@@ -63,11 +65,9 @@ const LoginForm = () => {
               <div className="mt-[-15px]">
                 <Form.Item>
                   <div className="flex justify-between items-center">
-                    <Form.Item name="remember" noStyle>
-                      <Checkbox className=" opacity-40 hover:text-blue-500 font-['Poppins']">
-                        Remember me
-                      </Checkbox>
-                    </Form.Item>
+                    <Checkbox className=" opacity-40 hover:text-blue-500 font-['Poppins']">
+                      Remember me
+                    </Checkbox>
 
                     <a className="opacity-40 font-['Poppins']" href="">
                       Forgot password
@@ -79,7 +79,8 @@ const LoginForm = () => {
                 <div className="flex flex-col items-center gap-2">
                   <Button
                     type="primary"
-                    className="lg:px-10 lg:text-[20px] lg:pb-10"
+                    loading={isLoading}
+                    onClick={() => form.submit()}
                   >
                     Sign In
                   </Button>

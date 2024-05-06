@@ -16,13 +16,13 @@ function* signupCitizenRequest({ payload }) {
   const { signupCitizenSuccess, requestError } = authActions;
 
   const result = yield call(signupCitizen, payload);
-  console.log(result);
   if (result?.name === "AxiosError") {
-    message.success(result?.data?.message);
+    message.error(result?.data?.message);
     yield put(requestError(result?.response));
   } else {
     message.success(result?.data?.message);
     yield put(signupCitizenSuccess(result?.data));
+    if (payload.cb) yield call(payload.cb);
   }
 }
 
@@ -34,7 +34,6 @@ function* loginRequest({ payload }) {
     yield put(loginError(result.response));
   } else {
     yield put(authenticate(result.data));
-    // console.log(result.data)
   }
 }
 

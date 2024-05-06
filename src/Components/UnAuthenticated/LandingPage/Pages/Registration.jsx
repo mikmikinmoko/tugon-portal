@@ -5,7 +5,7 @@ import TitleForm from "../../../../Reusable/TitleForm";
 import { useEffect, useState } from "react";
 import { getMunicipalities } from "../../../../store/api/auth-api";
 import refbrgy from "../../../../Assets/Resources/json/refbrgy.json";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../../../store/store";
 
 const { signupCitizen } = authActions;
@@ -35,12 +35,16 @@ const Registration = () => {
   const [fetchMunicipalitiesLoading, setFetchMunicipalitiesLoading] =
     useState(false);
 
+  const { signUpLoading } = useSelector((state) => state.auth);
+
   const fetchMunicipalities = async () => {
     setFetchMunicipalitiesLoading(true);
     const request = await getMunicipalities();
+
     if (request.name === "AxiosError") {
-      message.error(request.response.data.message);
+      message.error(request?.message);
     } else {
+      console.log(request);
       setMunicipalities(request.data);
     }
     setFetchMunicipalitiesLoading(false);
@@ -49,11 +53,13 @@ const Registration = () => {
   useEffect(() => {
     fetchMunicipalities();
   }, []);
-  console.log(municipalities);
+  console.log(refbrgy.filter((s) => s.citymunCode === lgu).map((e) => e));
+  console.log(municipalities.filter((e) => e.cityCode === lgu));
   console.log(
-    refbrgy
-      .filter((f) => f.provCode === municipalities.provCode)
-      .map((s) => s.provCode)
+    municipalities.filter((e) => e.cityCode === lgu).map((s) => s.lguCode)[0]
+  );
+  console.log(
+    refbrgy.filter((s) => s.citymunCode === lgu).map((e) => e.provCode)[0]
   );
 
   const onFinish = (values) => {
@@ -61,11 +67,20 @@ const Registration = () => {
       signupCitizen({
         body: {
           ...values,
-          lguCode: "0001",
-          regionId: "01",
-          provinceId: "0128",
+          lguCode: municipalities
+            .filter((e) => e.cityCode === lgu)
+            .map((s) => s.lguCode)[0],
+          regionId: refbrgy
+            .filter((s) => s.citymunCode === lgu)
+            .map((e) => e.regCode)[0],
+          provinceId: refbrgy
+            .filter((s) => s.citymunCode === lgu)
+            .map((e) => e.provCode)[0],
           mobileNumber: "63" + values.mobileNumber,
           birthdate: values.birthdate.format("YYYY-MM-DD"),
+        },
+        cb: () => {
+          form.resetFields();
         },
       })
     );
@@ -336,11 +351,22 @@ const Registration = () => {
                   <Form.Item
                     label="Confirm Password"
                     name="confirmPassword"
+                    dependencies={["password"]}
                     rules={[
                       {
                         required: true,
                         message: "Please input your Password",
                       },
+                      ({ getFieldValue }) => ({
+                        validator(_, value) {
+                          if (!value || getFieldValue("password") === value) {
+                            return Promise.resolve();
+                          }
+                          return Promise.reject(
+                            new Error("Password didn't match!")
+                          );
+                        },
+                      }),
                     ]}
                   >
                     <Input.Password placeholder="Confirm Password" />
@@ -388,7 +414,11 @@ const Registration = () => {
                 </div> */}
               </div>
               <div className="flex flex-col justify-center items-center gap-2">
-                <Button type="primary" onClick={() => form.submit()}>
+                <Button
+                  type="primary"
+                  onClick={() => form.submit()}
+                  loading={signUpLoading}
+                >
                   Submit
                 </Button>
                 <p>
