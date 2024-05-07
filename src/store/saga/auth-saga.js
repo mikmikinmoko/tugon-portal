@@ -34,6 +34,7 @@ function* loginRequest({ payload }) {
     yield put(loginError(result.response));
   } else {
     yield put(authenticate(result.data));
+    if (body.cb) yield call(body.cb);
   }
 }
 

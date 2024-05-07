@@ -1,29 +1,46 @@
 import { Button, Checkbox, Form, Input } from "antd";
 import Logo from "../Logo/Logo";
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../../../store/store";
+import {
+  CloseEyeIcon,
+  EyeIcon,
+  LockIcon,
+  UsersIcon,
+} from "../../../../Assets/Resources/Icons/Icons";
+import { useEffect } from "react";
 
 const LoginForm = () => {
   const [form] = Form.useForm();
-  const { isLoading } = useSelector((s) => s.auth);
+  const { isLoading, isAuthenticated } = useSelector((s) => s.auth);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const { login } = authActions;
+  const navigate = useNavigate();
 
   const onFinish = (values) => {
-    dispatch(login(values));
-    navigate("/");
+    dispatch(
+      login({
+        username: values.username,
+        password: values.password,
+        cb: () => {
+          navigate("/", { replace: true });
+        },
+      })
+    );
   };
+
+  useEffect(() => {
+    if (isAuthenticated) navigate("/", { replace: true });
+  }, [isAuthenticated, navigate]);
 
   return (
     <div>
-      <div className=" bg-[#234F8B] font-['Poppins'] w-full h-full py-32 flex justify-center items-center px-8">
+      <div className=" lg:bg-[#234F8B] md:bg-[#234F8B] font-['Poppins'] w-full h-screen py-32 flex justify-center items-center px-8">
         <div className="w-[450px] bg-[#ffffff] p-4 lg:px-8  lg:py-16 flex flex-col items-center justify-center rounded-lg">
           <Logo width="253px" height="79px" />
-          <div className="text-center ">
+          <div className="text-center py-3">
             <p>
               Please log in to securely access your account and enjoy
               personalized services.
@@ -36,12 +53,14 @@ const LoginForm = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input your Username!",
+                    message: "Please input your Username",
                   },
                 ]}
+                className="mt-2"
               >
                 <Input
-                  prefix={<UserOutlined className=" opacity-40 p-2 text-1xl" />}
+                  className="py-2"
+                  prefix={<UsersIcon />}
                   placeholder="Username"
                 />
               </Form.Item>
@@ -50,26 +69,31 @@ const LoginForm = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input your Password!",
+                    message: "Please input your password!",
                   },
                 ]}
+                className="mb-2"
               >
                 <Input.Password
-                  prefix={
-                    <LockOutlined className=" opacity-40 p-3 text-1xl " />
-                  }
-                  type="password"
+                  className="py-2"
+                  prefix={<LockIcon />}
+                  disabled={isLoading}
                   placeholder="Password"
+                  suffix={<CloseEyeIcon />}
+                  iconRender={(e) => (e ? <CloseEyeIcon /> : <EyeIcon />)}
                 />
               </Form.Item>
               <div className="mt-[-15px]">
                 <Form.Item>
-                  <div className="flex justify-between items-center">
-                    <Checkbox className=" opacity-40 hover:text-blue-500 font-['Poppins']">
+                  <div className="flex justify-between items-center py-5 text-[10px]  ">
+                    <Checkbox className=" opacity-40 hover:text-blue-500 font-['Poppins'] text-[10px] lg:text-[14px]  ">
                       Remember me
                     </Checkbox>
 
-                    <a className="opacity-40 font-['Poppins']" href="">
+                    <a
+                      className="opacity-40 font-['Poppins'] lg:text-[14px]"
+                      href=""
+                    >
                       Forgot password
                     </a>
                   </div>
@@ -81,10 +105,11 @@ const LoginForm = () => {
                     type="primary"
                     loading={isLoading}
                     onClick={() => form.submit()}
+                    className="bg-[#234F8B] px-14"
                   >
                     Sign In
                   </Button>
-                  <div className="font-['Poppins']">
+                  <div className="font-['Poppins'] py-5">
                     {`Don't`} have an account?{" "}
                     <NavLink to="/registration">Sign Up</NavLink>
                   </div>

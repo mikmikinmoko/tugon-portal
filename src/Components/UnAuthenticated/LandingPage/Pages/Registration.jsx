@@ -44,7 +44,6 @@ const Registration = () => {
     if (request.name === "AxiosError") {
       message.error(request?.message);
     } else {
-      console.log(request);
       setMunicipalities(request.data);
     }
     setFetchMunicipalitiesLoading(false);
@@ -53,14 +52,6 @@ const Registration = () => {
   useEffect(() => {
     fetchMunicipalities();
   }, []);
-  console.log(refbrgy.filter((s) => s.citymunCode === lgu).map((e) => e));
-  console.log(municipalities.filter((e) => e.cityCode === lgu));
-  console.log(
-    municipalities.filter((e) => e.cityCode === lgu).map((s) => s.lguCode)[0]
-  );
-  console.log(
-    refbrgy.filter((s) => s.citymunCode === lgu).map((e) => e.provCode)[0]
-  );
 
   const onFinish = (values) => {
     dispatch(
@@ -93,7 +84,7 @@ const Registration = () => {
   return (
     <div className="font-['Poppins'] text-[18px] font-normal">
       <div className="grid lg:grid-cols-2 grid-cols-1">
-        <div className=" bg-[url('src/Assets/img/registrationImg.png')] bg-cover bg-center ">
+        <div className="hidden lg:block bg-[url('src/Assets/img/registrationImg.png')] bg-cover bg-center ">
           <div className="flex h-full flex-col justify-end items-start px-5 lg:px-5 xl:px-16 py-20   text-[#fff] ">
             <div className=" text-[40px] font-semibold w-11/12 ">
               Taytay Unified Governance & Outreach Network
@@ -419,7 +410,7 @@ const Registration = () => {
                   onClick={() => form.submit()}
                   loading={signUpLoading}
                 >
-                  Submit
+                  Create Account
                 </Button>
                 <p>
                   Have an account? <NavLink to="/login">Log In</NavLink>

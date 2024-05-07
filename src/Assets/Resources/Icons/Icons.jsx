@@ -510,6 +510,7 @@ export const UsersIcon = (props) => (
     component={() => (
       <svg
         width="20"
+        color="#ABABAB"
         height="20"
         viewBox="0 0 20 20"
         fill="none"
@@ -538,6 +539,7 @@ export const LockIcon = (props) => (
       >
         <svg
           width="18"
+          color="#ABABAB"
           height="21"
           viewBox="0 0 18 21"
           fill="none"

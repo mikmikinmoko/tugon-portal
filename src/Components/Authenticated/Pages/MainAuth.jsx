@@ -10,8 +10,8 @@ const MainAuth = () => {
     <>
       <Home />
       <AboutUs />
-      <Announcement />
       <Achievements />
+      <Announcement />
       <Features />
       <TugonId />
     </>
