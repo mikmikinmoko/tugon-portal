@@ -1,5 +1,5 @@
-import Title from "../../../Reusable/Title";
-import { announcement } from "../../../helpers/image";
+import Title from "../../../../Reusable/Title";
+import { announcement } from "../../../../helpers/image";
 
 const announce = [
   {

@@ -1,9 +1,9 @@
-import Home from "./Home";
-import AboutUs from "./AboutUs";
-import Announcement from "./Announcement";
-import Achievements from "./Achievements";
-import Features from "./Features";
-import TugonId from "./TugonId";
+import Home from "./Authenticated/Home/Home";
+import AboutUs from "./Authenticated/About/AboutUs";
+import Announcement from "./Authenticated/Announcement";
+import Achievements from "./Authenticated/Achievements";
+// import Features from ".";
+import TugonId from "./Authenticated/TugonId";
 
 const MainAuth = () => {
   return (
@@ -12,7 +12,7 @@ const MainAuth = () => {
       <AboutUs />
       <Achievements />
       <Announcement />
-      <Features />
+      {/* <Features /> */}
       <TugonId />
     </>
   );

@@ -69,35 +69,41 @@ const Navigation = () => {
       <Drawer
         open={open}
         onClose={closeDrawer}
-        width={"60%"}
-        style={{ height: "70%" }}
+        width={"50%"}
+        style={{ height: "60%" }}
         extra={
-          <div className="flex flex-col items-end font-['Poppins'] text-[16px] font-normal gap-1 px-3">
-            <Avatar
-              size={35}
-              icon={<UsersIcon />}
-              style={{
-                backgroundColor: "#234F8B",
-                cursor: "pointer",
-              }}
-            />
-            <div className="font-medium text-[#000000] text-[18px]">
-              {fullName}
-            </div>
-            <div className=" text-[#898989] text-[12px]">
-              {currentUser?.email}
-            </div>
+          <div className="flex flex-col items-end font-['Poppins'] text-[10px] md:text-[14px] lg:text-[16px] font-normal gap-1 px-3">
+            {isAuthenticated && (
+              <>
+                <Avatar
+                  size={35}
+                  icon={<UsersIcon />}
+                  style={{
+                    backgroundColor: "#234F8B",
+                    cursor: "pointer",
+                  }}
+                />
+                <div className="font-medium text-[#000000] lg:text-[18px]">
+                  {fullName}
+                </div>
+                <div className=" text-[#898989] lg:text-[12px]">
+                  {currentUser?.email}
+                </div>
+              </>
+            )}
           </div>
         }
       >
         {isAuthenticated ? (
           <>
-            <div className="flex items-end flex-col-reverse gap-4 px-3 font-sans text-[14px] text-[#474747]">
+            <div className="flex items-end flex-col-reverse gap-4 px-3 text-[12px] md:text-[14px] lg:text-[16px] text-[#474747]">
               {navigationAuth.map((item) => (
                 <NavLink
                   key={item.name}
                   to={item.link}
-                  className={"hover:text-[#234F8B] focus:text-[#234F8B]"}
+                  className={
+                    "hover:text-[#234F8B] focus:text-[#234F8B] font-['Poppins']"
+                  }
                 >
                   {item.name}
                 </NavLink>
@@ -106,29 +112,31 @@ const Navigation = () => {
             <div className="py-4">
               <hr />
             </div>
-            <div className="flex flex-col items-end">
-              <div className="flex flex-row-reverse gap-1 items-center   hover:bg-[#ebebeb] hover:rounded-md  cursor-pointer ">
+            <div className="flex flex-col items-end font-['Poppins'] text-[12px] md:text-[14px] lg:text-[16px] ">
+              <div className="flex flex-row-reverse gap-3 p-2 items-center hover:bg-[#ebebeb] hover:rounded-md  cursor-pointer ">
                 <MyAccountIcon />
                 <p>Account Settings</p>
               </div>
               <div
-                className="flex flex-row-reverse gap-1 items-center text-[#DF3838]  hover:bg-[#ebebeb] hover:rounded-md  cursor-pointer"
+                className="flex flex-row-reverse gap-2 items-center p-2 text-[#DF3838]   hover:bg-[#ebebeb] hover:rounded-md  cursor-pointer"
                 onClick={signOut}
               >
-                <SignoutIcon /> <p>Log out</p>
+                <SignoutIcon /> <p className="font-medium">Log out</p>
               </div>
             </div>
           </>
         ) : (
-          navigationUnAuth.map((item) => (
-            <NavLink
-              key={item.name}
-              to={item.link}
-              className={"hover:text-[#234F8B] focus:text-[#234F8B]"}
-            >
-              {item.name}
-            </NavLink>
-          ))
+          <div className="flex flex-col-reverse items-end gap-2 font-['Poppins'] text-[16px]">
+            {navigationUnAuth.map((item) => (
+              <NavLink
+                key={item.name}
+                to={item.link}
+                className={"hover:text-[#234F8B] focus:text-[#234F8B]"}
+              >
+                {item.name} {item.icon}
+              </NavLink>
+            ))}
+          </div>
         )}
       </Drawer>
       <div className=" font-sans py-3 px-5 sm:px-5 md:px-14 text-[14px]">

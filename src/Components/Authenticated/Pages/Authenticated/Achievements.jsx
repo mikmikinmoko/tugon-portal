@@ -1,5 +1,5 @@
-import Title from "../../../Reusable/Title";
-import { laurelwreath } from "../../../helpers/image";
+import Title from "../../../../Reusable/Title";
+import { laurelwreath } from "../../../../helpers/image";
 
 const Achievements = () => {
   return (

@@ -1,4 +1,4 @@
-import { Vector } from "../../../helpers/image";
+import { Vector } from "../../../../helpers/image";
 
 const features = [
   {

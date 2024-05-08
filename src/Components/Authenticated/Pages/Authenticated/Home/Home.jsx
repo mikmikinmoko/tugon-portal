@@ -1,5 +1,5 @@
-import { homeAuth } from "../../../helpers/image";
-import Navigation from "../../UnAuthenticated/LandingPage/Navigation/Navigation";
+import { homeAuth } from "../../../../../helpers/image";
+import Navigation from "../../../../UnAuthenticated/LandingPage/Navigation/Navigation";
 
 const Home = () => {
   return (

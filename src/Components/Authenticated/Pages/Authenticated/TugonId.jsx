@@ -1,5 +1,5 @@
-import Title from "../../../Reusable/Title";
-import { tugonId1, tugonId2, tugonId3 } from "../../../helpers/image";
+import Title from "../../../../Reusable/Title";
+import { tugonId1, tugonId2, tugonId3 } from "../../../../helpers/image";
 
 const TugonId = () => {
   return (
