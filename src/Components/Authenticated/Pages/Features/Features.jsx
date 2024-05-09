@@ -37,7 +37,7 @@ const Features = () => {
             <img src={Vector} />
           </div>
           <div className="text-[28px] font-medium">
-            <h1 className="">Key Features</h1>
+            <h1 className="">{"FAQ's"}</h1>
           </div>
         </div>
       </div>

@@ -1,19 +1,25 @@
-import Home from "./Authenticated/Home/Home";
-import AboutUs from "./Authenticated/About/AboutUs";
-import Announcement from "./Authenticated/Announcement";
-import Achievements from "./Authenticated/Achievements";
-// import Features from ".";
-import TugonId from "./Authenticated/TugonId";
+import Navigation from "../../UnAuthenticated/LandingPage/Navigation/Navigation";
+import AboutUs from "./About/AboutUs";
+import Announcement from "./Announcement";
+import Home from "./Home/Home";
+import Features from "../Pages/Features/Features";
 
 const MainAuth = () => {
   return (
     <>
-      <Home />
-      <AboutUs />
-      <Achievements />
-      <Announcement />
-      {/* <Features /> */}
-      <TugonId />
+      <Navigation />
+      <section id="home">
+        <Home />
+      </section>
+      <section id="aboutUs">
+        <AboutUs />
+      </section>
+      <section id="annoucement">
+        <Announcement />
+      </section>
+      <section id="features">
+        <Features />
+      </section>
     </>
   );
 };

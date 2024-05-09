@@ -5,7 +5,11 @@ export default {
     fontFamily: {
       sans: ['"Inter var", sans-serif'],
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        senior: "url('/src/Assets/img/senior.png')",
+      },
+    },
   },
   plugins: [],
 };

@@ -11,11 +11,12 @@ import {
 } from "../../../../Assets/Resources/Icons/Icons";
 import { authActions } from "../../../../store/store";
 import { useState } from "react";
+import { routesAuth } from "../../../../routes";
 
 const navigationAuth = [
   { name: "Announcement", link: "" },
-  { name: "Key Features", link: "" },
-  { name: "Tugon ID", link: "" },
+  { name: "PWD ID", link: "" },
+  { name: "Senior Citizen ID", link: "/seniorpage" },
   { name: "About", link: "" },
   { name: "Home", link: "/" },
 ];
@@ -97,10 +98,10 @@ const Navigation = () => {
         {isAuthenticated ? (
           <>
             <div className="flex items-end flex-col-reverse gap-4 px-3 text-[12px] md:text-[14px] lg:text-[16px] text-[#474747]">
-              {navigationAuth.map((item) => (
+              {routesAuth.map((item) => (
                 <NavLink
                   key={item.name}
-                  to={item.link}
+                  to={item.path}
                   className={
                     "hover:text-[#234F8B] focus:text-[#234F8B] font-['Poppins']"
                   }

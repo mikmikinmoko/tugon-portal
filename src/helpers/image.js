@@ -31,7 +31,39 @@ import tugonId2 from "../Assets/img/tugonId2.png";
 import tugonId3 from "../Assets/img/tugonId3.png";
 import announcement from "../Assets/img/announcement.png";
 import registrationImg from "../Assets/img/registrationImg.png";
+import aboutImg1 from "../Assets/img/aboutImg1.png";
+import aboutImg2 from "../Assets/img/aboutImg2.png";
+import aboutImg3 from "../Assets/img/aboutImg3.png";
+import top from "../Assets/img/top.png";
+import down from "../Assets/img/down.png";
+import announcementImg from "../Assets/img/announcementImg.png";
+import senior from "../Assets/img/senior.png";
+import seniorImg1 from "../Assets/img/seniorImg1.png";
+import seniorImg2 from "../Assets/img/seniorImg2.png";
+import footer2 from "../Assets/img/footer2.png";
+import stepImg1 from "../Assets/img/stepImg1.png";
+import stepImg2 from "../Assets/img/stepImg2.png";
+import stepImg3 from "../Assets/img/stepImg3.png";
+import stepImg4 from "../Assets/img/stepImg4.png";
+import stepImg5 from "../Assets/img/stepImg5.png";
+import stepArrow from "../Assets/img/stepArrow.png";
 export {
+  stepImg1,
+  stepImg2,
+  stepImg3,
+  stepImg4,
+  stepImg5,
+  stepArrow,
+  senior,
+  footer2,
+  seniorImg1,
+  seniorImg2,
+  announcementImg,
+  aboutImg1,
+  aboutImg2,
+  aboutImg3,
+  top,
+  down,
   logo,
   logo2,
   tugonId1,

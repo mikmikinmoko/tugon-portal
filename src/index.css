@@ -16,6 +16,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+body {
+  scroll-behavior: smooth;
+}
 /* .home {
   background: url("../src/Assets/img/home.png");
   background-size: cover;
