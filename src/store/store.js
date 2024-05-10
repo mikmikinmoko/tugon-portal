@@ -4,8 +4,10 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import authSlice from "../store/slice/auth-slice";
+import seniorSlice from "../store/slice/senior-slice";
 
 import authSaga from "../store/saga/auth-saga";
+import seniorSaga from "../store/saga/senior-saga";
 
 const rootPersistConfig = {
   key: "root-dgs",
@@ -32,8 +34,10 @@ const store = configureStore({
 });
 
 saga.run(authSaga);
+saga.run(seniorSaga);
 
 export const authActions = authSlice.actions;
+export const seniorActions = seniorSlice.actions;
 
 export const persistor = persistStore(store);
 export default store;

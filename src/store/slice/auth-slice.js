@@ -24,6 +24,7 @@ const authSlice = createSlice({
     signupCitizenSuccess(state) {
       state.signUpLoading = false;
     },
+
     setMode(state, { payload }) {
       state.mode = payload;
     },

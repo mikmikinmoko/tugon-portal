@@ -16,7 +16,7 @@ import { routesAuth } from "../../../../routes";
 const navigationAuth = [
   { name: "Announcement", link: "" },
   { name: "PWD ID", link: "" },
-  { name: "Senior Citizen ID", link: "/seniorpage" },
+  { name: "Senior Citizen ID", link: "/senior" },
   { name: "About", link: "" },
   { name: "Home", link: "/" },
 ];
