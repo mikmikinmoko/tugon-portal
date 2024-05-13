@@ -26,48 +26,74 @@ import refregion from "../../../../../Assets/Resources/json/refregion.json";
 import dayjs from "dayjs";
 import { seniorActions } from "../../../../../store/store";
 
-console.log(seniorActions);
 const { Dragger } = Upload;
 
 const civilStatus = [
   {
-    id: 1,
-    value: "single",
+    id: 0,
     label: "Single",
   },
   {
-    id: 2,
-    value: "married",
+    id: 1,
     label: "Married",
   },
   {
-    id: 3,
-    value: "widowed",
+    id: 2,
     label: "Widowed",
   },
   {
-    id: 4,
-    value: "seperate",
+    id: 3,
     label: "Legally Seperate",
   },
 ];
 
 const Registration = () => {
   const [form] = Form.useForm();
+  const values = Form.useWatch([], form);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.auth);
   const [file, setFile] = useState({});
+  const [validId, setValidId] = useState({});
   const [imagePreview, setImagePreview] = useState(null);
+  const [step, setStep] = useState(0);
 
   const { createSeniorId } = seniorActions;
 
-  const props = {
+  console.log(values);
+
+  const document = {
     name: "document",
     accept: "image/png, image/jpeg",
     multiple: false,
     beforeUpload: async (file) => {
       setFile(file);
+      setImagePreview(await getBase64(file));
+      return false;
+    },
+    onChange(info) {
+      const { status } = info.file;
+
+      // if (status !== "uploading") {
+      // }
+
+      if (status === "done") {
+        message.success(`${info.file.name} file uploaded successfully.`);
+      } else if (status === "error") {
+        message.error(`${info.file.name} file upload failed.`);
+      }
+    },
+
+    onDrop(e) {
+      e;
+    },
+  };
+  const id = {
+    name: "id",
+    accept: "image/png, image/jpeg",
+    multiple: true,
+    beforeUpload: async (file) => {
+      setValidId(file);
       setImagePreview(await getBase64(file));
       return false;
     },
@@ -101,13 +127,11 @@ const Registration = () => {
   useEffect(() => {
     const { birthdate, sex, ...rest } = currentUser;
     form.setFieldsValue({
-      birthdate: dayjs(birthdate),
+      dateOfBirth: dayjs(birthdate),
       sex: +sex,
       ...rest,
     });
   }, [currentUser]);
-
-  const [step, setStep] = useState(0);
 
   const onFinish = (val) => {
     const formData = new FormData();
@@ -137,13 +161,39 @@ const Registration = () => {
       voterLocation,
       voterNumber,
       document,
+      familyComposition,
       ...values
     } = form.getFieldsValue(true);
     Object.keys(values).forEach((key) => formData.append(key, values[key]));
     formData.append("document", val.document.file);
-    console.log(val);
+    formData.append("id", val.id.file);
+    formData.append("id", val.id.file);
+    formData.append("familyComposition", JSON.stringify(familyComposition));
+
     dispatch(createSeniorId(formData));
   };
+  const items = [
+    {
+      title: "Step 1",
+      description: "Personal Information",
+    },
+    {
+      title: "Step 2",
+      description: "Additional Information",
+    },
+    {
+      title: "Step 3",
+      description: "Family Composition",
+    },
+    {
+      title: "Step 4",
+      description: "Membership to Senior Citizens Association",
+    },
+    {
+      title: "Step 5",
+      description: "Documents",
+    },
+  ];
 
   return (
     <>
@@ -165,9 +215,9 @@ const Registration = () => {
               </h1>
             </div>
             <div className="h-full w-full ">
-              <div className="grid grid-cols-4 ">
-                <div className=" border-r-2 border-[#D8E6F6] py-16">
-                  <Step step={step} />
+              <div className="lg:grid lg:grid-cols-4 ">
+                <div className=" border-r-2 border-[#D8E6F6]  py-16 px-5">
+                  <Step current={step} items={items} />
                 </div>
                 <div className=" col-span-3 py-16 px-10 ">
                   <Form
@@ -239,7 +289,7 @@ const Registration = () => {
                           <div>
                             <Form.Item
                               label="Date of Birth"
-                              name="birthdate"
+                              name="dateOfBirth"
                               rules={[
                                 {
                                   required: true,
@@ -312,7 +362,7 @@ const Registration = () => {
                             >
                               <Select>
                                 {civilStatus.map((s) => (
-                                  <Select.Option value={s.value} key={s.id}>
+                                  <Select.Option value={s.id} key={s.id}>
                                     {s.label}
                                   </Select.Option>
                                 ))}
@@ -599,11 +649,11 @@ const Registration = () => {
                                 {fields.map(({ key, name, ...restField }) => (
                                   <div
                                     key={key}
-                                    className="grid grid-cols-2 grid-rows-3 gap-10"
+                                    className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 grid-rows-3 lg:gap-10 md:gap-10"
                                   >
                                     <Form.Item
                                       {...restField}
-                                      name={[name, "first"]}
+                                      name={[name, "name"]}
                                       label="Name"
                                       rules={[
                                         {
@@ -616,7 +666,7 @@ const Registration = () => {
                                     </Form.Item>
                                     <Form.Item
                                       {...restField}
-                                      name={[name, "last"]}
+                                      name={[name, "relationship"]}
                                       label="Relationship"
                                       rules={[
                                         {
@@ -629,7 +679,7 @@ const Registration = () => {
                                     </Form.Item>
                                     <Form.Item
                                       {...restField}
-                                      name={[name, "last"]}
+                                      name={[name, "age"]}
                                       label="Age"
                                       rules={[
                                         {
@@ -640,7 +690,11 @@ const Registration = () => {
                                     >
                                       <Input placeholder="Last Name" />
                                     </Form.Item>
-                                    <Form.Item label="Status">
+                                    <Form.Item
+                                      {...restField}
+                                      name={[name, "status"]}
+                                      label="Status"
+                                    >
                                       <Radio.Group>
                                         <Radio value={0}>Alive</Radio>
                                         <Radio value={1}>Deceased</Radio>
@@ -648,7 +702,7 @@ const Registration = () => {
                                     </Form.Item>
                                     <Form.Item
                                       {...restField}
-                                      name={[name, "last"]}
+                                      name={[name, "occupation"]}
                                       label="Occupation"
                                       rules={[
                                         {
@@ -659,21 +713,30 @@ const Registration = () => {
                                     >
                                       <Input placeholder="Last Name" />
                                     </Form.Item>
-                                    <MinusCircleOutlined
-                                      onClick={() => remove(name)}
-                                    />
+                                    <div className="pt-7">
+                                      <Button
+                                        type="dashed"
+                                        block
+                                        onClick={() => remove(name)}
+                                        icon={<MinusCircleOutlined />}
+                                      >
+                                        Remove Field
+                                      </Button>
+                                    </div>
                                   </div>
                                 ))}
-                                <Form.Item>
-                                  <Button
-                                    type="dashed"
-                                    onClick={() => add()}
-                                    block
-                                    icon={<PlusOutlined />}
-                                  >
-                                    Add field
-                                  </Button>
-                                </Form.Item>
+                                <div className="py-4 w-full">
+                                  <Form.Item>
+                                    <Button
+                                      type="dashed"
+                                      onClick={() => add()}
+                                      block
+                                      icon={<PlusOutlined />}
+                                    >
+                                      Add field
+                                    </Button>
+                                  </Form.Item>
+                                </div>
                               </>
                             )}
                           </Form.List>
@@ -681,7 +744,7 @@ const Registration = () => {
                       </>
                     )}
                     {step === 3 && (
-                      <div className="grid grid-cols-2 grid-rows-3 gap-x-10">
+                      <div className="lg:grid lg:grid-cols-2 lg:grid-rows-3 md:grid md:grid-cols-2 md:grid-rows-3 gap-x-10">
                         <div>
                           <Form.Item
                             label="Name of Association"
@@ -715,7 +778,10 @@ const Registration = () => {
                           </Form.Item>
                         </div> */}
                         <div>
-                          <Form.Item label="Date of Membership">
+                          <Form.Item
+                            label="Date of Membership"
+                            name="dateOfMembership"
+                          >
                             <DatePicker
                               className="w-full"
                               format={"YYYY-MM-DD"}
@@ -731,9 +797,30 @@ const Registration = () => {
                       </div>
                     )}
                     {step === 4 && (
-                      <div>
+                      <div className="font-['Poppins']">
+                        <div className="py-2 text-[16px] text-[#a8a8a8]">
+                          Birth Certificate / Passport
+                        </div>
                         <Form.Item name="document">
-                          <Dragger {...props}>
+                          <Dragger {...document}>
+                            <p className="ant-upload-drag-icon">
+                              <InboxOutlined />
+                            </p>
+                            <p className="ant-upload-text">
+                              Click or drag file to this area to upload
+                            </p>
+                            <p className="ant-upload-hint">
+                              Support for a single or bulk upload. Strictly
+                              prohibited from uploading company data or other
+                              banned files.
+                            </p>
+                          </Dragger>
+                        </Form.Item>
+                        <div className="py-2 text-[16px] text-[#a8a8a8]">
+                          2 Valid {`ID's`}
+                        </div>
+                        <Form.Item name="id">
+                          <Dragger {...id}>
                             <p className="ant-upload-drag-icon">
                               <InboxOutlined />
                             </p>

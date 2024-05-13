@@ -9,6 +9,7 @@ function* createSeniorIdRequest({ payload }) {
   const { createSeniorIdSuccess, requestError } = seniorActions;
 
   const result = yield call(createSeniorId, payload);
+  console.log(result);
   if (result?.name === "AxiosError") {
     message.error(result?.data?.message);
     yield put(requestError(result?.response));

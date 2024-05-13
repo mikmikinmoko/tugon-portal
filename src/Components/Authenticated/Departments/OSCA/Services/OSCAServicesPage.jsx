@@ -1,15 +1,8 @@
 import { Button } from "antd";
 import Navigation from "../../../../UnAuthenticated/LandingPage/Navigation/Navigation";
-import {
-  stepArrow,
-  stepImg1,
-  stepImg2,
-  stepImg3,
-  stepImg4,
-  stepImg5,
-} from "../../../../../helpers/image";
 import { Footer } from "../../../../UnAuthenticated/LandingPage/Pages/Page5";
 import { NavLink } from "react-router-dom";
+import Procedure from "../../../../../Reusable/Procedure";
 const features = [
   {
     id: "01",
@@ -42,7 +35,7 @@ const OSCAServicesPage = () => {
           </div>
         </div>
         <div className="flex flex-col items-center px-5 lg:px-40 text-center py-10">
-          <div className="  py-5 font-medium">
+          <div className="  py-5 font-medium lg:w-[1233px]">
             <p>
               Welcome to the Application Process for Senior Citizen ID:
               Empowering Elderly Individuals with Access to Essential Services
@@ -56,8 +49,8 @@ const OSCAServicesPage = () => {
           <NavLink to="registration">
             <Button type="primary">Proceed to Application</Button>
           </NavLink>
-          <div className="py-5">
-            <h1 className="text-[#3452AE] text-[36px]">
+          <div className="py-10">
+            <h1 className="text-[#3452AE] text-[28px]">
               Application Procedure
             </h1>
             <p>
@@ -69,51 +62,7 @@ const OSCAServicesPage = () => {
           </div>
         </div>
         <div className="flex flex-col items-center text-center">
-          <div className="flex flex-col items-center gap-2">
-            <p className=" bg-[#F4F7FF] text-[#3452AE] py-5 px-10 shadow-md">
-              Step 1
-            </p>
-            <div className="py-5 grid grid-cols-1 gap-5  md:grid-cols-5 md:grid-rows-3 lg:grid-cols-5 lg:grid-rows-3 place-items-center px-16">
-              <div className="flex flex-col items-center text-center">
-                <img src={stepImg1} />
-                <p>Check the PWD ID Application Requirements.</p>
-              </div>
-              <div className="hidden lg:block md:block">
-                <img src={stepArrow} />
-              </div>
-              <div className="flex flex-col items-center text-center">
-                <img src={stepImg2} />
-                <p>Fill up application form.</p>
-              </div>
-              <div className="hidden lg:block md:block">
-                <img src={stepArrow} />
-              </div>
-              <div className="flex flex-col items-center text-center">
-                <img src={stepImg3} />
-                <p>Attach and submit requirements.</p>
-              </div>
-              <div className=" lg:col-span-5 md:col-span-5">
-                <p className=" bg-[#F4F7FF] text-[#3452AE] py-5 px-10 shadow-md">
-                  Step 2
-                </p>
-              </div>
-              <div className="flex flex-col items-center text-center">
-                <img src={stepImg4} />
-                <p>
-                  The application will be reviewed and approved by the OSCA.
-                </p>
-              </div>
-              <div className="hidden lg:block md:block">
-                <img src={stepArrow} />
-              </div>
-              <div className="flex flex-col items-center text-center">
-                <img src={stepImg5} />
-                <p>
-                  Once the application is approved, you will receive an email.
-                </p>
-              </div>
-            </div>
-          </div>
+          <Procedure />
         </div>
         <div className="flex flex-col items-center text-center  h-screen">
           <div className="py-3">

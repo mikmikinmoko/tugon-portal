@@ -47,7 +47,10 @@ import stepImg3 from "../Assets/img/stepImg3.png";
 import stepImg4 from "../Assets/img/stepImg4.png";
 import stepImg5 from "../Assets/img/stepImg5.png";
 import stepArrow from "../Assets/img/stepArrow.png";
+import pwd from "../Assets/img/pwd.png";
+
 export {
+  pwd,
   stepImg1,
   stepImg2,
   stepImg3,
