@@ -6,6 +6,7 @@ import {
   image3,
   socialcard,
   validId,
+  home,
 } from "../../../../helpers/image";
 import { Button } from "antd";
 import { NavLink } from "react-router-dom";
@@ -14,7 +15,14 @@ const Page1 = () => {
   return (
     <>
       <Navigation />
-      <section className="bg-[url('src/Assets/img/home.png')] flex justify-center item font-medium bg-cover bg-center h-screen lg:h-[994px]  text-[#ffffff] px-2 lg:px-16 lg:py-44 py-24  text-center">
+      <section
+        style={{
+          backgroundImage: `url(${home})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
+        className="flex justify-center item font-medium  h-screen lg:h-[994px]  text-[#ffffff] px-2 lg:px-16 lg:py-44 py-24  text-center"
+      >
         <div className=" w-[800px] h-[360px] pt-8">
           <h1 className="text-[40px] lg:text-[64px] font-medium  font-['Almarai']">
             Taytay Unified Governance & Outreach Network

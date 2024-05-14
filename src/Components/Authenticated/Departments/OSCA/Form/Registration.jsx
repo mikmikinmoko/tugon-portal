@@ -60,8 +60,9 @@ const Registration = () => {
   const [step, setStep] = useState(0);
 
   const { createSeniorId } = seniorActions;
-
-  console.log(values);
+  const today = new Date();
+  const birthDate = new Date(currentUser.birthdate);
+  const age = today.getFullYear() - birthDate.getFullYear();
 
   const document = {
     name: "document",
@@ -130,15 +131,16 @@ const Registration = () => {
     form.setFieldsValue({
       dateOfBirth: dayjs(birthdate),
       sex: +sex,
+      age: age,
       ...rest,
     });
-  }, [currentUser]);
+  }, [currentUser, age]);
 
   const onFinish = (val) => {
     const formData = new FormData();
     const {
       accountId,
-      birthdate,
+      dateOfBirth,
       age,
       brgyId,
       cityId,
@@ -163,15 +165,26 @@ const Registration = () => {
       voterNumber,
       document,
       familyComposition,
+      dateOfMembership,
       ...values
     } = form.getFieldsValue(true);
     Object.keys(values).forEach((key) => formData.append(key, values[key]));
     formData.append("document", val.document.file);
-    formData.append("id", val.id.file);
-    formData.append("id", val.id.file);
+    formData.append("id", val.id.fileList[0].originFileObj);
+    formData.append("id", val.id.fileList[1].originFileObj);
     formData.append("familyComposition", JSON.stringify(familyComposition));
+    formData.append("dateOfMembership", dateOfMembership.format("YYYY-MM-DD"));
+    console.log(val);
 
-    dispatch(createSeniorId(formData));
+    dispatch(
+      createSeniorId({
+        body: formData,
+        cb: () => {
+          form.resetFields("");
+          navigate("/senior");
+        },
+      })
+    );
   };
   const items = [
     {
@@ -323,6 +336,7 @@ const Registration = () => {
                           <div>
                             <Form.Item
                               label="Age"
+                              name="age"
                               rules={[
                                 {
                                   required: true,
@@ -535,12 +549,27 @@ const Registration = () => {
                             <Form.Item
                               label="Amount of Pension"
                               name="amountOfPension"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "Please input Amount",
+                                },
+                              ]}
                             >
                               <Input />
                             </Form.Item>
                           </div>
                           <div>
-                            <Form.Item label="Income" name="income">
+                            <Form.Item
+                              label="Income"
+                              name="income"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "Please input Income",
+                                },
+                              ]}
+                            >
                               <Input />
                             </Form.Item>
                           </div>
@@ -548,6 +577,13 @@ const Registration = () => {
                             <Form.Item
                               label="Educational Attainment"
                               name="educationalAttainment"
+                              rules={[
+                                {
+                                  required: true,
+                                  message:
+                                    "Please select Educational Attainment",
+                                },
+                              ]}
                             >
                               <Select>
                                 <Select.Option value={0}>
@@ -572,6 +608,12 @@ const Registration = () => {
                             <Form.Item
                               label="Employment Status"
                               name="employmentStatus"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "Please select Employment Status",
+                                },
+                              ]}
                             >
                               <Select>
                                 <Select.Option value={0}>
@@ -590,6 +632,12 @@ const Registration = () => {
                             <Form.Item
                               label="Physical Condition"
                               name="physicalCondition"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "Please select Physical Condition",
+                                },
+                              ]}
                             >
                               <Select>
                                 <Select.Option value={0}>Healthy</Select.Option>
@@ -604,8 +652,17 @@ const Registration = () => {
                             </Form.Item>
                           </div>
                           <div>
-                            <Form.Item label="Skills" name="skills">
-                              <Input />
+                            <Form.Item
+                              label="Skills"
+                              name="skills"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "Please specify Skills",
+                                },
+                              ]}
+                            >
+                              <Input placeholder="Skills" />
                             </Form.Item>
                           </div>
                         </div>
@@ -861,7 +918,7 @@ const Registration = () => {
                         </Form.Item>
 
                         <Form.Item
-                          name="agreement"
+                          // name="agreement"
                           valuePropName="checked"
                           rules={[
                             {

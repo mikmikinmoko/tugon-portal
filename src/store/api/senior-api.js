@@ -30,9 +30,9 @@ axiosFile.interceptors.request.use(async function (config) {
   return config;
 });
 
-export const createSeniorId = async (payload) => {
+export const createSeniorId = async ({ body }) => {
   try {
-    const result = await axiosFile.post("createSeniorId", payload);
+    const result = await axiosFile.post("createSeniorId", body);
     return result;
   } catch (err) {
     return;

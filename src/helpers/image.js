@@ -21,6 +21,7 @@ import page5Img from "../Assets/img/page5.png";
 import logo from "../Assets/img/logo.png";
 import logo2 from "../Assets/img/logo2.png";
 import homeAuth from "../Assets/img/homeAuth.png";
+import home from "../Assets/img/home.png";
 import taytayFull from "../Assets/img/taytayFull.png";
 import mayor from "../Assets/img/mayor.png";
 import aboutImg from "../Assets/img/aboutImg.png";
@@ -48,8 +49,11 @@ import stepImg4 from "../Assets/img/stepImg4.png";
 import stepImg5 from "../Assets/img/stepImg5.png";
 import stepArrow from "../Assets/img/stepArrow.png";
 import pwd from "../Assets/img/pwd.png";
+import page2 from "../Assets/img/page2.png";
 
 export {
+  home,
+  page2,
   pwd,
   stepImg1,
   stepImg2,

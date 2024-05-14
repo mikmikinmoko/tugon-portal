@@ -1,9 +1,16 @@
-import { tugoncard } from "../../../../helpers/image";
+import { tugoncard, page2 } from "../../../../helpers/image";
 
 const Page2 = () => {
   return (
     <>
-      <div className="w-full h-full  lg:h-[1300px] px-5 py-48 lg:px-12 bg-[url('src/Assets/img/page2.png')] bg-cover bg-center flex flex-col font-['Roboto'] justify-center items-center lg:pt-1">
+      <div
+        style={{
+          backgroundImage: `url(${page2})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
+        className="w-full h-full  lg:h-[1300px] px-5 py-48 lg:px-12  flex flex-col font-['Roboto'] justify-center items-center lg:pt-1"
+      >
         <div className="text-center text-[#274C5B]">
           <div className="text-[50px] font-extrabold  pt-10">TUGON CARD</div>
           <p className="text-[36px]">Requirements</p>

@@ -8,6 +8,7 @@ export default {
     extend: {
       backgroundImage: {
         senior: "url('/src/Assets/img/senior.png')",
+        pwd: "url('src/Assets/img/pwd.png')",
       },
     },
   },

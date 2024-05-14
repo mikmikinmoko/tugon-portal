@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import { useDispatch, useSelector } from "react-redux";
 import { Avatar, Button, Drawer, Popover } from "antd";
@@ -30,6 +30,7 @@ const Navigation = () => {
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.auth);
   const { currentUser } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
   const fullName = [currentUser?.firstName]
     .concat(currentUser?.middleName, currentUser?.lastName)
@@ -43,6 +44,7 @@ const Navigation = () => {
 
   const signOut = () => {
     dispatch(logout());
+    navigate("/");
   };
 
   const content = (

@@ -7,6 +7,7 @@ import { message } from "antd";
 
 function* createSeniorIdRequest({ payload }) {
   const { createSeniorIdSuccess, requestError } = seniorActions;
+  // const body = payload;
 
   const result = yield call(createSeniorId, payload);
   console.log(result);

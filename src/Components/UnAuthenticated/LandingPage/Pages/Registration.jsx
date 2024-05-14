@@ -7,6 +7,7 @@ import { getMunicipalities } from "../../../../store/api/auth-api";
 import refbrgy from "../../../../Assets/Resources/json/refbrgy.json";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../../../store/store";
+import { registrationImg } from "../../../../helpers/image";
 
 const { signupCitizen } = authActions;
 // import refcitymun from "../../../../Assets/Resources/json/refcitymun.json";
@@ -84,7 +85,14 @@ const Registration = () => {
   return (
     <div className="font-['Poppins'] text-[18px] font-normal">
       <div className="grid lg:grid-cols-2 grid-cols-1">
-        <div className="hidden lg:block bg-[url('src/Assets/img/registrationImg.png')] bg-cover bg-center ">
+        <div
+          style={{
+            backgroundImage: `url(${registrationImg})`,
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+          }}
+          className="hidden lg:block "
+        >
           <div className="flex h-full flex-col justify-end items-start px-5 lg:px-5 xl:px-16 py-20   text-[#fff] ">
             <div className=" text-[40px] font-semibold w-11/12 ">
               Taytay Unified Governance & Outreach Network
