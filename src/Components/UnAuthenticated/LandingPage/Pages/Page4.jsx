@@ -3,39 +3,39 @@ import { smtaytay } from "../../../../helpers/image";
 const tugonId = [
   {
     id: 1,
-    label: "Philippine Password",
+    label: "Philippine Passport",
   },
   {
     id: 2,
-    label: "Philippine Password",
+    label: "Philippine Passport",
   },
   {
     id: 3,
-    label: "Philippine Password",
+    label: "Philippine Passport",
   },
   {
     id: 4,
-    label: "Philippine Password",
+    label: "Philippine Passport",
   },
   {
     id: 5,
-    label: "Philippine Password",
+    label: "Philippine Passport",
   },
   {
     id: 6,
-    label: "Philippine Password",
+    label: "Philippine Passport",
   },
   {
     id: 7,
-    label: "Philippine Password",
+    label: "Philippine Passport",
   },
   {
     id: 8,
-    label: "Philippine Password",
+    label: "Philippine Passport",
   },
   {
     id: 9,
-    label: "Philippine Password",
+    label: "Philippine Passport",
   },
 ];
 

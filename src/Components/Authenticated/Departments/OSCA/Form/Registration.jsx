@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Navigation from "../../../../UnAuthenticated/LandingPage/Navigation/Navigation";
 import {
   Button,
+  Checkbox,
   DatePicker,
   Form,
   Input,
@@ -329,7 +330,7 @@ const Registration = () => {
                                 },
                               ]}
                             >
-                              <Input placeholder="Enter Age" />
+                              <Input placeholder="Enter Age" disabled />
                             </Form.Item>
                           </div>
                           <div>
@@ -750,37 +751,35 @@ const Registration = () => {
                             label="Name of Association"
                             name="nameOfAssociation"
                           >
-                            <Input />
+                            <Input placeholder="Name of Association" />
                           </Form.Item>
                         </div>
-                        <div></div>
                         <div>
                           <Form.Item
                             label="Address of Association"
                             name="addressOfAssociation"
+                            rules={[
+                              {
+                                required: true,
+                                message:
+                                  "Please input the Address of Association",
+                              },
+                            ]}
                           >
                             <Input placeholder="Address" />
                           </Form.Item>
                         </div>
-                        {/* <div>
-                          <Form.Item label=" ">
-                            <Input placeholder="City/Municipality" />
-                          </Form.Item>
-                        </div>
-                        <div>
-                          <Form.Item>
-                            <Input placeholder="Barangay" />
-                          </Form.Item>
-                        </div>
-                        <div>
-                          <Form.Item>
-                            <Input placeholder="Street Address" />
-                          </Form.Item>
-                        </div> */}
+
                         <div>
                           <Form.Item
                             label="Date of Membership"
                             name="dateOfMembership"
+                            rules={[
+                              {
+                                required: true,
+                                message: "Please input your Date of Membership",
+                              },
+                            ]}
                           >
                             <DatePicker
                               className="w-full"
@@ -790,7 +789,16 @@ const Registration = () => {
                           </Form.Item>
                         </div>
                         <div>
-                          <Form.Item label="Position" name="position">
+                          <Form.Item
+                            label="Position"
+                            name="position"
+                            rules={[
+                              {
+                                required: true,
+                                message: "Please input your position",
+                              },
+                            ]}
+                          >
                             <Input />
                           </Form.Item>
                         </div>
@@ -801,7 +809,16 @@ const Registration = () => {
                         <div className="py-2 text-[16px] text-[#a8a8a8]">
                           Birth Certificate / Passport
                         </div>
-                        <Form.Item name="document">
+                        <Form.Item
+                          name="document"
+                          rules={[
+                            {
+                              required: true,
+                              message:
+                                "Please input your Birth Certificarte / Passport",
+                            },
+                          ]}
+                        >
                           <Dragger {...document}>
                             <p className="ant-upload-drag-icon">
                               <InboxOutlined />
@@ -819,7 +836,15 @@ const Registration = () => {
                         <div className="py-2 text-[16px] text-[#a8a8a8]">
                           2 Valid {`ID's`}
                         </div>
-                        <Form.Item name="id">
+                        <Form.Item
+                          name="id"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input your ID",
+                            },
+                          ]}
+                        >
                           <Dragger {...id}>
                             <p className="ant-upload-drag-icon">
                               <InboxOutlined />
@@ -833,6 +858,27 @@ const Registration = () => {
                               banned files.
                             </p>
                           </Dragger>
+                        </Form.Item>
+
+                        <Form.Item
+                          name="agreement"
+                          valuePropName="checked"
+                          rules={[
+                            {
+                              validator: (_, value) =>
+                                value
+                                  ? Promise.resolve()
+                                  : Promise.reject(
+                                      new Error("Should accept agreement")
+                                    ),
+                            },
+                          ]}
+                          // {...tailFormItemLayout}
+                        >
+                          <Checkbox>
+                            I certify that the above information are true and
+                            correct to the best of my knowledge and belief
+                          </Checkbox>
                         </Form.Item>
                       </div>
                     )}
