@@ -50,9 +50,13 @@ import stepImg5 from "../Assets/img/stepImg5.png";
 import stepArrow from "../Assets/img/stepArrow.png";
 import pwd from "../Assets/img/pwd.png";
 import page2 from "../Assets/img/page2.png";
+import homeMobile from "../Assets/img/homeMobile.png";
+import aboutMobile from "../Assets/img/aboutMobile.png";
 
 export {
   home,
+  homeMobile,
+  aboutMobile,
   page2,
   pwd,
   stepImg1,

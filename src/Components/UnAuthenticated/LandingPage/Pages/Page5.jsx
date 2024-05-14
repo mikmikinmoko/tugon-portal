@@ -5,12 +5,8 @@ const Page5 = () => {
     <section className="h-full w-full bg-[url('src/Assets/img/page5.png')] py-24 px-16"></section>
   );
 };
-const Footer = () => {
-  return (
-    <div>
-      <img src={footer2} />
-    </div>
-  );
+const Footer = ({ children }) => {
+  return <div className=" bg-footer bg-cover bg-center p-10">"{children}</div>;
 };
 
 export { Page5, Footer };

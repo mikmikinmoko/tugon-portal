@@ -7,11 +7,13 @@ import { Page5 } from "./Page5";
 const Main = () => {
   return (
     <>
-      <Page1 />
-      <Page2 />
-      <Page3 />
-      <Page4 />
-      <Page5 />
+      <div className="">
+        <Page1 />
+        <Page2 />
+        <Page3 />
+        <Page4 />
+        <Page5 />
+      </div>
     </>
   );
 };

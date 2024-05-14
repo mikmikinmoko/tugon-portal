@@ -8,7 +8,7 @@ const OSCAPage = () => {
   return (
     <>
       <Navigation />
-      <section className=" w-full h-full font-['Poppins'] text-[18px]">
+      <section className=" w-full h-screen font-['Poppins'] text-[18px] ">
         <div className="flex flex-col justify-center items-center py-9">
           <div className=" text-[#001862] text-[36px]">OSCA: Citizen</div>
           <div className="text-[#525252] text-center">
@@ -26,10 +26,10 @@ const OSCAPage = () => {
             </div>
           </div>
         </div>
-        <div className="hidden lg:block pt-10">
-          <Footer />
-        </div>
       </section>
+      <div className="">
+        <Footer>asdadaasd</Footer>
+      </div>
     </>
   );
 };

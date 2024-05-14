@@ -9,6 +9,7 @@ export default {
       backgroundImage: {
         senior: "url('/src/Assets/img/senior.png')",
         pwd: "url('src/Assets/img/pwd.png')",
+        footer: "url('src/Assets/img/footer2.png')",
       },
     },
   },

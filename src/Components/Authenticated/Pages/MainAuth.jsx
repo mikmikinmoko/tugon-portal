@@ -3,6 +3,7 @@ import AboutUs from "./About/AboutUs";
 import Announcement from "./Announcement";
 import Home from "./Home/Home";
 import Features from "../Pages/Features/Features";
+import { Footer } from "../../UnAuthenticated/LandingPage/Pages/Page5";
 
 const MainAuth = () => {
   return (
@@ -14,12 +15,15 @@ const MainAuth = () => {
       <section id="aboutUs">
         <AboutUs />
       </section>
-      <section id="annoucement">
+      {/* <section id="annoucement">
         <Announcement />
       </section>
       <section id="features">
         <Features />
       </section>
+      <section id="footer">
+        <Footer>1</Footer>
+      </section> */}
     </>
   );
 };

@@ -1,7 +1,6 @@
-import PropTypes from "prop-types";
 import { Vector } from "../helpers/image";
 
-const Title = ({ title }) => {
+const Title = ({ children }) => {
   return (
     <div>
       <div className="  flex justify-between items-center">
@@ -10,16 +9,12 @@ const Title = ({ title }) => {
             <img src={Vector} />
           </div>
           <div className="text-[28px] font-medium">
-            <h1 className="">{title}</h1>
+            <h1 className="">{children}</h1>
           </div>
         </div>
       </div>
     </div>
   );
-};
-
-Title.propTypes = {
-  title: PropTypes.node,
 };
 
 export default Title;
