@@ -38,6 +38,7 @@ import aboutImg3 from "../Assets/img/aboutImg3.png";
 import top from "../Assets/img/top.png";
 import down from "../Assets/img/down.png";
 import announcementImg from "../Assets/img/announcementImg.png";
+import announceImg from "../Assets/img/announceImg.png";
 import senior from "../Assets/img/senior.png";
 import seniorImg1 from "../Assets/img/seniorImg1.png";
 import seniorImg2 from "../Assets/img/seniorImg2.png";
@@ -52,11 +53,16 @@ import pwd from "../Assets/img/pwd.png";
 import page2 from "../Assets/img/page2.png";
 import homeMobile from "../Assets/img/homeMobile.png";
 import aboutMobile from "../Assets/img/aboutMobile.png";
+import eventImgMobile from "../Assets/img/eventImgMobile.png";
+import arrowDown from "../Assets/img/arrowDown.png";
 
 export {
   home,
   homeMobile,
+  arrowDown,
+  eventImgMobile,
   aboutMobile,
+  announceImg,
   page2,
   pwd,
   stepImg1,

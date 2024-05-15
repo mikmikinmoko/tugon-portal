@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import { useDispatch, useSelector } from "react-redux";
 import { Avatar, Button, Drawer, Popover } from "antd";
+import { HashLink as Link } from "react-router-hash-link";
 
 import {
   BurgerIcon,
@@ -14,10 +15,8 @@ import { useState } from "react";
 import { routesAuth } from "../../../../routes";
 
 const navigationAuth = [
-  { name: "Announcement", link: "" },
   { name: "PWD ID", link: "/pwd" },
   { name: "Senior Citizen ID", link: "/senior" },
-  { name: "About", link: "" },
   { name: "Home", link: "/" },
 ];
 const navigationUnAuth = [
@@ -150,7 +149,7 @@ const Navigation = () => {
           <div className="hidden sm:block md:flex ">
             {isAuthenticated && (
               <ul className="flex lg:gap-8  sm:gap-5 xs:gap-4 items-center text-[#787878] font-medium  ">
-                {navigationAuth.map((item) => (
+                {/* {navigationAuth.map((item) => (
                   <NavLink
                     key={item.name}
                     to={item.link}
@@ -158,7 +157,19 @@ const Navigation = () => {
                   >
                     {item.name}
                   </NavLink>
-                ))}
+                ))} */}
+                <li>
+                  <NavLink to={"/senior"}>Senior ID</NavLink>
+                </li>
+                <li>
+                  <Link to="/#announcement">Announcement</Link>
+                </li>
+                <li>
+                  <Link to="/#aboutUs">About</Link>
+                </li>
+                <li>
+                  <NavLink to="/">Home</NavLink>
+                </li>
                 <Popover placement="bottomRight" content={content}>
                   <Avatar
                     size={40}

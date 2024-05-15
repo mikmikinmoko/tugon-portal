@@ -8,7 +8,7 @@ const PWDPage = () => {
     <>
       <Navigation />
       <section className=" w-full h-screen text-[16px] font-['Poppins']">
-        <div className="bg-pwd bg-cover bg-center w-full h-[418px] flex justify-center items-center">
+        <div className="bg-pwd bg-cover bg-center  h-[418px] flex justify-center items-center">
           <div className=" text-[#FFFFFF] text-[36px] font-semibold pt-24">
             PWD ID: Registration
           </div>

@@ -26,6 +26,8 @@ import refprovince from "../../../../../Assets/Resources/json/refprovince.json";
 import refregion from "../../../../../Assets/Resources/json/refregion.json";
 import dayjs from "dayjs";
 import { seniorActions } from "../../../../../store/store";
+import { Footer } from "../../../../UnAuthenticated/LandingPage/Pages/Page5";
+import NotEligible from "../../../../../Reusable/NotEligible";
 
 const { Dragger } = Upload;
 
@@ -212,304 +214,310 @@ const Registration = () => {
   return (
     <>
       <Navigation />
-      <section className="w-full h-screen font-['Poppins']">
-        <div className="flex justify-center items-center">
-          <div className="w-[1100px]">
-            <div className=" bg-[#E0E6F2] py-2 px-10">
-              <div className="py-5 text-[#808080] text-[14px]">
-                <Button type="text" onClick={() => navigate(-1)}>
-                  &larr; back
-                </Button>
-              </div>
-              <h1 className="text-[24px] font-semibold">
-                Office of the Senior {`Citizen's`} Affair (OSCA)
-                <span className="text-[#808080] text-[12px] px-2 font-normal">
-                  Registration Form
-                </span>
-              </h1>
-            </div>
-            <div className="h-full w-full ">
-              <div className="lg:grid lg:grid-cols-4 ">
-                <div className=" border-r-2 border-[#D8E6F6]  py-16 px-5">
-                  <Step current={step} items={items} />
+      {age <= 60 ? (
+        <>
+          <NotEligible />
+          <Footer></Footer>
+        </>
+      ) : (
+        <section className="w-full h-screen font-['Poppins']">
+          <div className="flex justify-center items-center">
+            <div className="w-[1100px]">
+              <div className=" bg-[#E0E6F2] py-2 px-10">
+                <div className="py-5 text-[#808080] text-[14px]">
+                  <Button type="text" onClick={() => navigate(-1)}>
+                    &larr; back
+                  </Button>
                 </div>
-                <div className=" col-span-3 py-16 px-10 ">
-                  <Form
-                    form={form}
-                    layout="vertical"
-                    requiredMark="optional"
-                    onFinish={onFinish}
-                  >
-                    <div className="py-3">
-                      {step === 2 ? (
-                        <TitleForm>Family Composition</TitleForm>
-                      ) : step === 3 ? (
-                        <TitleForm>
-                          Membership to Senior Citizens Association
-                        </TitleForm>
-                      ) : step === 4 ? (
-                        <TitleForm>Document</TitleForm>
-                      ) : (
-                        <TitleForm>Personal Information</TitleForm>
-                      )}
-                    </div>
-                    {step === 0 && (
-                      <>
-                        <div className="grid grid-cols-2 grid-rows-2 gap-4">
-                          <div>
-                            <Form.Item
-                              name="firstName"
-                              label="First Name"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "Please input First Name",
-                                },
-                              ]}
-                            >
-                              <Input placeholder="First Name" disabled />
-                            </Form.Item>
+                <h1 className="text-[24px] font-semibold">
+                  Office of the Senior {`Citizen's`} Affair (OSCA)
+                  <span className="text-[#808080] text-[12px] px-2 font-normal">
+                    Registration Form
+                  </span>
+                </h1>
+              </div>
+              <div className="h-full w-full ">
+                <div className="lg:grid lg:grid-cols-4 ">
+                  <div className=" border-r-2 border-[#D8E6F6]  py-16 px-5">
+                    <Step current={step} items={items} />
+                  </div>
+                  <div className=" col-span-3 py-16 px-10 ">
+                    <Form
+                      form={form}
+                      layout="vertical"
+                      requiredMark="optional"
+                      onFinish={onFinish}
+                    >
+                      <div className="py-3">
+                        {step === 2 ? (
+                          <TitleForm>Family Composition</TitleForm>
+                        ) : step === 3 ? (
+                          <TitleForm>
+                            Membership to Senior Citizens Association
+                          </TitleForm>
+                        ) : step === 4 ? (
+                          <TitleForm>Document</TitleForm>
+                        ) : (
+                          <TitleForm>Personal Information</TitleForm>
+                        )}
+                      </div>
+                      {step === 0 && (
+                        <>
+                          <div className="grid grid-cols-2 grid-rows-2 gap-4">
+                            <div>
+                              <Form.Item
+                                name="firstName"
+                                label="First Name"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "Please input First Name",
+                                  },
+                                ]}
+                              >
+                                <Input placeholder="First Name" disabled />
+                              </Form.Item>
+                            </div>
+                            <div>
+                              <Form.Item
+                                name="middleName"
+                                label="Middle Name"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "Please input Middle Name",
+                                  },
+                                ]}
+                              >
+                                <Input placeholder="Middle Name" disabled />
+                              </Form.Item>
+                            </div>
+                            <div>
+                              <Form.Item
+                                name="lastName"
+                                label="Last Name"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "Please input Last Name",
+                                  },
+                                ]}
+                              >
+                                <Input placeholder="Last Name" disabled />
+                              </Form.Item>
+                            </div>
                           </div>
-                          <div>
-                            <Form.Item
-                              name="middleName"
-                              label="Middle Name"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "Please input Middle Name",
-                                },
-                              ]}
-                            >
-                              <Input placeholder="Middle Name" disabled />
-                            </Form.Item>
-                          </div>
-                          <div>
-                            <Form.Item
-                              name="lastName"
-                              label="Last Name"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "Please input Last Name",
-                                },
-                              ]}
-                            >
-                              <Input placeholder="Last Name" disabled />
-                            </Form.Item>
-                          </div>
-                        </div>
-                        <div className="grid grid-cols-2 grid-rows-4 gap-4">
-                          <div>
-                            <Form.Item
-                              label="Date of Birth"
-                              name="dateOfBirth"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "Please input your Birth Date",
-                                },
-                              ]}
-                            >
-                              <DatePicker
-                                className="w-full"
-                                format={"YYYY-MM-DD"}
-                                placeholder="YYYY-MM-DD"
-                                disabled
-                              />
-                            </Form.Item>
-                          </div>
-                          <div>
-                            <Form.Item
-                              label="Place of Birth"
-                              name="placeOfBirth"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "Please input your Birth Place",
-                                },
-                              ]}
-                            >
-                              <Input placeholder="Enter Place of Birth" />
-                            </Form.Item>
-                          </div>
-                          <div>
-                            <Form.Item
-                              label="Age"
-                              name="age"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "Please input your Age",
-                                },
-                              ]}
-                            >
-                              <Input placeholder="Enter Age" disabled />
-                            </Form.Item>
-                          </div>
-                          <div>
-                            <Form.Item
-                              name="sex"
-                              label="Sex"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "Please input your Gender",
-                                },
-                              ]}
-                            >
-                              <Radio.Group disabled>
-                                <Radio value={0}>Male</Radio>
-                                <Radio value={1}>Female</Radio>
-                              </Radio.Group>
-                            </Form.Item>
-                          </div>
-                          <div>
-                            <Form.Item
-                              label="Civil Status"
-                              name="civilStatus"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "Please input your Civil Status",
-                                },
-                              ]}
-                            >
-                              <Select>
-                                {civilStatus.map((s) => (
-                                  <Select.Option value={s.id} key={s.id}>
-                                    {s.label}
-                                  </Select.Option>
-                                ))}
-                              </Select>
-                            </Form.Item>
-                          </div>
-                          <div>
-                            <Form.Item
-                              label="Telephone or Cellphone Number"
-                              name="mobileNumber"
-                              rules={[
-                                {
-                                  required: true,
-                                  message:
-                                    "Please input your Telephone or Cellphone Number",
-                                },
-                              ]}
-                            >
-                              <Input
-                                placeholder="Enter Telephone or Cellphone Number"
-                                disabled
-                              />
-                            </Form.Item>
-                          </div>
+                          <div className="grid grid-cols-2 grid-rows-4 gap-4">
+                            <div>
+                              <Form.Item
+                                label="Date of Birth"
+                                name="dateOfBirth"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "Please input your Birth Date",
+                                  },
+                                ]}
+                              >
+                                <DatePicker
+                                  className="w-full"
+                                  format={"YYYY-MM-DD"}
+                                  placeholder="YYYY-MM-DD"
+                                  disabled
+                                />
+                              </Form.Item>
+                            </div>
+                            <div>
+                              <Form.Item
+                                label="Place of Birth"
+                                name="placeOfBirth"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "Please input your Birth Place",
+                                  },
+                                ]}
+                              >
+                                <Input placeholder="Enter Place of Birth" />
+                              </Form.Item>
+                            </div>
+                            <div>
+                              <Form.Item
+                                label="Age"
+                                name="age"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "Please input your Age",
+                                  },
+                                ]}
+                              >
+                                <Input placeholder="Enter Age" disabled />
+                              </Form.Item>
+                            </div>
+                            <div>
+                              <Form.Item
+                                name="sex"
+                                label="Sex"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "Please input your Gender",
+                                  },
+                                ]}
+                              >
+                                <Radio.Group disabled>
+                                  <Radio value={0}>Male</Radio>
+                                  <Radio value={1}>Female</Radio>
+                                </Radio.Group>
+                              </Form.Item>
+                            </div>
+                            <div>
+                              <Form.Item
+                                label="Civil Status"
+                                name="civilStatus"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "Please input your Civil Status",
+                                  },
+                                ]}
+                              >
+                                <Select>
+                                  {civilStatus.map((s) => (
+                                    <Select.Option value={s.id} key={s.id}>
+                                      {s.label}
+                                    </Select.Option>
+                                  ))}
+                                </Select>
+                              </Form.Item>
+                            </div>
+                            <div>
+                              <Form.Item
+                                label="Telephone or Cellphone Number"
+                                name="mobileNumber"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message:
+                                      "Please input your Telephone or Cellphone Number",
+                                  },
+                                ]}
+                              >
+                                <Input
+                                  placeholder="Enter Telephone or Cellphone Number"
+                                  disabled
+                                />
+                              </Form.Item>
+                            </div>
 
-                          <div>
-                            <Form.Item
-                              label="Region"
-                              name="regionId"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "Please enter Province",
-                                },
-                              ]}
-                            >
-                              <Select
-                                disabled
-                                filterOption={(input, option) =>
-                                  (option?.label ?? "")
-                                    .toLowerCase()
-                                    .includes(input.toLowerCase())
-                                }
-                                optionFilterProp="children"
-                                showSearch
-                                placeholder="State/Province"
-                                options={refregion.map((r) => {
-                                  return {
-                                    value: r.regCode,
-                                    label: r.regDesc,
-                                  };
-                                })}
-                              ></Select>
-                            </Form.Item>
-                          </div>
-                          <div>
-                            <Form.Item
-                              label="Province"
-                              name="provinceId"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "Please enter Province",
-                                },
-                              ]}
-                            >
-                              <Select
-                                disabled
-                                filterOption={(input, option) =>
-                                  (option?.label ?? "")
-                                    .toLowerCase()
-                                    .includes(input.toLowerCase())
-                                }
-                                optionFilterProp="children"
-                                showSearch
-                                placeholder="State/Province"
-                                options={refprovince.map((p) => {
-                                  return {
-                                    value: p.provCode,
-                                    label: p.provDesc,
-                                  };
-                                })}
-                              ></Select>
-                            </Form.Item>
-                          </div>
-                          <div>
-                            <Form.Item
-                              label="City"
-                              name="cityId"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "Please enter City/Municipality",
-                                },
-                              ]}
-                            >
-                              <Select
-                                placeholder="City/Municipality"
-                                disabled
-                                options={refcitymun.map((c) => {
-                                  return {
-                                    value: c.citymunCode,
-                                    label: c.citymunDesc,
-                                  };
-                                })}
-                              ></Select>
-                            </Form.Item>
-                          </div>
-                          <div>
-                            <Form.Item
-                              label={"Barangay"}
-                              name="brgyId"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "Please input your Baragay",
-                                },
-                              ]}
-                            >
-                              <Select
-                                placeholder="Barangay"
-                                disabled
-                                options={refbrgy.map((b) => {
-                                  return {
-                                    value: b.brgyCode,
-                                    label: b.brgyDesc,
-                                  };
-                                })}
-                              />
-                            </Form.Item>
-                          </div>
-                          {/* <div>
+                            <div>
+                              <Form.Item
+                                label="Region"
+                                name="regionId"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "Please enter Province",
+                                  },
+                                ]}
+                              >
+                                <Select
+                                  disabled
+                                  filterOption={(input, option) =>
+                                    (option?.label ?? "")
+                                      .toLowerCase()
+                                      .includes(input.toLowerCase())
+                                  }
+                                  optionFilterProp="children"
+                                  showSearch
+                                  placeholder="State/Province"
+                                  options={refregion.map((r) => {
+                                    return {
+                                      value: r.regCode,
+                                      label: r.regDesc,
+                                    };
+                                  })}
+                                ></Select>
+                              </Form.Item>
+                            </div>
+                            <div>
+                              <Form.Item
+                                label="Province"
+                                name="provinceId"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "Please enter Province",
+                                  },
+                                ]}
+                              >
+                                <Select
+                                  disabled
+                                  filterOption={(input, option) =>
+                                    (option?.label ?? "")
+                                      .toLowerCase()
+                                      .includes(input.toLowerCase())
+                                  }
+                                  optionFilterProp="children"
+                                  showSearch
+                                  placeholder="State/Province"
+                                  options={refprovince.map((p) => {
+                                    return {
+                                      value: p.provCode,
+                                      label: p.provDesc,
+                                    };
+                                  })}
+                                ></Select>
+                              </Form.Item>
+                            </div>
+                            <div>
+                              <Form.Item
+                                label="City"
+                                name="cityId"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "Please enter City/Municipality",
+                                  },
+                                ]}
+                              >
+                                <Select
+                                  placeholder="City/Municipality"
+                                  disabled
+                                  options={refcitymun.map((c) => {
+                                    return {
+                                      value: c.citymunCode,
+                                      label: c.citymunDesc,
+                                    };
+                                  })}
+                                ></Select>
+                              </Form.Item>
+                            </div>
+                            <div>
+                              <Form.Item
+                                label={"Barangay"}
+                                name="brgyId"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "Please input your Baragay",
+                                  },
+                                ]}
+                              >
+                                <Select
+                                  placeholder="Barangay"
+                                  disabled
+                                  options={refbrgy.map((b) => {
+                                    return {
+                                      value: b.brgyCode,
+                                      label: b.brgyDesc,
+                                    };
+                                  })}
+                                />
+                              </Form.Item>
+                            </div>
+                            {/* <div>
                         <Form.Item
                           name="street"
                           rules={[
@@ -522,155 +530,157 @@ const Registration = () => {
                           <Input placeholder="Street Address" />
                         </Form.Item>
                       </div> */}
-                        </div>
-                      </>
-                    )}
-                    {step === 1 && (
-                      <>
-                        <div>
-                          <Form.Item
-                            label="Pensioner"
-                            name="pensioner"
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please select Pensioner",
-                              },
-                            ]}
-                          >
-                            <Radio.Group>
-                              <Radio value={0}>Yes</Radio>
-                              <Radio value={1}>No</Radio>
-                            </Radio.Group>
-                          </Form.Item>
-                        </div>
-                        <div className="grid grid-cols-2 grid-rows-3 gap-x-10">
+                          </div>
+                        </>
+                      )}
+                      {step === 1 && (
+                        <>
                           <div>
                             <Form.Item
-                              label="Amount of Pension"
-                              name="amountOfPension"
+                              label="Pensioner"
+                              name="pensioner"
                               rules={[
                                 {
                                   required: true,
-                                  message: "Please input Amount",
+                                  message: "Please select Pensioner",
                                 },
                               ]}
                             >
-                              <Input />
+                              <Radio.Group>
+                                <Radio value={0}>Yes</Radio>
+                                <Radio value={1}>No</Radio>
+                              </Radio.Group>
                             </Form.Item>
                           </div>
-                          <div>
-                            <Form.Item
-                              label="Income"
-                              name="income"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "Please input Income",
-                                },
-                              ]}
-                            >
-                              <Input />
-                            </Form.Item>
+                          <div className="grid grid-cols-2 grid-rows-3 gap-x-10">
+                            <div>
+                              <Form.Item
+                                label="Amount of Pension"
+                                name="amountOfPension"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "Please input Amount",
+                                  },
+                                ]}
+                              >
+                                <Input />
+                              </Form.Item>
+                            </div>
+                            <div>
+                              <Form.Item
+                                label="Income"
+                                name="income"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "Please input Income",
+                                  },
+                                ]}
+                              >
+                                <Input />
+                              </Form.Item>
+                            </div>
+                            <div>
+                              <Form.Item
+                                label="Educational Attainment"
+                                name="educationalAttainment"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message:
+                                      "Please select Educational Attainment",
+                                  },
+                                ]}
+                              >
+                                <Select>
+                                  <Select.Option value={0}>
+                                    Elementary Level
+                                  </Select.Option>
+                                  <Select.Option value={1}>
+                                    High School Level
+                                  </Select.Option>
+                                  <Select.Option value={2}>
+                                    College Level
+                                  </Select.Option>
+                                  <Select.Option value={3}>
+                                    College Graduate
+                                  </Select.Option>
+                                  <Select.Option value={4}>
+                                    Vocational / Technical Course
+                                  </Select.Option>
+                                </Select>
+                              </Form.Item>
+                            </div>
+                            <div>
+                              <Form.Item
+                                label="Employment Status"
+                                name="employmentStatus"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "Please select Employment Status",
+                                  },
+                                ]}
+                              >
+                                <Select>
+                                  <Select.Option value={0}>
+                                    Employed
+                                  </Select.Option>
+                                  <Select.Option value={1}>
+                                    Unemployed
+                                  </Select.Option>
+                                  <Select.Option value={2}>
+                                    Business
+                                  </Select.Option>
+                                </Select>
+                              </Form.Item>
+                            </div>
+                            <div>
+                              <Form.Item
+                                label="Physical Condition"
+                                name="physicalCondition"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "Please select Physical Condition",
+                                  },
+                                ]}
+                              >
+                                <Select>
+                                  <Select.Option value={0}>
+                                    Healthy
+                                  </Select.Option>
+                                  <Select.Option value={1}>
+                                    Sickly & Frail
+                                  </Select.Option>
+                                  <Select.Option value={2}>
+                                    Bed Ridden
+                                  </Select.Option>
+                                  <Select.Option value={3}>PWD</Select.Option>
+                                </Select>
+                              </Form.Item>
+                            </div>
+                            <div>
+                              <Form.Item
+                                label="Skills"
+                                name="skills"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "Please specify Skills",
+                                  },
+                                ]}
+                              >
+                                <Input placeholder="Skills" />
+                              </Form.Item>
+                            </div>
                           </div>
-                          <div>
-                            <Form.Item
-                              label="Educational Attainment"
-                              name="educationalAttainment"
-                              rules={[
-                                {
-                                  required: true,
-                                  message:
-                                    "Please select Educational Attainment",
-                                },
-                              ]}
-                            >
-                              <Select>
-                                <Select.Option value={0}>
-                                  Elementary Level
-                                </Select.Option>
-                                <Select.Option value={1}>
-                                  High School Level
-                                </Select.Option>
-                                <Select.Option value={2}>
-                                  College Level
-                                </Select.Option>
-                                <Select.Option value={3}>
-                                  College Graduate
-                                </Select.Option>
-                                <Select.Option value={4}>
-                                  Vocational / Technical Course
-                                </Select.Option>
-                              </Select>
-                            </Form.Item>
-                          </div>
-                          <div>
-                            <Form.Item
-                              label="Employment Status"
-                              name="employmentStatus"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "Please select Employment Status",
-                                },
-                              ]}
-                            >
-                              <Select>
-                                <Select.Option value={0}>
-                                  Employed
-                                </Select.Option>
-                                <Select.Option value={1}>
-                                  Unemployed
-                                </Select.Option>
-                                <Select.Option value={2}>
-                                  Business
-                                </Select.Option>
-                              </Select>
-                            </Form.Item>
-                          </div>
-                          <div>
-                            <Form.Item
-                              label="Physical Condition"
-                              name="physicalCondition"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "Please select Physical Condition",
-                                },
-                              ]}
-                            >
-                              <Select>
-                                <Select.Option value={0}>Healthy</Select.Option>
-                                <Select.Option value={1}>
-                                  Sickly & Frail
-                                </Select.Option>
-                                <Select.Option value={2}>
-                                  Bed Ridden
-                                </Select.Option>
-                                <Select.Option value={3}>PWD</Select.Option>
-                              </Select>
-                            </Form.Item>
-                          </div>
-                          <div>
-                            <Form.Item
-                              label="Skills"
-                              name="skills"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "Please specify Skills",
-                                },
-                              ]}
-                            >
-                              <Input placeholder="Skills" />
-                            </Form.Item>
-                          </div>
-                        </div>
-                      </>
-                    )}
-                    {step === 2 && (
-                      <>
-                        {/* <div className="grid grid-cols-2 grid-rows-3 gap-x-10">
+                        </>
+                      )}
+                      {step === 2 && (
+                        <>
+                          {/* <div className="grid grid-cols-2 grid-rows-3 gap-x-10">
                           <div>
                             <Form.Item label="Name" name="name">
                               <Input />
@@ -700,272 +710,274 @@ const Registration = () => {
                             </Form.Item>
                           </div>
                         </div> */}
-                        <div>
-                          <Form.List name="familyComposition">
-                            {(fields, { add, remove }) => (
-                              <>
-                                {fields.map(({ key, name, ...restField }) => (
-                                  <div
-                                    key={key}
-                                    className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 grid-rows-3 lg:gap-10 md:gap-10"
-                                  >
-                                    <Form.Item
-                                      {...restField}
-                                      name={[name, "name"]}
-                                      label="Name"
-                                      rules={[
-                                        {
-                                          required: true,
-                                          message: "Missing first name",
-                                        },
-                                      ]}
+                          <div>
+                            <Form.List name="familyComposition">
+                              {(fields, { add, remove }) => (
+                                <>
+                                  {fields.map(({ key, name, ...restField }) => (
+                                    <div
+                                      key={key}
+                                      className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 grid-rows-3 lg:gap-10 md:gap-10"
                                     >
-                                      <Input placeholder="First Name" />
-                                    </Form.Item>
-                                    <Form.Item
-                                      {...restField}
-                                      name={[name, "relationship"]}
-                                      label="Relationship"
-                                      rules={[
-                                        {
-                                          required: true,
-                                          message: "Missing last name",
-                                        },
-                                      ]}
-                                    >
-                                      <Input placeholder="Relationship" />
-                                    </Form.Item>
-                                    <Form.Item
-                                      {...restField}
-                                      name={[name, "age"]}
-                                      label="Age"
-                                      rules={[
-                                        {
-                                          required: true,
-                                          message: "Missing last name",
-                                        },
-                                      ]}
-                                    >
-                                      <Input placeholder="Last Name" />
-                                    </Form.Item>
-                                    <Form.Item
-                                      {...restField}
-                                      name={[name, "status"]}
-                                      label="Status"
-                                    >
-                                      <Radio.Group>
-                                        <Radio value={0}>Alive</Radio>
-                                        <Radio value={1}>Deceased</Radio>
-                                      </Radio.Group>
-                                    </Form.Item>
-                                    <Form.Item
-                                      {...restField}
-                                      name={[name, "occupation"]}
-                                      label="Occupation"
-                                      rules={[
-                                        {
-                                          required: true,
-                                          message: "Missing last name",
-                                        },
-                                      ]}
-                                    >
-                                      <Input placeholder="Last Name" />
-                                    </Form.Item>
-                                    <div className="pt-7">
+                                      <Form.Item
+                                        {...restField}
+                                        name={[name, "name"]}
+                                        label="Name"
+                                        rules={[
+                                          {
+                                            required: true,
+                                            message: "Missing first name",
+                                          },
+                                        ]}
+                                      >
+                                        <Input placeholder="First Name" />
+                                      </Form.Item>
+                                      <Form.Item
+                                        {...restField}
+                                        name={[name, "relationship"]}
+                                        label="Relationship"
+                                        rules={[
+                                          {
+                                            required: true,
+                                            message: "Missing last name",
+                                          },
+                                        ]}
+                                      >
+                                        <Input placeholder="Relationship" />
+                                      </Form.Item>
+                                      <Form.Item
+                                        {...restField}
+                                        name={[name, "age"]}
+                                        label="Age"
+                                        rules={[
+                                          {
+                                            required: true,
+                                            message: "Missing last name",
+                                          },
+                                        ]}
+                                      >
+                                        <Input placeholder="Last Name" />
+                                      </Form.Item>
+                                      <Form.Item
+                                        {...restField}
+                                        name={[name, "status"]}
+                                        label="Status"
+                                      >
+                                        <Radio.Group>
+                                          <Radio value={0}>Alive</Radio>
+                                          <Radio value={1}>Deceased</Radio>
+                                        </Radio.Group>
+                                      </Form.Item>
+                                      <Form.Item
+                                        {...restField}
+                                        name={[name, "occupation"]}
+                                        label="Occupation"
+                                        rules={[
+                                          {
+                                            required: true,
+                                            message: "Missing last name",
+                                          },
+                                        ]}
+                                      >
+                                        <Input placeholder="Last Name" />
+                                      </Form.Item>
+                                      <div className="pt-7">
+                                        <Button
+                                          type="dashed"
+                                          block
+                                          onClick={() => remove(name)}
+                                          icon={<MinusCircleOutlined />}
+                                        >
+                                          Remove Field
+                                        </Button>
+                                      </div>
+                                    </div>
+                                  ))}
+                                  <div className="py-4 w-full">
+                                    <Form.Item>
                                       <Button
                                         type="dashed"
+                                        onClick={() => add()}
                                         block
-                                        onClick={() => remove(name)}
-                                        icon={<MinusCircleOutlined />}
+                                        icon={<PlusOutlined />}
                                       >
-                                        Remove Field
+                                        Add field
                                       </Button>
-                                    </div>
+                                    </Form.Item>
                                   </div>
-                                ))}
-                                <div className="py-4 w-full">
-                                  <Form.Item>
-                                    <Button
-                                      type="dashed"
-                                      onClick={() => add()}
-                                      block
-                                      icon={<PlusOutlined />}
-                                    >
-                                      Add field
-                                    </Button>
-                                  </Form.Item>
-                                </div>
-                              </>
-                            )}
-                          </Form.List>
+                                </>
+                              )}
+                            </Form.List>
+                          </div>
+                        </>
+                      )}
+                      {step === 3 && (
+                        <div className="lg:grid lg:grid-cols-2 lg:grid-rows-3 md:grid md:grid-cols-2 md:grid-rows-3 gap-x-10">
+                          <div>
+                            <Form.Item
+                              label="Name of Association"
+                              name="nameOfAssociation"
+                            >
+                              <Input placeholder="Name of Association" />
+                            </Form.Item>
+                          </div>
+                          <div>
+                            <Form.Item
+                              label="Address of Association"
+                              name="addressOfAssociation"
+                              rules={[
+                                {
+                                  required: true,
+                                  message:
+                                    "Please input the Address of Association",
+                                },
+                              ]}
+                            >
+                              <Input placeholder="Address" />
+                            </Form.Item>
+                          </div>
+
+                          <div>
+                            <Form.Item
+                              label="Date of Membership"
+                              name="dateOfMembership"
+                              rules={[
+                                {
+                                  required: true,
+                                  message:
+                                    "Please input your Date of Membership",
+                                },
+                              ]}
+                            >
+                              <DatePicker
+                                className="w-full"
+                                format={"YYYY-MM-DD"}
+                                placeholder="YYYY-MM-DD"
+                              />
+                            </Form.Item>
+                          </div>
+                          <div>
+                            <Form.Item
+                              label="Position"
+                              name="position"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "Please input your position",
+                                },
+                              ]}
+                            >
+                              <Input />
+                            </Form.Item>
+                          </div>
                         </div>
-                      </>
-                    )}
-                    {step === 3 && (
-                      <div className="lg:grid lg:grid-cols-2 lg:grid-rows-3 md:grid md:grid-cols-2 md:grid-rows-3 gap-x-10">
-                        <div>
+                      )}
+                      {step === 4 && (
+                        <div className="font-['Poppins']">
+                          <div className="py-2 text-[16px] text-[#a8a8a8]">
+                            Birth Certificate / Passport
+                          </div>
                           <Form.Item
-                            label="Name of Association"
-                            name="nameOfAssociation"
-                          >
-                            <Input placeholder="Name of Association" />
-                          </Form.Item>
-                        </div>
-                        <div>
-                          <Form.Item
-                            label="Address of Association"
-                            name="addressOfAssociation"
+                            name="document"
                             rules={[
                               {
                                 required: true,
                                 message:
-                                  "Please input the Address of Association",
+                                  "Please input your Birth Certificarte / Passport",
                               },
                             ]}
                           >
-                            <Input placeholder="Address" />
+                            <Dragger {...document}>
+                              <p className="ant-upload-drag-icon">
+                                <InboxOutlined />
+                              </p>
+                              <p className="ant-upload-text">
+                                Click or drag file to this area to upload
+                              </p>
+                              <p className="ant-upload-hint">
+                                Support for a single or bulk upload. Strictly
+                                prohibited from uploading company data or other
+                                banned files.
+                              </p>
+                            </Dragger>
                           </Form.Item>
-                        </div>
-
-                        <div>
+                          <div className="py-2 text-[16px] text-[#a8a8a8]">
+                            2 Valid {`ID's`}
+                          </div>
                           <Form.Item
-                            label="Date of Membership"
-                            name="dateOfMembership"
+                            name="id"
                             rules={[
                               {
                                 required: true,
-                                message: "Please input your Date of Membership",
+                                message: "Please input your ID",
                               },
                             ]}
                           >
-                            <DatePicker
-                              className="w-full"
-                              format={"YYYY-MM-DD"}
-                              placeholder="YYYY-MM-DD"
-                            />
+                            <Dragger {...id}>
+                              <p className="ant-upload-drag-icon">
+                                <InboxOutlined />
+                              </p>
+                              <p className="ant-upload-text">
+                                Click or drag file to this area to upload
+                              </p>
+                              <p className="ant-upload-hint">
+                                Support for a single or bulk upload. Strictly
+                                prohibited from uploading company data or other
+                                banned files.
+                              </p>
+                            </Dragger>
                           </Form.Item>
-                        </div>
-                        <div>
+
                           <Form.Item
-                            label="Position"
-                            name="position"
+                            // name="agreement"
+                            valuePropName="checked"
                             rules={[
                               {
-                                required: true,
-                                message: "Please input your position",
+                                validator: (_, value) =>
+                                  value
+                                    ? Promise.resolve()
+                                    : Promise.reject(
+                                        new Error("Should accept agreement")
+                                      ),
                               },
                             ]}
+                            // {...tailFormItemLayout}
                           >
-                            <Input />
+                            <Checkbox>
+                              I certify that the above information are true and
+                              correct to the best of my knowledge and belief
+                            </Checkbox>
                           </Form.Item>
                         </div>
-                      </div>
-                    )}
-                    {step === 4 && (
-                      <div className="font-['Poppins']">
-                        <div className="py-2 text-[16px] text-[#a8a8a8]">
-                          Birth Certificate / Passport
-                        </div>
-                        <Form.Item
-                          name="document"
-                          rules={[
-                            {
-                              required: true,
-                              message:
-                                "Please input your Birth Certificarte / Passport",
-                            },
-                          ]}
-                        >
-                          <Dragger {...document}>
-                            <p className="ant-upload-drag-icon">
-                              <InboxOutlined />
-                            </p>
-                            <p className="ant-upload-text">
-                              Click or drag file to this area to upload
-                            </p>
-                            <p className="ant-upload-hint">
-                              Support for a single or bulk upload. Strictly
-                              prohibited from uploading company data or other
-                              banned files.
-                            </p>
-                          </Dragger>
-                        </Form.Item>
-                        <div className="py-2 text-[16px] text-[#a8a8a8]">
-                          2 Valid {`ID's`}
-                        </div>
-                        <Form.Item
-                          name="id"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input your ID",
-                            },
-                          ]}
-                        >
-                          <Dragger {...id}>
-                            <p className="ant-upload-drag-icon">
-                              <InboxOutlined />
-                            </p>
-                            <p className="ant-upload-text">
-                              Click or drag file to this area to upload
-                            </p>
-                            <p className="ant-upload-hint">
-                              Support for a single or bulk upload. Strictly
-                              prohibited from uploading company data or other
-                              banned files.
-                            </p>
-                          </Dragger>
-                        </Form.Item>
-
-                        <Form.Item
-                          // name="agreement"
-                          valuePropName="checked"
-                          rules={[
-                            {
-                              validator: (_, value) =>
-                                value
-                                  ? Promise.resolve()
-                                  : Promise.reject(
-                                      new Error("Should accept agreement")
-                                    ),
-                            },
-                          ]}
-                          // {...tailFormItemLayout}
-                        >
-                          <Checkbox>
-                            I certify that the above information are true and
-                            correct to the best of my knowledge and belief
-                          </Checkbox>
-                        </Form.Item>
-                      </div>
-                    )}
-                    <div className="flex justify-end gap-2">
-                      <Button
-                        disabled={step <= 0}
-                        onClick={() => setStep((step) => step - 1)}
-                      >
-                        Previous
-                      </Button>
-                      {step === 4 ? (
-                        <Button type="primary" onClick={() => form.submit()}>
-                          Submit
-                        </Button>
-                      ) : (
-                        <Button
-                          type="primary"
-                          onClick={() => setStep((step) => step + 1)}
-                        >
-                          Next
-                        </Button>
                       )}
-                    </div>
-                  </Form>
+                      <div className="flex justify-end gap-2">
+                        <Button
+                          disabled={step <= 0}
+                          onClick={() => setStep((step) => step - 1)}
+                        >
+                          Previous
+                        </Button>
+                        {step === 4 ? (
+                          <Button type="primary" onClick={() => form.submit()}>
+                            Submit
+                          </Button>
+                        ) : (
+                          <Button
+                            type="primary"
+                            onClick={() => setStep((step) => step + 1)}
+                          >
+                            Next
+                          </Button>
+                        )}
+                      </div>
+                    </Form>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   );
 };

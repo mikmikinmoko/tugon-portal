@@ -6,7 +6,7 @@ const Page5 = () => {
   );
 };
 const Footer = ({ children }) => {
-  return <div className=" bg-footer bg-cover bg-center p-10">"{children}</div>;
+  return <div className=" bg-[#001862] p-10">"{children}</div>;
 };
 
 export { Page5, Footer };

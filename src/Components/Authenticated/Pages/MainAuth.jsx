@@ -4,6 +4,7 @@ import Announcement from "./Announcement";
 import Home from "./Home/Home";
 import Features from "../Pages/Features/Features";
 import { Footer } from "../../UnAuthenticated/LandingPage/Pages/Page5";
+import FAQ from "./FAQ/FAQ";
 
 const MainAuth = () => {
   return (
@@ -12,18 +13,17 @@ const MainAuth = () => {
       <section id="home">
         <Home />
       </section>
-      <section id="aboutUs">
-        <AboutUs />
-      </section>
-      {/* <section id="annoucement">
+      <AboutUs />
+      <section id="announcement">
         <Announcement />
       </section>
-      <section id="features">
+      <FAQ />
+      {/*<section id="features">
         <Features />
-      </section>
+      </section>*/}
       <section id="footer">
-        <Footer>1</Footer>
-      </section> */}
+        <Footer></Footer>
+      </section>
     </>
   );
 };

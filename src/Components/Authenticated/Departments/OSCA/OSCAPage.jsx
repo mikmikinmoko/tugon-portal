@@ -27,9 +27,7 @@ const OSCAPage = () => {
           </div>
         </div>
       </section>
-      <div className="">
-        <Footer>asdadaasd</Footer>
-      </div>
+      <Footer></Footer>
     </>
   );
 };
