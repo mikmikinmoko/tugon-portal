@@ -10,20 +10,11 @@ const MainAuth = () => {
   return (
     <>
       <Navigation />
-      <section id="home">
-        <Home />
-      </section>
+      <Home />
       <AboutUs />
-      <section id="announcement">
-        <Announcement />
-      </section>
+      <Announcement />
       <FAQ />
-      {/*<section id="features">
-        <Features />
-      </section>*/}
-      <section id="footer">
-        <Footer></Footer>
-      </section>
+      <Footer />
     </>
   );
 };

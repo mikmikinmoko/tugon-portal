@@ -45,15 +45,16 @@ const FAQ = () => {
   };
   return (
     <div className="font-['Poppins'] w-full h-full">
-      <div className="p-5 lg:py-16 lg:px-32">
+      <div className="p-5 lg:py-8 lg:px-32">
         <div className="py-5">
           <Title>FAQ</Title>
         </div>
         <Collapse
           items={items}
+          accordion
           defaultActiveKey={["1"]}
           onChange={onChange}
-          className=" font-['Poppins'] py-2"
+          className="font-['Poppins']"
         />
       </div>
     </div>

@@ -55,10 +55,14 @@ import homeMobile from "../Assets/img/homeMobile.png";
 import aboutMobile from "../Assets/img/aboutMobile.png";
 import eventImgMobile from "../Assets/img/eventImgMobile.png";
 import arrowDown from "../Assets/img/arrowDown.png";
+import eventImg1 from "../Assets/img/eventImg1.png";
+import eventImg2 from "../Assets/img/eventImg2.png";
 
 export {
   home,
   homeMobile,
+  eventImg1,
+  eventImg2,
   arrowDown,
   eventImgMobile,
   aboutMobile,

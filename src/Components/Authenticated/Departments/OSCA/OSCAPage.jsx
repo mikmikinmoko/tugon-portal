@@ -8,8 +8,8 @@ const OSCAPage = () => {
   return (
     <>
       <Navigation />
-      <section className=" w-full h-screen font-['Poppins'] text-[18px] ">
-        <div className="flex flex-col justify-center items-center py-9">
+      <section className=" w-full h-full font-['Poppins'] text-[18px]">
+        <div className="flex flex-col min-h-screen justify-center items-center py-8">
           <div className=" text-[#001862] text-[36px]">OSCA: Citizen</div>
           <div className="text-[#525252] text-center">
             OSCA: Citizen - Your Gateway to Senior Citizen Services
@@ -26,8 +26,10 @@ const OSCAPage = () => {
             </div>
           </div>
         </div>
+        <div className="flex   justify-end items-end">
+          <Footer />
+        </div>
       </section>
-      <Footer></Footer>
     </>
   );
 };

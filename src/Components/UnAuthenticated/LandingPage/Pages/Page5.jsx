@@ -6,7 +6,13 @@ const Page5 = () => {
   );
 };
 const Footer = ({ children }) => {
-  return <div className=" bg-[#001862] p-10">"{children}</div>;
+  return (
+    <footer className="w-full bg-[#001862] text-white py-7">
+      <div className="container mx-auto text-center">
+        © 2024 Your Company. All rights reserved.
+      </div>
+    </footer>
+  );
 };
 
 export { Page5, Footer };

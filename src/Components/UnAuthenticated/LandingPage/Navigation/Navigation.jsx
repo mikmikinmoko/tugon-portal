@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import { useDispatch, useSelector } from "react-redux";
 import { Avatar, Button, Drawer, Popover } from "antd";
@@ -141,14 +141,14 @@ const Navigation = () => {
           </div>
         )}
       </Drawer>
-      <div className=" font-sans py-3 px-5 sm:px-5 md:px-14 text-[14px]">
+      <div className=" font-sans py-3 px-5 sm:px-5 md:px-14 text-[14px] top-0 sticky z-10 bg-[#ffffff] shadow-md">
         <div className="flex justify-between items-center">
           <NavLink to="/">
             <Logo width="100px" />
           </NavLink>
           <div className="hidden sm:block md:flex ">
             {isAuthenticated && (
-              <ul className="flex lg:gap-8  sm:gap-5 xs:gap-4 items-center text-[#787878] font-medium  ">
+              <ul className="flex lg:gap-8  sm:gap-5 xs:gap-4 items-center text-[#787878] font-medium   ">
                 {/* {navigationAuth.map((item) => (
                   <NavLink
                     key={item.name}
@@ -159,16 +159,44 @@ const Navigation = () => {
                   </NavLink>
                 ))} */}
                 <li>
-                  <NavLink to={"/senior"}>Senior ID</NavLink>
+                  <NavLink
+                    to={"/pwd"}
+                    className="hover:text-[#234F8B] active:text-[#234F8B]"
+                  >
+                    PWD ID
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/#announcement">Announcement</Link>
+                  <NavLink
+                    to={"/senior"}
+                    className="hover:text-[#234F8B] active:text-[#234F8B]"
+                  >
+                    Senior ID
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/#aboutUs">About</Link>
+                  <Link
+                    to="/#announcement"
+                    className="hover:text-[#234F8B] active::text-[#234F8B]"
+                  >
+                    Announcement
+                  </Link>
                 </li>
                 <li>
-                  <NavLink to="/">Home</NavLink>
+                  <Link
+                    to="/#aboutUs"
+                    className="hover:text-[#234F8B] active:text-[#234F8B]"
+                  >
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/#home"
+                    className="hover:text-[#234F8B] active:text-[#234F8B]"
+                  >
+                    Home
+                  </Link>
                 </li>
                 <Popover placement="bottomRight" content={content}>
                   <Avatar

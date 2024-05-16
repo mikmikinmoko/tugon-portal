@@ -5,6 +5,8 @@ import {
   aboutImg3,
   aboutMobile,
   down,
+  eventImg1,
+  eventImg2,
   top,
 } from "../../../../helpers/image";
 import Navigation from "../../../UnAuthenticated/LandingPage/Navigation/Navigation";
@@ -12,12 +14,16 @@ import Navigation from "../../../UnAuthenticated/LandingPage/Navigation/Navigati
 const AboutUs = () => {
   return (
     <>
-      <section
+      {/* <section
         className="font-normal text-[18px] text-[#002B67] w-full md:py-12 lg:py-18 text-justify h-full sm:h-full md:h-screen lg:h-full font-['Poppins'] "
         id="aboutUs"
+      > */}
+      <section
+        className="font-normal text-[18px] text-[#002B67] w-full h-full  text-justify  font-['Poppins'] scroll-mt-16 "
+        id="aboutUs"
       >
-        <div className="flex justify-center items-center px-5 lg:px-32 ">
-          <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="flex justify-center items-center px-5 lg:px-32 py-8 ">
+          <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-x-6">
             <div>
               <div className="py-3 lg:py-16">
                 <p className="text-[24px] hidden sm:block md:block lg:block ">
@@ -62,14 +68,14 @@ const AboutUs = () => {
               </div>
             </div>
             <div className="hidden lg:grid grid-cols-1 lg:grid-cols-2 place-items-center gap-3">
-              <div className="grid gap-6">
-                <img src={aboutImg1} className=" " />
+              <div className="grid gap-y-6">
+                <img src={aboutImg1} className="" />
                 <img src={aboutImg2} className=" " />
               </div>
-              <div className="grid gap-6">
-                <img src={top} className="" />
+              <div className="grid gap-y-3">
+                <img src={eventImg1} className="" />
                 <img src={aboutImg3} className="" />
-                <img src={down} className="" />
+                <img src={eventImg2} className="" />
               </div>
             </div>
             <div className="hidden sm:flex lg:hidden justify-between items-center gap-2 ">
