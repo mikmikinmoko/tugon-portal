@@ -165,22 +165,22 @@ const Navigation = () => {
                   >
                     PWD ID
                   </NavLink>
+                </li>*/}
+                <li>
+                  <Link
+                    to="/#home"
+                    className="hover:text-[#234F8B] active:text-[#234F8B]"
+                  >
+                    Home
+                  </Link>
                 </li>
                 <li>
                   <NavLink
-                    to={"/senior"}
+                    // to={"/senior"}
                     className="hover:text-[#234F8B] active:text-[#234F8B]"
                   >
-                    Senior ID
+                    Departments
                   </NavLink>
-                </li> */}
-                <li>
-                  <Link
-                    to="/#announcement"
-                    className="hover:text-[#234F8B] active::text-[#234F8B]"
-                  >
-                    Announcement
-                  </Link>
                 </li>
                 <li>
                   <Link
@@ -192,12 +192,13 @@ const Navigation = () => {
                 </li>
                 <li>
                   <Link
-                    to="/#home"
-                    className="hover:text-[#234F8B] active:text-[#234F8B]"
+                    to="/#announcement"
+                    className="hover:text-[#234F8B] active::text-[#234F8B]"
                   >
-                    Home
+                    Announcement
                   </Link>
                 </li>
+
                 <Popover placement="bottomRight" content={content}>
                   <Avatar
                     size={40}

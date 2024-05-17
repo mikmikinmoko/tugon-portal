@@ -2,6 +2,7 @@ import { Carousel } from "antd";
 import Title from "../../../Reusable/Title";
 import { announceImg, eventImgMobile } from "../../../helpers/image";
 import { Footer } from "../../UnAuthenticated/LandingPage/Pages/Page5";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 
 const announce = [
   {
@@ -95,13 +96,8 @@ const Announcement = () => {
             </div>
           </div>
 
-          <div className="grid-cols-1 text-[18px] text-[#808080] mx-auto hidden sm:grid md:grid lg:grid">
-            <Carousel
-              autoplay
-              arrows
-              slidesToShow={3}
-              style={{ color: "black" }}
-            >
+          <div className="grid-cols-1 text-[18px] text-[#000] mx-auto hidden sm:grid md:grid lg:grid">
+            <Carousel autoplay arrows slidesToShow={3}>
               <div className="px-5">
                 <div className="rounded-b-lg hidden sm:block md:block lg:block">
                   <div className="">
@@ -116,7 +112,35 @@ const Announcement = () => {
                     />
                   </div>
                   <div className=" rounded-b-lg bg-[#ffffff] px-2 w-full">
-                    <div className="py-2 font-bold text-[#2F2F2F] text-[20px]">
+                    <div className="py-2 font-bold text-[#002B67] text-[20px]">
+                      Announcement Title Here
+                    </div>
+                    <div className="py-2 text-justify md:text-[16px] ">
+                      Lorem Ipsum is simply dummy text the printing and
+                      typesetting industry. Lorem Ipsum has been the standard
+                      dummy.
+                    </div>
+                    <div className="text-[#002B67]  flex items-center gap-2 justify-end">
+                      <a href="#">See more</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="px-5">
+                <div className="rounded-b-lg hidden sm:block md:block lg:block">
+                  <div className="">
+                    <img
+                      src={announceImg}
+                      alt="img"
+                      style={{
+                        borderTopRightRadius: "10px",
+                        borderTopLeftRadius: "10px",
+                      }}
+                      className="w-full object-cover"
+                    />
+                  </div>
+                  <div className=" rounded-b-lg bg-[#ffffff] px-2 w-full">
+                    <div className="py-2 font-bold text-[#002B67] text-[20px]">
                       Announcement Title Here
                     </div>
                     <div className="py-2 text-justify md:text-[16px]">
@@ -144,7 +168,7 @@ const Announcement = () => {
                     />
                   </div>
                   <div className=" rounded-b-lg bg-[#ffffff] px-2 w-full">
-                    <div className="py-2 font-bold text-[#2F2F2F] text-[20px]">
+                    <div className="py-2 font-bold text-[#002B67] text-[20px]">
                       Announcement Title Here
                     </div>
                     <div className="py-2 text-justify md:text-[16px]">
@@ -172,7 +196,7 @@ const Announcement = () => {
                     />
                   </div>
                   <div className=" rounded-b-lg bg-[#ffffff] px-2 w-full">
-                    <div className="py-2 font-bold text-[#2F2F2F] text-[20px]">
+                    <div className="py-2 font-bold text-[#002B67] text-[20px]">
                       Announcement Title Here
                     </div>
                     <div className="py-2 text-justify md:text-[16px]">
@@ -200,35 +224,7 @@ const Announcement = () => {
                     />
                   </div>
                   <div className=" rounded-b-lg bg-[#ffffff] px-2 w-full">
-                    <div className="py-2 font-bold text-[#2F2F2F] text-[20px]">
-                      Announcement Title Here
-                    </div>
-                    <div className="py-2 text-justify md:text-[16px]">
-                      Lorem Ipsum is simply dummy text the printing and
-                      typesetting industry. Lorem Ipsum has been the standard
-                      dummy.
-                    </div>
-                    <div className="text-[#002B67]  flex items-center gap-2 justify-end">
-                      <a href="#">See more</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="px-5">
-                <div className="rounded-b-lg hidden sm:block md:block lg:block">
-                  <div className="">
-                    <img
-                      src={announceImg}
-                      alt="img"
-                      style={{
-                        borderTopRightRadius: "10px",
-                        borderTopLeftRadius: "10px",
-                      }}
-                      className="w-full object-cover"
-                    />
-                  </div>
-                  <div className=" rounded-b-lg bg-[#ffffff] px-2 w-full">
-                    <div className="py-2 font-bold text-[#2F2F2F] text-[20px]">
+                    <div className="py-2 font-bold text-[#002B67] text-[20px]">
                       Announcement Title Here
                     </div>
                     <div className="py-2 text-justify md:text-[16px]">

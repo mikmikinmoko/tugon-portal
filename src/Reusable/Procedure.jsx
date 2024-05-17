@@ -22,9 +22,11 @@ const Procedure = () => {
         </p>
       </div>
       <div className="flex flex-col text-[14px] items-center font-['Poppins'] ">
-        <p className=" bg-[#F4F7FF] text-[#3452AE] py-5 px-10 shadow-md">
-          Step 1
-        </p>
+        <div className="py-5">
+          <p className=" bg-[#F4F7FF] text-[#3452AE] py-5 px-10 shadow-md">
+            Step 1
+          </p>
+        </div>
         <div className=" grid grid-cols-1  md:grid-cols-5  lg:grid-cols-5  place-items-center gap-5">
           <div className="flex flex-col items-center text-center">
             <img src={stepImg1} />
@@ -59,7 +61,7 @@ const Procedure = () => {
             <p>Attach and submit requirements.</p>
           </div>
         </div>
-        <div className="py-2">
+        <div className="py-5">
           <p className=" bg-[#F4F7FF] text-[#3452AE] py-5 px-10 shadow-md">
             Step 2
           </p>

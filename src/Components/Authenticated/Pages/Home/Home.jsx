@@ -25,18 +25,32 @@ const Home = () => {
       id="home"
     >
       <div className=" py-8 ">
-        <div className="lg:flex lg:items-center lg:justify-center text-center lg:text-left  lg:px-20 md:px-14 px-6">
-          <div className="flex-1 font-semibold text-[22px] md:text-[24px]  lg:text-[32px] text-[#234F8B]">
+        {/* <div className="flex justify-center items-center text-left"> */}
+        <div className="flex lg:items-center lg:justify-center text-center lg:text-left  lg:px-32 md:px-14 px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 place-items-center">
+            <div className="font-semibold text-[22px] md:text-[24px]  lg:text-[32px] text-[#234F8B]">
+              Taytay Unified Governance & Outreach Network
+            </div>
+            <div className="text-center lg:text-left">
+              TUGON represents a forward - thinking and citizen - centric
+              approach, promoting efficiency, inclusivity, and technological and
+              outreach activites
+              <button className=" bg-[#234F8B] rounded-2xl py-2 my-2 w-[20dvh] text-[16px] text-[#fff] font-normal hidden  lg:block">
+                Learn more
+              </button>
+            </div>
+          </div>
+          {/* <div className="flex-1 font-semibold text-[22px] md:text-[24px]  lg:text-[32px] text-[#234F8B]">
             Taytay Unified Governance & Outreach Network
           </div>
-          <div className="flex-1 flex flex-col  text-center lg:text-left">
+          <div className="flex-1 flex flex-col text-center lg:text-left">
             TUGON represents a forward - thinking and citizen - centric
             approach, promoting efficiency, inclusivity, and technological and
             outreach activites
             <button className=" bg-[#234F8B] rounded-2xl py-2 my-2 w-[20dvh] text-[16px] text-[#fff] font-normal hidden  lg:block">
               Learn more
             </button>
-          </div>
+          </div> */}
         </div>
         <div className=" py-4 flex-1">
           <img src={homeAuth} />

@@ -19,14 +19,14 @@ const AboutUs = () => {
         id="aboutUs"
       > */}
       <section
-        className="font-normal text-[18px] text-[#002B67] w-full h-full  text-justify  font-['Poppins'] scroll-mt-16 "
+        className="font-normal text-[18px] text-[#000000] w-full h-full  text-justify  font-['Poppins'] scroll-mt-16 "
         id="aboutUs"
       >
         <div className="flex justify-center items-center px-5 lg:px-32 py-8 ">
           <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-x-6">
             <div>
               <div className="py-3 lg:py-16">
-                <p className="text-[24px] hidden sm:block md:block lg:block ">
+                <p className="text-[24px] hidden sm:block md:block lg:block text-[#002B67]">
                   ABOUT
                 </p>
                 <div className="block sm:hidden md:hidden lg:hidden">
@@ -36,7 +36,7 @@ const AboutUs = () => {
                   src={aboutMobile}
                   className="block sm:hidden md:hidden lg:hidden py-3"
                 />
-                <p className="text-[32px] text-left py-5 font-medium hidden sm:block md:block lg:block">
+                <p className="text-[32px] text-[#002B67] text-left py-5 font-medium hidden sm:block md:block lg:block">
                   TUGON : Lorem ipsum dolor sit amet, consectetur adipiscing
                   elit, sed do eiusmod tempor.
                 </p>
