@@ -4,6 +4,7 @@ import Navigation from "../../../UnAuthenticated/LandingPage/Navigation/Navigati
 import { NavLink } from "react-router-dom";
 import { Footer } from "../../../UnAuthenticated/LandingPage/Pages/Page5";
 import FAQ from "../../Pages/FAQ/FAQ";
+import { pwd } from "../../../../helpers/image";
 
 const PWDPage = () => {
   return (
@@ -13,7 +14,10 @@ const PWDPage = () => {
         className=" w-full h-full text-[16px] font-['Poppins']"
         id="pwdSection"
       >
-        <div className="bg-pwd bg-cover bg-center  h-[418px] flex justify-center items-center">
+        <div
+          style={{ backgroundImage: `url(${pwd})` }}
+          className="bg-cover bg-center  h-[418px] flex justify-center items-center"
+        >
           <div className=" text-[#FFFFFF] text-[36px] font-semibold pt-24">
             PWD ID: Registration
           </div>
