@@ -8,7 +8,7 @@ const Page5 = () => {
 const Footer = ({ children }) => {
   return (
     <footer className="w-full bg-[#001862] text-white py-7">
-      <div className="container mx-auto text-center">
+      <div className="container mx-auto text-center py-5">
         © 2024 Your Company. All rights reserved.
       </div>
     </footer>

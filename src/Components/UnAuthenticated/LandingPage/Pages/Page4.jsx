@@ -48,7 +48,7 @@ const Page4 = () => {
           TUGON VALID {`ID's`}
         </h1>
 
-        <div className="">
+        <div className="w-full">
           <img
             src={smtaytay}
             alt="Procedure 1"
