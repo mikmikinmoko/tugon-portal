@@ -22,11 +22,11 @@ const Page1 = () => {
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
-        className="flex justify-center items-center font-medium  h-screen  text-[#ffffff] lg:py-44 py-24  text-center "
+        className="flex justify-center items-center font-medium  h-screen  text-[#ffffff] lg:py-44 py-24  text-center font-['Poppins']"
       >
         <div className="">
           <div className=" w-[800px] h-[360px] pt-8">
-            <h1 className="text-[40px] lg:text-[64px] font-medium  font-['Almarai']">
+            <h1 className="text-[40px] lg:text-[54px] font-medium">
               Taytay Unified Governance & Outreach Network
             </h1>
             <div className=" font-light text-lg text-center pt-5">
