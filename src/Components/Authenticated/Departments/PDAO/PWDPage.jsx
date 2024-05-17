@@ -3,12 +3,16 @@ import Procedure from "../../../../Reusable/Procedure";
 import Navigation from "../../../UnAuthenticated/LandingPage/Navigation/Navigation";
 import { NavLink } from "react-router-dom";
 import { Footer } from "../../../UnAuthenticated/LandingPage/Pages/Page5";
+import FAQ from "../../Pages/FAQ/FAQ";
 
 const PWDPage = () => {
   return (
     <>
       <Navigation />
-      <section className=" w-full h-full text-[16px] font-['Poppins']">
+      <section
+        className=" w-full h-full text-[16px] font-['Poppins']"
+        id="pwdSection"
+      >
         <div className="bg-pwd bg-cover bg-center  h-[418px] flex justify-center items-center">
           <div className=" text-[#FFFFFF] text-[36px] font-semibold pt-24">
             PWD ID: Registration
@@ -23,7 +27,9 @@ const PWDPage = () => {
               instructions carefully for a smooth application experience.
             </div>
             <div className="py-5">
-              <Button type="primary">Proceed to Registration</Button>
+              <NavLink to="PWDregistration">
+                <Button type="primary">Proceed to Application</Button>
+              </NavLink>
             </div>
             <Procedure />
           </div>
@@ -164,12 +170,13 @@ const PWDPage = () => {
               </div>
             </div>
             <div className="py-5">
-              <NavLink to="registration">
+              <NavLink to="PWDregistration">
                 <Button type="primary">Proceed to Application</Button>
               </NavLink>
             </div>
           </div>
         </div>
+        <FAQ />
       </section>
       <Footer />
     </>

@@ -220,9 +220,9 @@ const Registration = () => {
           <Footer></Footer>
         </>
       ) : (
-        <section className="w-full h-screen font-['Poppins']">
+        <section className="w-full h-full font-['Poppins']">
           <div className="flex justify-center items-center">
-            <div className="w-[1100px]">
+            <div className="lg:px-32">
               <div className=" bg-[#E0E6F2] py-2 px-10">
                 <div className="py-5 text-[#808080] text-[14px]">
                   <Button type="text" onClick={() => navigate(-1)}>

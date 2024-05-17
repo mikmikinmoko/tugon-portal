@@ -158,7 +158,7 @@ const Navigation = () => {
                     {item.name}
                   </NavLink>
                 ))} */}
-                <li>
+                {/* <li>
                   <NavLink
                     to={"/pwd"}
                     className="hover:text-[#234F8B] active:text-[#234F8B]"
@@ -173,7 +173,7 @@ const Navigation = () => {
                   >
                     Senior ID
                   </NavLink>
-                </li>
+                </li> */}
                 <li>
                   <Link
                     to="/#announcement"
