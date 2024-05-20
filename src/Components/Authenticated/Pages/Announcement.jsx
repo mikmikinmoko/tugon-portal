@@ -67,7 +67,7 @@ const Announcement = () => {
               Event and Campaign
             </p>
           </div>
-          <div className="block sm:hidden md:hidden lg:hidden px-5 ">
+          <div className="block sm:hidden md:hidden lg:hidden px-5">
             <div className=" text-[#808080]">
               <div className="flex justify-between items-center">
                 <Title>Event & Campaign</Title>
@@ -95,9 +95,8 @@ const Announcement = () => {
               </div>
             </div>
           </div>
-
           <div className="grid-cols-1 text-[18px] text-[#000] mx-auto hidden sm:grid md:grid lg:grid">
-            <Carousel autoplay arrows slidesToShow={3}>
+            <Carousel autoplay slidesToShow={3}>
               <div className="px-5">
                 <div className="rounded-b-lg hidden sm:block md:block lg:block">
                   <div className="">

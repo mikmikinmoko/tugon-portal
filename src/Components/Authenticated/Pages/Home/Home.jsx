@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { homeAuth, homeMobile } from "../../../../helpers/image";
+import { homeAuth, homeMobile, sampleIcon } from "../../../../helpers/image";
 
 const departments = [
   {
@@ -7,15 +7,29 @@ const departments = [
     initial: "OSCA",
     label: "Office of the Senior Citizen Affairs",
     link: "/senior",
+    icon: <img src={sampleIcon} alt="Sample" />,
   },
   {
     id: 2,
     initial: "PDAO",
     label: "Persons with Disability Affair Office",
     link: "/pwd",
+    icon: <img src={sampleIcon} alt="Sample" />,
   },
-  { id: 3, initial: "UPAO", label: "Urban Poor Affair Office", link: "" },
-  { id: 4, initial: "GAD", label: "Gender and Development", link: "" },
+  {
+    id: 3,
+    initial: "UPAO",
+    label: "Urban Poor Affair Office",
+    link: "",
+    icon: <img src={sampleIcon} alt="Sample" />,
+  },
+  {
+    id: 4,
+    initial: "GAD",
+    label: "Gender and Development",
+    link: "",
+    icon: <img src={sampleIcon} alt="Sample" />,
+  },
 ];
 
 const Home = () => {
@@ -60,13 +74,17 @@ const Home = () => {
       </div> */}
         <div className="grid lg:grid-cols-2 xl:grid-cols-4 md:grid-cols-2 md:gap-5 gap-2  px-5 lg:px-32 lg:-mt-[100px] text-[#000000] ">
           {departments.map((d) => (
-            <NavLink to={d.link}>
+            <NavLink to={d.link} key={d.id}>
               <div
                 className=" w-full h-full px-3 bg-[#F5FCFF] lg:rounded-md  py-4 shadow-sm "
                 key={d.id}
               >
                 <div className="flex items-center justify-center">
-                  <div className=" bg-[#FFFFFF] w-20 h-20 rounded-full shadow-md hidden sm:block md:block lg:block"></div>
+                  <div className=" bg-[#FFFFFF] p-3 rounded-full shadow-md hidden sm:block md:block lg:block">
+                    <div className="flex items-center justify-center">
+                      {d.icon}
+                    </div>
+                  </div>
                 </div>
                 <div className="py-2 text-[17px] font-medium text-[#002B67]">
                   {d.label}

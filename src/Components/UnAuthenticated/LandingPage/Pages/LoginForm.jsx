@@ -9,9 +9,10 @@ import {
   LockIcon,
   UsersIcon,
 } from "../../../../Assets/Resources/Icons/Icons";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 const LoginForm = () => {
+  const ref = useRef();
   const [form] = Form.useForm();
   const { isLoading, isAuthenticated } = useSelector((s) => s.auth);
   const dispatch = useDispatch();
@@ -100,21 +101,21 @@ const LoginForm = () => {
                 </Form.Item>
               </div>
               <Form.Item>
-                <div className="flex flex-col items-center gap-2">
-                  <Button
-                    type="primary"
-                    loading={isLoading}
-                    onClick={() => form.submit()}
-                    className="bg-[#234F8B] px-14"
-                  >
-                    Sign In
-                  </Button>
-                  <div className="font-['Poppins'] py-5">
-                    {`Don't`} have an account?{" "}
-                    <NavLink to="/registration">Sign Up</NavLink>
-                  </div>
-                </div>
+                <Button
+                  type="primary"
+                  loading={isLoading}
+                  onClick={() => form.submit()}
+                  className="bg-[#234F8B] w-full"
+                >
+                  Sign In
+                </Button>
               </Form.Item>
+              <div className="flex flex-col items-center gap-2">
+                <div className="font-['Poppins'] py-5">
+                  {`Don't`} have an account?{" "}
+                  <NavLink to="/registration">Sign Up</NavLink>
+                </div>
+              </div>
             </Form>
           </div>
         </div>

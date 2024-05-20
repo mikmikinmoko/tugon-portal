@@ -1,3 +1,4 @@
+import { Carousel } from "antd";
 import Title from "../../../../Reusable/Title";
 import {
   aboutImg1,
@@ -67,16 +68,58 @@ const AboutUs = () => {
                 </div>
               </div>
             </div>
-            <div className="hidden lg:grid grid-cols-1 lg:grid-cols-2 place-items-center gap-3">
-              <div className="grid gap-y-6">
-                <img src={aboutImg1} className="" />
-                <img src={aboutImg2} className=" " />
-              </div>
-              <div className="grid gap-y-3">
-                <img src={eventImg1} className="" />
-                <img src={aboutImg3} className="" />
-                <img src={eventImg2} className="" />
-              </div>
+            {/* <div className="hidden lg:grid grid-cols-1 lg:grid-cols-2 place-items-center gap-3"> */}
+            <div className="hidden lg:grid grid-cols-1 lg:grid-cols-2  place-items-center gap-3">
+              <Carousel
+                autoplay
+                slidesToShow={2}
+                dotPosition="right"
+                speed={3000}
+                autoplaySpeed={4000}
+              >
+                <div>
+                  <img src={aboutImg1} className=" py-2" />
+                </div>
+                <div>
+                  <img src={aboutImg2} className=" py-2" />
+                </div>
+
+                {/* <div className="">
+                  <img src={eventImg1} className="" />
+                </div>
+                <div>
+                  <img src={aboutImg3} className="" />
+                </div>
+                <div>
+                  <img src={eventImg2} className="" />
+                </div> */}
+              </Carousel>
+              <Carousel
+                autoplay
+                dotPosition="right"
+                slidesToShow={3}
+                speed={3000}
+                autoplaySpeed={4000}
+              >
+                <div>
+                  <img src={eventImg1} className=" py-2" />
+                </div>
+                <div>
+                  <img src={aboutImg3} className=" py-2" />
+                </div>
+                <div>
+                  <img src={eventImg2} className=" py-2" />
+                </div>
+                {/* <div className="grid gap-y-6">
+                  <img src={aboutImg1} className="" />
+                  <img src={aboutImg2} className=" " />
+                </div>
+                <div className="grid gap-y-3">
+                  <img src={eventImg1} className="" />
+                  <img src={aboutImg3} className="" />
+                  <img src={eventImg2} className="" />
+                </div> */}
+              </Carousel>
             </div>
             <div className="hidden sm:flex lg:hidden justify-between items-center gap-2 ">
               <div>

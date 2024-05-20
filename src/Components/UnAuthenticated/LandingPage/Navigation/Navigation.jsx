@@ -1,8 +1,9 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import { useDispatch, useSelector } from "react-redux";
-import { Avatar, Button, Drawer, Popover } from "antd";
+import { Avatar, Button, Drawer, Menu, Popover } from "antd";
 import { HashLink as Link } from "react-router-hash-link";
+import { motion } from "framer-motion";
 
 import {
   BurgerIcon,
@@ -11,7 +12,7 @@ import {
   UsersIcon,
 } from "../../../../Assets/Resources/Icons/Icons";
 import { authActions } from "../../../../store/store";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { routesAuth } from "../../../../routes";
 
 const navigationAuth = [
@@ -26,6 +27,7 @@ const navigationUnAuth = [
 ];
 
 const Navigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.auth);
   const { currentUser } = useSelector((state) => state.auth);
@@ -45,6 +47,7 @@ const Navigation = () => {
     dispatch(logout());
     navigate("/");
   };
+  useEffect(() => {}, []);
 
   const content = (
     <div className="flex flex-col gap-1 text-[14px] font-['Poppins'] ">
@@ -174,13 +177,41 @@ const Navigation = () => {
                     Home
                   </Link>
                 </li>
-                <li>
-                  <NavLink
-                    // to={"/senior"}
+                <li className=" relative cursor-pointer">
+                  <div
+                    onClick={() => setIsOpen(!isOpen)}
                     className="hover:text-[#234F8B] active:text-[#234F8B]"
                   >
                     Departments
-                  </NavLink>
+                  </div>
+                  <div
+                    className={`${
+                      isOpen ? "block" : "hidden"
+                    } absolute py-2 bg-[#fbf8f8]  rounded-md `}
+                  >
+                    <ul className="px-2 w-[150px]">
+                      <NavLink to="/senior">
+                        <li className="  font-medium rounded-sm py-1 px-2 w-full hover:bg-[#f1efef]">
+                          OSCA
+                        </li>
+                      </NavLink>
+                      <NavLink to="/pwd">
+                        <li className=" font-medium rounded-sm py-1 px-2 w-full hover:bg-[#f1efef]">
+                          PDAO
+                        </li>
+                      </NavLink>
+                      <NavLink to="">
+                        <li className=" font-medium rounded-sm py-1 px-2 w-full hover:bg-[#f1efef]">
+                          UPAO
+                        </li>
+                      </NavLink>
+                      <NavLink to="">
+                        <li className=" font-medium rounded-sm py-1 px-2 w-full hover:bg-[#f1efef]">
+                          GAD
+                        </li>
+                      </NavLink>
+                    </ul>
+                  </div>
                 </li>
                 <li>
                   <Link

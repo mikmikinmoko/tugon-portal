@@ -35,6 +35,6 @@ export const createSeniorId = async ({ body }) => {
     const result = await axiosFile.post("createSeniorId", body);
     return result;
   } catch (err) {
-    return;
+    return err;
   }
 };

@@ -66,6 +66,13 @@ const Registration = () => {
   const birthDate = new Date(currentUser.birthdate);
   const age = today.getFullYear() - birthDate.getFullYear();
 
+  const nextForm = async () => {
+    try {
+      await form.validateFields("");
+      setStep((n) => n + 1);
+    } catch {}
+  };
+
   const document = {
     name: "document",
     accept: "image/png, image/jpeg",
@@ -168,12 +175,13 @@ const Registration = () => {
       document,
       familyComposition,
       dateOfMembership,
+      agreement,
       ...values
     } = form.getFieldsValue(true);
     Object.keys(values).forEach((key) => formData.append(key, values[key]));
     formData.append("document", val.document.file);
-    formData.append("id", val.id.fileList[0].originFileObj);
-    formData.append("id", val.id.fileList[1].originFileObj);
+    formData.append("id", val.id.fileList[0]?.originFileObj);
+    formData.append("id", val.id.fileList[1]?.originFileObj);
     formData.append("familyComposition", JSON.stringify(familyComposition));
     formData.append("dateOfMembership", dateOfMembership.format("YYYY-MM-DD"));
     console.log(val);
@@ -238,10 +246,10 @@ const Registration = () => {
               </div>
               <div className="h-full w-full ">
                 <div className="lg:grid lg:grid-cols-4 ">
-                  <div className=" border-r-2 border-[#D8E6F6]  py-16 px-5">
+                  <div className=" border-r-2 border-[#D8E6F6] py-6 lg:py-16 px-5">
                     <Step current={step} items={items} />
                   </div>
-                  <div className=" col-span-3 py-16 px-10 ">
+                  <div className=" col-span-3 py-6 lg:py-16 px-5 lg:px-10 ">
                     <Form
                       form={form}
                       layout="vertical"
@@ -263,7 +271,7 @@ const Registration = () => {
                       </div>
                       {step === 0 && (
                         <>
-                          <div className="grid grid-cols-2 grid-rows-2 gap-4">
+                          <div className="grid md:grid-cols-2 lg:grid-cols-2 grid-rows-2 gap-4">
                             <div>
                               <Form.Item
                                 name="firstName"
@@ -307,7 +315,7 @@ const Registration = () => {
                               </Form.Item>
                             </div>
                           </div>
-                          <div className="grid grid-cols-2 grid-rows-4 gap-4">
+                          <div className="grid md:grid-cols-2 lg:grid-cols-2 grid-rows-4 gap-4">
                             <div>
                               <Form.Item
                                 label="Date of Birth"
@@ -552,7 +560,7 @@ const Registration = () => {
                               </Radio.Group>
                             </Form.Item>
                           </div>
-                          <div className="grid grid-cols-2 grid-rows-3 gap-x-10">
+                          <div className="grid md:grid-cols-2 lg:grid-cols-2 grid-rows-3 gap-x-10">
                             <div>
                               <Form.Item
                                 label="Amount of Pension"
@@ -562,9 +570,17 @@ const Registration = () => {
                                     required: true,
                                     message: "Please input Amount",
                                   },
+                                  () => ({
+                                    validator(_, value) {
+                                      if (!value) {
+                                        return Promise.reject();
+                                      }
+                                      return Promise.resolve();
+                                    },
+                                  }),
                                 ]}
                               >
-                                <Input />
+                                <Input placeholder="0.00" />
                               </Form.Item>
                             </div>
                             <div>
@@ -578,7 +594,7 @@ const Registration = () => {
                                   },
                                 ]}
                               >
-                                <Input />
+                                <Input placeholder="0.00" />
                               </Form.Item>
                             </div>
                             <div>
@@ -909,7 +925,7 @@ const Registration = () => {
                             rules={[
                               {
                                 required: true,
-                                message: "Please input your ID",
+                                message: "Please upload 2 Valid ID's",
                               },
                             ]}
                           >
@@ -929,7 +945,7 @@ const Registration = () => {
                           </Form.Item>
 
                           <Form.Item
-                            // name="agreement"
+                            name="agreement"
                             valuePropName="checked"
                             rules={[
                               {
@@ -937,7 +953,7 @@ const Registration = () => {
                                   value
                                     ? Promise.resolve()
                                     : Promise.reject(
-                                        new Error("Should accept agreement")
+                                        new Error("Please accept the agreement")
                                       ),
                               },
                             ]}
@@ -962,10 +978,7 @@ const Registration = () => {
                             Submit
                           </Button>
                         ) : (
-                          <Button
-                            type="primary"
-                            onClick={() => setStep((step) => step + 1)}
-                          >
+                          <Button type="primary" onClick={nextForm}>
                             Next
                           </Button>
                         )}
