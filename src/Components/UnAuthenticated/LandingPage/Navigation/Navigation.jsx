@@ -14,6 +14,7 @@ import {
 import { authActions } from "../../../../store/store";
 import { useEffect, useState } from "react";
 import { routesAuth } from "../../../../routes";
+import { useCitizenAuthStore } from "../../../../store/storage/useAuth";
 
 const navigationAuth = [
   { name: "PWD ID", link: "/pwd" },
@@ -28,32 +29,30 @@ const navigationUnAuth = [
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector((state) => state.auth);
-  const { currentUser } = useSelector((state) => state.auth);
+  const [open, setOpen] = useState(false);
+
+  const { userData, reset } = useCitizenAuthStore();
+
   const navigate = useNavigate();
 
-  const fullName = [currentUser?.firstName]
-    .concat(currentUser?.middleName, currentUser?.lastName)
+  const fullName = [userData?.firstName]
+    .concat(userData?.middleName, userData?.lastName)
     .join(" ");
-  const { logout } = authActions;
-  const [open, setOpen] = useState(false);
 
   const closeDrawer = () => {
     setOpen(false);
   };
 
   const signOut = () => {
-    dispatch(logout());
+    reset();
     navigate("/");
   };
-  useEffect(() => {}, []);
 
   const content = (
     <div className="flex flex-col gap-1 text-[14px] font-['Poppins'] ">
       <div className="px-4">
         <div className="capitalize">{fullName}</div>
-        <span className="text-[#898989] text-[12px]">{currentUser?.email}</span>
+        <span className="text-[#898989] text-[12px]">{userData?.email}</span>
       </div>
       <hr />
       <div className="flex gap-1 items-center  p-2 hover:bg-[#ebebeb] hover:rounded-md  cursor-pointer ">
@@ -78,7 +77,7 @@ const Navigation = () => {
         style={{ height: "60%" }}
         extra={
           <div className="flex flex-col items-end font-['Poppins'] text-[10px] md:text-[14px] lg:text-[16px] font-normal gap-1 px-3">
-            {isAuthenticated && (
+            {userData && (
               <>
                 <Avatar
                   size={35}
@@ -92,14 +91,14 @@ const Navigation = () => {
                   {fullName}
                 </div>
                 <div className=" text-[#898989] lg:text-[12px]">
-                  {currentUser?.email}
+                  {userData?.email}
                 </div>
               </>
             )}
           </div>
         }
       >
-        {isAuthenticated ? (
+        {userData ? (
           <>
             <div className="flex items-end flex-col-reverse gap-4 px-3 text-[12px] md:text-[14px] lg:text-[16px] text-[#474747]">
               {routesAuth.map((item) => (
@@ -150,7 +149,7 @@ const Navigation = () => {
             <Logo width="100px" />
           </NavLink>
           <div className="hidden sm:block md:flex ">
-            {isAuthenticated && (
+            {userData && (
               <ul className="flex lg:gap-8  sm:gap-5 xs:gap-4 items-center text-[#787878] font-medium   ">
                 {/* {navigationAuth.map((item) => (
                   <NavLink
@@ -242,7 +241,7 @@ const Navigation = () => {
                 </Popover>
               </ul>
             )}
-            {!isAuthenticated && (
+            {!userData && (
               <ul className="flex gap-8 items-center text-[#787878] font-medium  ">
                 {navigationUnAuth.map((item) => (
                   <NavLink
@@ -253,16 +252,18 @@ const Navigation = () => {
                     {item.name}
                   </NavLink>
                 ))}
-                <Button
-                  type="primary"
-                  className=" px-8 rounded-2xl bg-[#234F8B]"
-                >
-                  <NavLink to="/login">Login</NavLink>
-                </Button>
+                <NavLink to="/login">
+                  <Button
+                    type="primary"
+                    className=" px-8 rounded-2xl bg-[#234F8B]"
+                  >
+                    Login
+                  </Button>
+                </NavLink>
               </ul>
             )}
           </div>
-          {isAuthenticated ? (
+          {userData ? (
             <div
               className="flex sm:hidden md:hidden lg:hidden cursor-pointer "
               onClick={() => setOpen(true)}

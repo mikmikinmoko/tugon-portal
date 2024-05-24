@@ -7,7 +7,7 @@ import {
   sendOtp,
   submitOtp,
   changePassword,
-  signupCitizen,
+  signupCitizenApi,
 } from "../api/auth-api";
 import { message } from "antd";
 ///
@@ -15,7 +15,7 @@ import { message } from "antd";
 function* signupCitizenRequest({ payload }) {
   const { signupCitizenSuccess, requestError } = authActions;
 
-  const result = yield call(signupCitizen, payload);
+  const result = yield call(signupCitizenApi, payload);
   if (result?.name === "AxiosError") {
     message.error(result?.data?.message);
     yield put(requestError(result?.response));

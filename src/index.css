@@ -19,6 +19,14 @@
 html {
   scroll-behavior: smooth;
 }
+.ant-form-item-label label,
+.ant-steps-item-title,
+.ant-steps-item-description,
+.ant-radio-wrapper,
+.ant-dropdown-menu {
+  font-family: "Poppins", sans-serif;
+}
+
 /* .home {
   background: url("../src/Assets/img/home.png");
   background-size: cover;

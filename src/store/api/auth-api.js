@@ -10,12 +10,8 @@ const axios = defaultAxios.create({
 });
 
 export const login = async (body) => {
-  try {
-    const result = await axios.post("login", body);
-    return result;
-  } catch (err) {
-    return err;
-  }
+  const result = await axios.post("login", body);
+  return result;
 };
 
 export const brgyLogin = async (body) => {
@@ -28,21 +24,11 @@ export const brgyLogin = async (body) => {
 };
 
 export const getMunicipalities = async () => {
-  try {
-    const result = await axios.get("fetchMunicipalities");
-    return result;
-  } catch (err) {
-    return err;
-  }
+  return await axios.get("fetchMunicipalities");
 };
 
-export const signupCitizen = async ({ body }) => {
-  try {
-    const result = await axios.post("signupCitizen", body);
-    return result;
-  } catch (err) {
-    return;
-  }
+export const signupCitizenApi = async ({ body }) => {
+  return await axios.post("signupCitizen", body);
 };
 
 export const changePasswordWithToken = async (payload) => {

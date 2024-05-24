@@ -1,15 +1,19 @@
 import { Button, DatePicker, Form, Input, Radio, Select, message } from "antd";
-import Logo from "../Logo/Logo";
-import { NavLink } from "react-router-dom";
-import TitleForm from "../../../../Reusable/TitleForm";
 import { useEffect, useState } from "react";
-import { getMunicipalities } from "../../../../store/api/auth-api";
-import refbrgy from "../../../../Assets/Resources/json/refbrgy.json";
 import { useDispatch, useSelector } from "react-redux";
-import { authActions } from "../../../../store/store";
+import { NavLink } from "react-router-dom";
+import refbrgy from "../../../../Assets/Resources/json/refbrgy.json";
+import TitleForm from "../../../../Reusable/TitleForm";
 import { registrationImg } from "../../../../helpers/image";
+import {
+  useGetMunicipalities,
+  useSignupCitizenApi,
+} from "../../../../store/controller/registration";
+// import { authActions } from "../../../../store/store";
+import Logo from "../Logo/Logo";
+import { useLoginApi } from "../../../../store/controller/login";
 
-const { signupCitizen } = authActions;
+// const { signupCitizen } = authActions;
 // import refcitymun from "../../../../Assets/Resources/json/refcitymun.json";
 // import refprovince from "../../../../Assets/Resources/json/refprovince.json";
 // import refregion from "../../../../Assets/Resources/json/refregion.json";
@@ -32,34 +36,38 @@ const Registration = () => {
 
   const lgu = Form.useWatch("cityId", form);
 
-  const [municipalities, setMunicipalities] = useState([]);
+  const getMunicipalities = useGetMunicipalities();
+  const signupCitizenApi = useSignupCitizenApi();
+  const logInApi = useLoginApi();
+
+  console.log(getMunicipalities);
+
+  // const [municipalities, setMunicipalities] = useState([]);
   const [fetchMunicipalitiesLoading, setFetchMunicipalitiesLoading] =
     useState(false);
 
-  const { signUpLoading } = useSelector((state) => state.auth);
+  // const fetchMunicipalities = async () => {
+  //   setFetchMunicipalitiesLoading(true);
+  //   const request = await getMunicipalities();
 
-  const fetchMunicipalities = async () => {
-    setFetchMunicipalitiesLoading(true);
-    const request = await getMunicipalities();
+  //   if (request.name === "AxiosError") {
+  //     message.error(request?.message);
+  //   } else {
+  //     setMunicipalities(request.data);
+  //   }
+  //   setFetchMunicipalitiesLoading(false);
+  // };
 
-    if (request.name === "AxiosError") {
-      message.error(request?.message);
-    } else {
-      setMunicipalities(request.data);
-    }
-    setFetchMunicipalitiesLoading(false);
-  };
-
-  useEffect(() => {
-    fetchMunicipalities();
-  }, []);
+  // useEffect(() => {
+  //   fetchMunicipalities();
+  // }, []);
 
   const onFinish = (values) => {
-    dispatch(
-      signupCitizen({
+    signupCitizenApi.mutate(
+      {
         body: {
           ...values,
-          lguCode: municipalities
+          lguCode: getMunicipalities?.data?.data
             .filter((e) => e.cityCode === lgu)
             .map((s) => s.lguCode)[0],
           regionId: refbrgy
@@ -71,11 +79,42 @@ const Registration = () => {
           mobileNumber: "63" + values.mobileNumber,
           birthdate: values.birthdate.format("YYYY-MM-DD"),
         },
-        cb: () => {
+      },
+      {
+        onSuccess: ({ data }) => {
+          console.log(data);
           form.resetFields();
+          message.success(data.message);
         },
-      })
+        onError: (error) => {
+          message.warning(
+            error?.response?.data?.message || "Input fields is required"
+          );
+        },
+      }
     );
+
+    // dispatch(
+    //   signupCitizen({
+    //     body: {
+    //       ...values,
+    //       lguCode: municipalities
+    //         .filter((e) => e.cityCode === lgu)
+    //         .map((s) => s.lguCode)[0],
+    //       regionId: refbrgy
+    //         .filter((s) => s.citymunCode === lgu)
+    //         .map((e) => e.regCode)[0],
+    //       provinceId: refbrgy
+    //         .filter((s) => s.citymunCode === lgu)
+    //         .map((e) => e.provCode)[0],
+    //       mobileNumber: "63" + values.mobileNumber,
+    //       birthdate: values.birthdate.format("YYYY-MM-DD"),
+    //     },
+    //     cb: () => {
+    //       form.resetFields();
+    //     },
+    //   })
+    // );
   };
 
   useEffect(() => {
@@ -83,7 +122,7 @@ const Registration = () => {
   }, [lgu]);
 
   return (
-    <div className="font-['Poppins'] text-[18px] font-normal">
+    <div className="font-['Poppins'] text-[18px] font-normal w-full flex min-h-screen">
       <div className="grid lg:grid-cols-2 grid-cols-1">
         <div
           style={{
@@ -91,7 +130,7 @@ const Registration = () => {
             backgroundPosition: "center",
             backgroundSize: "cover",
           }}
-          className="hidden lg:block "
+          className="hidden lg:block object-cover h-full"
         >
           <div className="flex h-full flex-col justify-end items-start px-5 lg:px-5 xl:px-16 py-20   text-[#fff] ">
             <div className=" text-[40px] font-semibold w-11/12 ">
@@ -112,7 +151,7 @@ const Registration = () => {
               Up for Community Collaboration and Empowerment.
             </p>
           </div>
-          <div className="font-['Manrope'] py-5">
+          <div className=" py-5">
             <Form
               requiredMark="optional"
               form={form}
@@ -274,7 +313,7 @@ const Registration = () => {
                     ]}
                   >
                     <Select
-                      loading={fetchMunicipalitiesLoading}
+                      loading={getMunicipalities.isLoading}
                       filterOption={(input, option) =>
                         (option?.label ?? "")
                           .toLowerCase()
@@ -283,7 +322,7 @@ const Registration = () => {
                       optionFilterProp="children"
                       showSearch
                       placeholder="City/Municipality"
-                      options={municipalities.map((city) => {
+                      options={getMunicipalities?.data?.data?.map((city) => {
                         return {
                           value: city.cityCode,
                           label: city.lguName,
@@ -416,7 +455,7 @@ const Registration = () => {
                 <Button
                   type="primary"
                   onClick={() => form.submit()}
-                  loading={signUpLoading}
+                  loading={signupCitizenApi.isPending}
                 >
                   Create Account
                 </Button>

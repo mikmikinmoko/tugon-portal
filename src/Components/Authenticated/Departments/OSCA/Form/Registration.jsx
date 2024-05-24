@@ -28,6 +28,8 @@ import dayjs from "dayjs";
 import { seniorActions } from "../../../../../store/store";
 import { Footer } from "../../../../UnAuthenticated/LandingPage/Pages/Page5";
 import NotEligible from "../../../../../Reusable/NotEligible";
+import { useCreateSeniorId } from "../../../../../store/controller/registration";
+import { useCitizenAuthStore } from "../../../../../store/storage/useAuth";
 
 const { Dragger } = Upload;
 
@@ -55,22 +57,26 @@ const Registration = () => {
   const values = Form.useWatch([], form);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { currentUser } = useSelector((state) => state.auth);
+
   const [file, setFile] = useState({});
   const [validId, setValidId] = useState({});
   const [imagePreview, setImagePreview] = useState(null);
   const [step, setStep] = useState(0);
+  const { userData } = useCitizenAuthStore();
 
-  const { createSeniorId } = seniorActions;
+  // const { createSeniorId } = seniorActions;
+  const createSeniorId = useCreateSeniorId();
   const today = new Date();
-  const birthDate = new Date(currentUser.birthdate);
+  const birthDate = new Date(userData.birthdate);
   const age = today.getFullYear() - birthDate.getFullYear();
 
   const nextForm = async () => {
     try {
       await form.validateFields("");
       setStep((n) => n + 1);
-    } catch {}
+    } catch {
+      message.warning("Make sure input fields has a value");
+    }
   };
 
   const document = {
@@ -136,14 +142,14 @@ const Registration = () => {
       reader.onerror = (error) => reject(error);
     });
   useEffect(() => {
-    const { birthdate, sex, ...rest } = currentUser;
+    const { birthdate, sex, ...rest } = userData;
     form.setFieldsValue({
       dateOfBirth: dayjs(birthdate),
       sex: +sex,
       age: age,
       ...rest,
     });
-  }, [currentUser, age]);
+  }, [userData, age]);
 
   const onFinish = (val) => {
     const formData = new FormData();
@@ -184,39 +190,49 @@ const Registration = () => {
     formData.append("id", val.id.fileList[1]?.originFileObj);
     formData.append("familyComposition", JSON.stringify(familyComposition));
     formData.append("dateOfMembership", dateOfMembership.format("YYYY-MM-DD"));
-    console.log(val);
 
-    dispatch(
-      createSeniorId({
-        body: formData,
-        cb: () => {
+    createSeniorId.mutate(
+      { body: formData },
+      {
+        onSuccess: ({ data }) => {
+          message.success(
+            data.message +
+              "," +
+              "Please wait for the approval of your Application"
+          );
           form.resetFields("");
           navigate("/senior");
         },
-      })
+        onError: (err) => {
+          message.warning(err?.response?.data?.message);
+        },
+      }
     );
+
+    // dispatch(
+    //   createSeniorId({
+    //     body: formData,
+    //     cb: () => {
+    //       form.resetFields("");
+    //       navigate("/senior");
+    //     },
+    //   })
+    // );
   };
   const items = [
     {
+      step: 0,
       title: "Step 1",
       description: "Personal Information",
     },
+    { step: 1, title: "Step 2", description: "Additional Information" },
+    { step: 2, title: "Step 3", description: "Family Composition" },
     {
-      title: "Step 2",
-      description: "Additional Information",
-    },
-    {
-      title: "Step 3",
-      description: "Family Composition",
-    },
-    {
+      step: 3,
       title: "Step 4",
       description: "Membership to Senior Citizens Association",
     },
-    {
-      title: "Step 5",
-      description: "Documents",
-    },
+    { step: 4, title: "Step 5", description: "Documents" },
   ];
 
   return (
@@ -255,19 +271,14 @@ const Registration = () => {
                       layout="vertical"
                       requiredMark="optional"
                       onFinish={onFinish}
+                      className="font-['Poppins']"
                     >
                       <div className="py-3">
-                        {step === 2 ? (
-                          <TitleForm>Family Composition</TitleForm>
-                        ) : step === 3 ? (
-                          <TitleForm>
-                            Membership to Senior Citizens Association
-                          </TitleForm>
-                        ) : step === 4 ? (
-                          <TitleForm>Document</TitleForm>
-                        ) : (
-                          <TitleForm>Personal Information</TitleForm>
-                        )}
+                        {items
+                          .filter((s) => s.step === step)
+                          .map((s) => (
+                            <TitleForm>{s.description}</TitleForm>
+                          ))}
                       </div>
                       {step === 0 && (
                         <>
@@ -290,12 +301,12 @@ const Registration = () => {
                               <Form.Item
                                 name="middleName"
                                 label="Middle Name"
-                                rules={[
-                                  {
-                                    required: true,
-                                    message: "Please input Middle Name",
-                                  },
-                                ]}
+                                // rules={[
+                                //   {
+                                //     required: true,
+                                //     message: "Please input Middle Name",
+                                //   },
+                                // ]}
                               >
                                 <Input placeholder="Middle Name" disabled />
                               </Form.Item>
@@ -580,7 +591,18 @@ const Registration = () => {
                                   }),
                                 ]}
                               >
-                                <Input placeholder="0.00" />
+                                <Input
+                                  placeholder="0.00"
+                                  onChange={({ target }) => {
+                                    form.setFieldValue(
+                                      "amountOfPension",
+                                      target.value.replace(
+                                        /[- #*;,.<>\{\}\[\]\\\/]|[^0-9]/gi,
+                                        ""
+                                      )
+                                    );
+                                  }}
+                                />
                               </Form.Item>
                             </div>
                             <div>
@@ -594,7 +616,18 @@ const Registration = () => {
                                   },
                                 ]}
                               >
-                                <Input placeholder="0.00" />
+                                <Input
+                                  placeholder="0.00"
+                                  onChange={({ target }) => {
+                                    form.setFieldValue(
+                                      "income",
+                                      target.value.replace(
+                                        /[- #*;,.<>\{\}\[\]\\\/]|[^0-9]/gi,
+                                        ""
+                                      )
+                                    );
+                                  }}
+                                />
                               </Form.Item>
                             </div>
                             <div>

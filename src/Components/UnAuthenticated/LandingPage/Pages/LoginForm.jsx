@@ -1,4 +1,4 @@
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input, message } from "antd";
 import Logo from "../Logo/Logo";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,35 +10,36 @@ import {
   UsersIcon,
 } from "../../../../Assets/Resources/Icons/Icons";
 import { useEffect, useRef } from "react";
+import { useLoginApi } from "../../../../store/controller/login";
 
 const LoginForm = () => {
-  const ref = useRef();
-  const [form] = Form.useForm();
-  const { isLoading, isAuthenticated } = useSelector((s) => s.auth);
   const dispatch = useDispatch();
+  const [form] = Form.useForm();
 
-  const { login } = authActions;
   const navigate = useNavigate();
+  const logInApi = useLoginApi();
 
   const onFinish = (values) => {
-    dispatch(
-      login({
-        username: values.username,
-        password: values.password,
-        cb: () => {
-          navigate("/", { replace: true });
-        },
-      })
-    );
+    const body = { username: values.username, password: values.password };
+    logInApi.mutate(body);
+    // dispatch(
+    //   login({
+    //     username: values.username,
+    //     password: values.password,
+    //     cb: () => {
+    //       navigate("/", { replace: true });
+    //     },
+    //   })
+    // );
   };
 
-  useEffect(() => {
-    if (isAuthenticated) navigate("/", { replace: true });
-  }, [isAuthenticated, navigate]);
+  // useEffect(() => {
+  //   if (logInApi.isSuccess) navigate("/", { replace: true });
+  // }, [logInApi, navigate]);
 
   return (
-    <div>
-      <div className=" lg:bg-[#234F8B] md:bg-[#234F8B] font-['Poppins'] w-full h-screen py-32 flex justify-center items-center px-8">
+    <div className=" lg:bg-[#234F8B] md:bg-[#234F8B] font-['Poppins'] w-full h-screen">
+      <div className="w-full h-full flex justify-center items-center">
         <div className="w-[450px] bg-[#ffffff] p-4 lg:px-8  lg:py-16 flex flex-col items-center justify-center rounded-lg">
           <Logo width="253px" height="79px" />
           <div className="text-center py-3">
@@ -47,8 +48,16 @@ const LoginForm = () => {
               personalized services.
             </p>
           </div>
+
           <div className=" w-full ">
-            <Form form={form} onFinish={onFinish}>
+            <Form
+              form={form}
+              onFinish={onFinish}
+              initialValues={{
+                username: "jaysontest1",
+                password: "jaysontest1",
+              }}
+            >
               <Form.Item
                 name="username"
                 rules={[
@@ -78,7 +87,7 @@ const LoginForm = () => {
                 <Input.Password
                   className="py-2"
                   prefix={<LockIcon />}
-                  disabled={isLoading}
+                  disabled={logInApi.isPending}
                   placeholder="Password"
                   suffix={<CloseEyeIcon />}
                   iconRender={(e) => (e ? <CloseEyeIcon /> : <EyeIcon />)}
@@ -103,9 +112,10 @@ const LoginForm = () => {
               <Form.Item>
                 <Button
                   type="primary"
-                  loading={isLoading}
+                  loading={logInApi.isPending}
                   onClick={() => form.submit()}
                   className="bg-[#234F8B] w-full"
+                  htmlType="submit"
                 >
                   Sign In
                 </Button>

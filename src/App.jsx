@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import PageLoader from "./Components/UnAuthenticated/UI/PageLoader";
 import { Suspense, lazy } from "react";
 import { Helmet } from "react-helmet";
+import { useCitizenAuthStore } from "./store/storage/useAuth";
 
 const AuthenticatedPage = lazy(() =>
   import("./Components/Authenticated/Pages/Authenticated")
@@ -11,7 +12,8 @@ const UnAuthenticatedPage = lazy(() =>
 );
 
 const App = () => {
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  // const { isAuthenticated } = useSelector((state) => state.auth);
+  const { userData } = useCitizenAuthStore();
 
   return (
     <>
@@ -19,7 +21,7 @@ const App = () => {
         <title></title>
       </Helmet>
 
-      {isAuthenticated ? (
+      {userData ? (
         <Suspense
           fallback={
             <div className="h-screen w-screen flex justify-center items-center">

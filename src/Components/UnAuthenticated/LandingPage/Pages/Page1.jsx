@@ -38,7 +38,11 @@ const Page1 = () => {
             </div>
             <div className=" mt-24 px-6 py-2  rounded-md w-full ">
               <NavLink to="/registration">
-                <Button type="primary" size="large" className=" w-1/5 ">
+                <Button
+                  type="primary"
+                  size="large"
+                  className=" w-1/5 bg-[#234F8B] "
+                >
                   Register
                 </Button>
               </NavLink>
