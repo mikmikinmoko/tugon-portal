@@ -107,10 +107,40 @@ export const statusOfEmployment = [
   { id: 2, value: "SELF-EMPLOYED" },
 ];
 
-export const civilStatus = [
+export const civilStatusPWD = [
   { id: 0, value: "SINGLE" },
   { id: 1, value: "SEPARATED" },
   { id: 2, value: "COHABITATION (live-in)" },
   { id: 3, value: "MARRIED" },
   { id: 4, value: "WIDOW/ER" },
+];
+export const civilStatusOSCA = [
+  {
+    id: 0,
+    label: "Single",
+  },
+  {
+    id: 1,
+    label: "Married",
+  },
+  {
+    id: 2,
+    label: "Widowed",
+  },
+  {
+    id: 3,
+    label: "Legally Seperate",
+  },
+];
+
+export const suffix = [
+  { id: 0, value: "", label: "" },
+  { id: 1, value: "Jr.", label: "Jr." },
+  { id: 2, value: "Jr II", label: "Jr. II" },
+  { id: 3, value: "Sr.", label: "Sr." },
+  { id: 4, value: "II", label: "II" },
+  { id: 5, value: "III", label: "III" },
+  { id: 6, value: "IV", label: "IV" },
+  { id: 7, value: "V", label: "V" },
+  { id: 8, value: "VI", label: "VI" },
 ];

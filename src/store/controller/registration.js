@@ -15,6 +15,7 @@ export const useCreateSeniorId = () => {
     mutationFn: createSeniorId,
   });
 };
+
 export const useCreatePwdId = () => {
   return useMutation({
     mutationFn: createPwdId,

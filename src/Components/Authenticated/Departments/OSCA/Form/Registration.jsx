@@ -19,44 +19,22 @@ import {
   MinusCircleOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
-import { useDispatch, useSelector } from "react-redux";
 import refbrgy from "../../../../../Assets/Resources/json/refbrgy.json";
 import refcitymun from "../../../../../Assets/Resources/json/refcitymun.json";
 import refprovince from "../../../../../Assets/Resources/json/refprovince.json";
 import refregion from "../../../../../Assets/Resources/json/refregion.json";
 import dayjs from "dayjs";
-import { seniorActions } from "../../../../../store/store";
 import { Footer } from "../../../../UnAuthenticated/LandingPage/Pages/Page5";
 import NotEligible from "../../../../../Reusable/NotEligible";
 import { useCreateSeniorId } from "../../../../../store/controller/registration";
 import { useCitizenAuthStore } from "../../../../../store/storage/useAuth";
+import { civilStatusOSCA } from "../../../../constant/values";
 
 const { Dragger } = Upload;
 
-const civilStatus = [
-  {
-    id: 0,
-    label: "Single",
-  },
-  {
-    id: 1,
-    label: "Married",
-  },
-  {
-    id: 2,
-    label: "Widowed",
-  },
-  {
-    id: 3,
-    label: "Legally Seperate",
-  },
-];
-
 const Registration = () => {
   const [form] = Form.useForm();
-  const values = Form.useWatch([], form);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const [file, setFile] = useState({});
   const [validId, setValidId] = useState({});
@@ -196,9 +174,7 @@ const Registration = () => {
       {
         onSuccess: ({ data }) => {
           message.success(
-            data.message +
-              "," +
-              "Please wait for the approval of your Application"
+            `${data.message}. Please wait for the approval of your Application`
           );
           form.resetFields("");
           navigate("/senior");
@@ -208,7 +184,6 @@ const Registration = () => {
         },
       }
     );
-
     // dispatch(
     //   createSeniorId({
     //     body: formData,
@@ -403,7 +378,7 @@ const Registration = () => {
                                 ]}
                               >
                                 <Select>
-                                  {civilStatus.map((s) => (
+                                  {civilStatusOSCA.map((s) => (
                                     <Select.Option value={s.id} key={s.id}>
                                       {s.label}
                                     </Select.Option>

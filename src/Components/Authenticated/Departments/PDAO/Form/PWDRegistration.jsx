@@ -8,7 +8,7 @@ import TitleForm from "../../../../../Reusable/TitleForm";
 import moment from "moment";
 import {
   causeOfDisability,
-  civilStatus,
+  civilStatusPWD,
   educationalAttainment,
   itemsPWD,
   occupation,
@@ -37,8 +37,9 @@ const PWDRegistration = () => {
       await form.validateFields("");
       setStep((n) => n + 1);
       setOldStep(step);
-    } catch {
-      message.warning("Make sure input fields has a value");
+    } catch (err) {
+      console.log(err);
+      message.warning(err?.errorFields[0]?.errors);
     }
   };
   const onFinish = (values) => {
@@ -74,19 +75,13 @@ const PWDRegistration = () => {
 
     createPwdId.mutate(
       {
-        body: {
-          ...rest,
-          familyComposition: JSON.stringify(familyComposition),
-          dateOfMembership: dateOfMembership.format("YYYY-MM-DD"),
-        },
+        ...rest,
+        familyComposition: JSON.stringify(familyComposition),
+        // dateOfMembership: dateOfMembership.format("YYYY-MM-DD"),
       },
       {
         onSuccess: ({ data }) => {
-          message.success(
-            data.message +
-              "," +
-              "Please wait for the approval of your Application"
-          );
+          message.success(data.messgae);
           form.resetFields("");
           navigate("/pwd");
         },
@@ -104,7 +99,7 @@ const PWDRegistration = () => {
       dateOfBirth: dayjs(birthdate).format("YYYY-MM-DD"),
       sex: +sex,
       mobileNumber: +mobileNumber,
-      dateOfMembership: dayjs(),
+      dateOfMembership: dayjs(dateOfMembership),
       brgyId: refbrgy
         .filter((r) => r.brgyCode === userData.brgyId)
         .map((s) => s.brgyDesc),
@@ -160,7 +155,7 @@ const PWDRegistration = () => {
                 onFinish={onFinish}
                 className="font-['Poppins']"
                 layout="vertical"
-                requiredMark="optional"
+                // requiredMark="optional"
               >
                 <div className="py-3">
                   {itemsPWD
@@ -291,7 +286,7 @@ const PWDRegistration = () => {
                         ]}
                       >
                         <Select>
-                          {civilStatus.map((c) => (
+                          {civilStatusPWD.map((c) => (
                             <Select.Option value={c.id} key={c.id}>
                               {c.value}
                             </Select.Option>
@@ -526,7 +521,7 @@ const PWDRegistration = () => {
                         ]}
                       >
                         <Input
-                          placeholder="SSS Number"
+                          placeholder="SSS Number (12-3456789-0)"
                           onChange={({ target }) => {
                             form.setFieldValue(
                               "sssNumber",
@@ -557,7 +552,7 @@ const PWDRegistration = () => {
                           );
                         }}
                       >
-                        <Input placeholder=" GSIS Number" />
+                        <Input placeholder=" GSIS Number (1234-5678)" />
                       </Form.Item>
                       <Form.Item
                         label="PSN Number"
@@ -766,16 +761,43 @@ const PWDRegistration = () => {
                       Name of Certifying Physician
                     </div> */}
                     <div className="grid grid-cols-2 grid-rows-2 gap-x-5">
-                      <Form.Item label="First Name" name="physicianFirstName">
+                      <Form.Item
+                        label="First Name"
+                        name="physicianFirstName"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input Physician First Name",
+                          },
+                        ]}
+                      >
                         <Input placeholder="Physician First Name" />
                       </Form.Item>
                       <Form.Item label="Middle Name" name="physicianMiddleName">
                         <Input placeholder="Physician Middle Name" />
                       </Form.Item>
-                      <Form.Item label="Last Name" name="physicianLastName">
+                      <Form.Item
+                        label="Last Name"
+                        name="physicianLastName"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input Physician Last Name",
+                          },
+                        ]}
+                      >
                         <Input placeholder="Physician Last Name" />
                       </Form.Item>
-                      <Form.Item label="License Number" name="licenseNumber">
+                      <Form.Item
+                        label="License Number"
+                        name="licenseNumber"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input Physician License No.s",
+                          },
+                        ]}
+                      >
                         <Input placeholder="Physician License Number" />
                       </Form.Item>
                     </div>

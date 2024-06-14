@@ -1,8 +1,6 @@
 import { Button, Checkbox, Form, Input, message } from "antd";
 import Logo from "../Logo/Logo";
-import { NavLink, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { authActions } from "../../../../store/store";
+import { NavLink } from "react-router-dom";
 import {
   CloseEyeIcon,
   EyeIcon,
@@ -13,15 +11,17 @@ import { useEffect, useRef } from "react";
 import { useLoginApi } from "../../../../store/controller/login";
 
 const LoginForm = () => {
-  const dispatch = useDispatch();
   const [form] = Form.useForm();
 
-  const navigate = useNavigate();
   const logInApi = useLoginApi();
 
   const onFinish = (values) => {
     const body = { username: values.username, password: values.password };
-    logInApi.mutate(body);
+    logInApi.mutate(body, {
+      onSuccess: () => {
+        message.success("Successfully Login");
+      },
+    });
     // dispatch(
     //   login({
     //     username: values.username,

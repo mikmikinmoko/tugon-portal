@@ -1,9 +1,7 @@
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "../Logo/Logo";
-import { useDispatch, useSelector } from "react-redux";
-import { Avatar, Button, Drawer, Menu, Popover } from "antd";
+import { Avatar, Button, Drawer, Popover } from "antd";
 import { HashLink as Link } from "react-router-hash-link";
-import { motion } from "framer-motion";
 
 import {
   BurgerIcon,
@@ -11,8 +9,7 @@ import {
   SignoutIcon,
   UsersIcon,
 } from "../../../../Assets/Resources/Icons/Icons";
-import { authActions } from "../../../../store/store";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { routesAuth } from "../../../../routes";
 import { useCitizenAuthStore } from "../../../../store/storage/useAuth";
 
@@ -28,9 +25,7 @@ const navigationUnAuth = [
 ];
 
 const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [open, setOpen] = useState(false);
-
   const { userData, reset } = useCitizenAuthStore();
 
   const navigate = useNavigate();
@@ -108,6 +103,7 @@ const Navigation = () => {
                   className={
                     "hover:text-[#234F8B] focus:text-[#234F8B] font-['Poppins']"
                   }
+                  activeClassName="text-[#234F8B]"
                 >
                   {item.name}
                 </NavLink>
@@ -150,7 +146,7 @@ const Navigation = () => {
           </NavLink>
           <div className="hidden sm:block md:flex ">
             {userData && (
-              <ul className="flex lg:gap-8  sm:gap-5 xs:gap-4 items-center text-[#787878] font-medium   ">
+              <ul className="flex lg:gap-8  sm:gap-5 xs:gap-4 items-center text-[#787878] font-medium">
                 {/* {navigationAuth.map((item) => (
                   <NavLink
                     key={item.name}
@@ -176,41 +172,38 @@ const Navigation = () => {
                     Home
                   </Link>
                 </li>
-                <li className=" relative cursor-pointer">
-                  <div
-                    onClick={() => setIsOpen(!isOpen)}
-                    className="hover:text-[#234F8B] active:text-[#234F8B]"
+                <li className="cursor-pointer">
+                  <Popover
+                    placement="bottom"
+                    content={
+                      <ul className=" font-normal text-[15px] font-['Poppins']">
+                        <NavLink to="/senior">
+                          <li className="transition-all duration-200 ease-in  font-normal rounded-sm py-1 px-2 w-full hover:text-[#234F8B] hover:bg-[#f1efef]">
+                            OSCA (Office of the Senior Citizen Affair)
+                          </li>
+                        </NavLink>
+                        <NavLink to="/pwd">
+                          <li className="transition-all duration-200 ease-in  font-normal rounded-sm py-1 px-2 w-full hover:text-[#234F8B] hover:bg-[#f1efef]">
+                            PDAO (Person with Disability Affair Office)
+                          </li>
+                        </NavLink>
+                        <NavLink to="">
+                          <li className="transition-all duration-200 ease-in  font-normal rounded-sm py-1 px-2 w-full hover:text-[#234F8B] hover:bg-[#f1efef]">
+                            UPAO (Urban Poor Affair Office)
+                          </li>
+                        </NavLink>
+                        <NavLink to="">
+                          <li className="transition-all duration-200 ease-in  font-normal rounded-sm py-1 px-2 w-full hover:text-[#234F8B] hover:bg-[#f1efef]">
+                            GAD (Gender and Development)
+                          </li>
+                        </NavLink>
+                      </ul>
+                    }
                   >
-                    Departments
-                  </div>
-                  <div
-                    className={`${
-                      isOpen ? "block" : "hidden"
-                    } absolute py-2 bg-[#fbf8f8]  rounded-md `}
-                  >
-                    <ul className="px-2 w-[150px]">
-                      <NavLink to="/senior">
-                        <li className="  font-medium rounded-sm py-1 px-2 w-full hover:bg-[#f1efef]">
-                          OSCA
-                        </li>
-                      </NavLink>
-                      <NavLink to="/pwd">
-                        <li className=" font-medium rounded-sm py-1 px-2 w-full hover:bg-[#f1efef]">
-                          PDAO
-                        </li>
-                      </NavLink>
-                      <NavLink to="">
-                        <li className=" font-medium rounded-sm py-1 px-2 w-full hover:bg-[#f1efef]">
-                          UPAO
-                        </li>
-                      </NavLink>
-                      <NavLink to="">
-                        <li className=" font-medium rounded-sm py-1 px-2 w-full hover:bg-[#f1efef]">
-                          GAD
-                        </li>
-                      </NavLink>
-                    </ul>
-                  </div>
+                    <div className="hover:text-[#234F8B] active:text-[#234F8B]">
+                      Departments
+                    </div>
+                  </Popover>
                 </li>
                 <li>
                   <Link
@@ -248,6 +241,7 @@ const Navigation = () => {
                     key={item.name}
                     to={item.link}
                     className={"hover:text-[#234F8B] focus:text-[#234F8B]"}
+                    activeClassName="text-[#234F8B]"
                   >
                     {item.name}
                   </NavLink>

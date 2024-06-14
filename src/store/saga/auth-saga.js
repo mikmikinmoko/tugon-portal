@@ -1,93 +1,93 @@
-import { put, call, takeLatest } from "redux-saga/effects";
-import { authActions } from "../../store/store";
-import {
-  login,
-  // brgyLogin,
-  changePasswordWithToken,
-  sendOtp,
-  submitOtp,
-  changePassword,
-  signupCitizenApi,
-} from "../api/auth-api";
-import { message } from "antd";
-///
-///
-function* signupCitizenRequest({ payload }) {
-  const { signupCitizenSuccess, requestError } = authActions;
+// import { put, call, takeLatest } from "redux-saga/effects";
+// import { authActions } from "../../store/store";
+// import {
+//   login,
+//   // brgyLogin,
+//   changePasswordWithToken,
+//   sendOtp,
+//   submitOtp,
+//   changePassword,
+//   signupCitizenApi,
+// } from "../api/auth-api";
+// import { message } from "antd";
+// ///
+// ///
+// function* signupCitizenRequest({ payload }) {
+//   const { signupCitizenSuccess, requestError } = authActions;
 
-  const result = yield call(signupCitizenApi, payload);
-  if (result?.name === "AxiosError") {
-    message.error(result?.data?.message);
-    yield put(requestError(result?.response));
-  } else {
-    message.success(result?.data?.message);
-    yield put(signupCitizenSuccess(result?.data));
-    if (payload.cb) yield call(payload.cb);
-  }
-}
+//   const result = yield call(signupCitizenApi, payload);
+//   if (result?.name === "AxiosError") {
+//     message.error(result?.data?.message);
+//     yield put(requestError(result?.response));
+//   } else {
+//     message.success(result?.data?.message);
+//     yield put(signupCitizenSuccess(result?.data));
+//     if (payload.cb) yield call(payload.cb);
+//   }
+// }
 
-function* loginRequest({ payload }) {
-  const { authenticate, loginError } = authActions;
-  const body = payload;
-  const result = yield call(login, body);
-  if (result.name === "AxiosError") {
-    yield put(loginError(result.response));
-  } else {
-    yield put(authenticate(result.data));
-    if (body.cb) yield call(body.cb);
-  }
-}
+// function* loginRequest({ payload }) {
+//   const { authenticate, loginError } = authActions;
+//   const body = payload;
+//   const result = yield call(login, body);
+//   if (result.name === "AxiosError") {
+//     yield put(loginError(result.response));
+//   } else {
+//     yield put(authenticate(result.data));
+//     if (body.cb) yield call(body.cb);
+//   }
+// }
 
-function* changePassRequest({ payload }) {
-  const { changePassSuccess, requestError } = authActions;
+// function* changePassRequest({ payload }) {
+//   const { changePassSuccess, requestError } = authActions;
 
-  const result = yield call(changePasswordWithToken, payload);
-  if (result.name === "AxiosError") {
-    yield put(requestError(result.response));
-  } else {
-    yield put(changePassSuccess(result.data));
-  }
-}
+//   const result = yield call(changePasswordWithToken, payload);
+//   if (result.name === "AxiosError") {
+//     yield put(requestError(result.response));
+//   } else {
+//     yield put(changePassSuccess(result.data));
+//   }
+// }
 
-function* sendOtpRequest({ payload }) {
-  const { sendOtpSuccess, loginError } = authActions;
+// function* sendOtpRequest({ payload }) {
+//   const { sendOtpSuccess, loginError } = authActions;
 
-  const result = yield call(sendOtp, payload);
-  if (result.name === "AxiosError") {
-    yield put(loginError(result.response));
-  } else {
-    yield put(sendOtpSuccess(result.data));
-  }
-}
+//   const result = yield call(sendOtp, payload);
+//   if (result.name === "AxiosError") {
+//     yield put(loginError(result.response));
+//   } else {
+//     yield put(sendOtpSuccess(result.data));
+//   }
+// }
 
-function* submitOtpRequest({ payload }) {
-  const { submitOtpSuccess, submitOtpFail } = authActions;
+// function* submitOtpRequest({ payload }) {
+//   const { submitOtpSuccess, submitOtpFail } = authActions;
 
-  const result = yield call(submitOtp, payload);
-  if (result.name === "AxiosError") {
-    yield put(submitOtpFail(result.response));
-  } else {
-    yield put(submitOtpSuccess(result.data));
-  }
-}
+//   const result = yield call(submitOtp, payload);
+//   if (result.name === "AxiosError") {
+//     yield put(submitOtpFail(result.response));
+//   } else {
+//     yield put(submitOtpSuccess(result.data));
+//   }
+// }
 
-function* changePasswordRequest({ payload }) {
-  const { changePasswordSuccess, changePasswordFail } = authActions;
+// function* changePasswordRequest({ payload }) {
+//   const { changePasswordSuccess, changePasswordFail } = authActions;
 
-  const result = yield call(changePassword, payload);
-  if (result.name === "AxiosError") {
-    yield put(changePasswordFail(result.response));
-  } else {
-    yield put(changePasswordSuccess(result.data));
-  }
-}
+//   const result = yield call(changePassword, payload);
+//   if (result.name === "AxiosError") {
+//     yield put(changePasswordFail(result.response));
+//   } else {
+//     yield put(changePasswordSuccess(result.data));
+//   }
+// }
 
-// Export the saga (todo-saga)
-export default function* authSaga() {
-  yield takeLatest(`auth/login`, loginRequest);
-  yield takeLatest(`auth/signupCitizen`, signupCitizenRequest);
-  yield takeLatest(`auth/changePass`, changePassRequest);
-  yield takeLatest(`auth/sendOtp`, sendOtpRequest);
-  yield takeLatest(`auth/submitOtp`, submitOtpRequest);
-  yield takeLatest(`auth/changePassword`, changePasswordRequest);
-}
+// // Export the saga (todo-saga)
+// export default function* authSaga() {
+//   yield takeLatest(`auth/login`, loginRequest);
+//   yield takeLatest(`auth/signupCitizen`, signupCitizenRequest);
+//   yield takeLatest(`auth/changePass`, changePassRequest);
+//   yield takeLatest(`auth/sendOtp`, sendOtpRequest);
+//   yield takeLatest(`auth/submitOtp`, submitOtpRequest);
+//   yield takeLatest(`auth/changePassword`, changePasswordRequest);
+// }

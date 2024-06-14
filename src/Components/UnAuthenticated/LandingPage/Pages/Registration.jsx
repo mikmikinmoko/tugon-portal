@@ -1,6 +1,5 @@
 import { Button, DatePicker, Form, Input, Radio, Select, message } from "antd";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import refbrgy from "../../../../Assets/Resources/json/refbrgy.json";
 import TitleForm from "../../../../Reusable/TitleForm";
@@ -9,58 +8,18 @@ import {
   useGetMunicipalities,
   useSignupCitizenApi,
 } from "../../../../store/controller/registration";
-// import { authActions } from "../../../../store/store";
 import Logo from "../Logo/Logo";
 import { useLoginApi } from "../../../../store/controller/login";
-
-// const { signupCitizen } = authActions;
-// import refcitymun from "../../../../Assets/Resources/json/refcitymun.json";
-// import refprovince from "../../../../Assets/Resources/json/refprovince.json";
-// import refregion from "../../../../Assets/Resources/json/refregion.json";
-
-const suffix = [
-  { id: 0, value: "", label: "" },
-  { id: 1, value: "Jr.", label: "Jr." },
-  { id: 2, value: "Jr II", label: "Jr. II" },
-  { id: 3, value: "Sr.", label: "Sr." },
-  { id: 4, value: "II", label: "II" },
-  { id: 5, value: "III", label: "III" },
-  { id: 6, value: "IV", label: "IV" },
-  { id: 7, value: "V", label: "V" },
-  { id: 8, value: "VI", label: "VI" },
-];
+import { suffix } from "../../../constant/values";
 
 const Registration = () => {
   const [form] = Form.useForm();
-  const dispatch = useDispatch();
 
   const lgu = Form.useWatch("cityId", form);
 
   const getMunicipalities = useGetMunicipalities();
   const signupCitizenApi = useSignupCitizenApi();
   const logInApi = useLoginApi();
-
-  console.log(getMunicipalities);
-
-  // const [municipalities, setMunicipalities] = useState([]);
-  const [fetchMunicipalitiesLoading, setFetchMunicipalitiesLoading] =
-    useState(false);
-
-  // const fetchMunicipalities = async () => {
-  //   setFetchMunicipalitiesLoading(true);
-  //   const request = await getMunicipalities();
-
-  //   if (request.name === "AxiosError") {
-  //     message.error(request?.message);
-  //   } else {
-  //     setMunicipalities(request.data);
-  //   }
-  //   setFetchMunicipalitiesLoading(false);
-  // };
-
-  // useEffect(() => {
-  //   fetchMunicipalities();
-  // }, []);
 
   const onFinish = (values) => {
     signupCitizenApi.mutate(
@@ -82,7 +41,6 @@ const Registration = () => {
       },
       {
         onSuccess: ({ data }) => {
-          console.log(data);
           form.resetFields();
           message.success(data.message);
         },
@@ -153,7 +111,7 @@ const Registration = () => {
           </div>
           <div className=" py-5">
             <Form
-              requiredMark="optional"
+              // requiredMark="optional"
               form={form}
               onFinish={onFinish}
               layout="vertical"
