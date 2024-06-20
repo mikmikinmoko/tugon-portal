@@ -15,7 +15,7 @@ import {
   statusOfEmployment,
   typeOfDisability,
   typesofEmployment,
-} from "../../../../constant/values";
+} from "../../../../../Assets/constant/values";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { useCitizenAuthStore } from "../../../../../store/storage/useAuth";
 import refbrgy from "../../../../../Assets/Resources/json/refbrgy.json";

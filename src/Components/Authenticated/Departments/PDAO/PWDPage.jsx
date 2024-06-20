@@ -23,8 +23,8 @@ const PWDPage = () => {
           </div>
         </div>
         <div className="flex flex-col justify-center items-center ">
-          <div className="text-center px-32 py-8 ">
-            <div>
+          <div className="text-center px-5 md:px-28 lg:px-32 ">
+            <div className="py-10">
               Welcome to the application process for the Persons with
               Disabilities (PWD) Identication (ID) card. {`We're`} here to guide
               you through the steps to obtain your PWD ID. Please follow the
@@ -38,7 +38,7 @@ const PWDPage = () => {
             <Procedure />
           </div>
 
-          <div className="flex justify-center text-left  bg-[#EFF3FF] text-[#525252] text-[16px] px-32 py-8 ">
+          <div className="flex justify-center text-left  bg-[#EFF3FF] text-[#525252] text-[16px] px-5 md:px-25 lg:px-32 py-8 ">
             <div className="">
               <h1 className="text-[#3452AE] py-5 font-semibold">
                 Coverage and scope

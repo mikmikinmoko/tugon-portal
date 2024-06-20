@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import { Avatar, Button, Drawer, Popover } from "antd";
 import { HashLink as Link } from "react-router-hash-link";
@@ -19,19 +19,19 @@ const navigationAuth = [
   { name: "Home", link: "/" },
 ];
 const navigationUnAuth = [
-  { name: "About Us", link: "" },
-  { name: "Contact", link: "" },
+  { name: "About Us", link: "#aboutUs" },
+  { name: "Contact", link: "#contact" },
   { name: "Home", link: "/" },
 ];
 
 const Navigation = () => {
   const [open, setOpen] = useState(false);
   const { userData, reset } = useCitizenAuthStore();
-
+  const location = useLocation(); // Use useLocation hook to get the current path
   const navigate = useNavigate();
 
   const fullName = [userData?.firstName]
-    .concat(userData?.middleName, userData?.lastName)
+    .concat(userData?.middleName, userData?.lastName, userData?.suffix)
     .join(" ");
 
   const closeDrawer = () => {
@@ -97,16 +97,18 @@ const Navigation = () => {
           <>
             <div className="flex items-end flex-col-reverse gap-4 px-3 text-[12px] md:text-[14px] lg:text-[16px] text-[#474747]">
               {routesAuth.map((item) => (
-                <NavLink
+                <Link
+                  onClick={closeDrawer}
                   key={item.name}
                   to={item.path}
-                  className={
-                    "hover:text-[#234F8B] focus:text-[#234F8B] font-['Poppins']"
-                  }
-                  activeClassName="text-[#234F8B]"
+                  className={`hover:text-[#234F8B] focus:text-[#234F8B] font-['Poppins'] border-b-2 border-transparent hover:border-current transition-all ease-in-out duration-300 ${
+                    location.pathname === item.path
+                      ? "text-[#234F8B] border-current"
+                      : ""
+                  }`}
                 >
                   {item.name}
-                </NavLink>
+                </Link>
               ))}
             </div>
             <div className="py-4">
@@ -131,9 +133,13 @@ const Navigation = () => {
               <NavLink
                 key={item.name}
                 to={item.link}
-                className={"hover:text-[#234F8B] focus:text-[#234F8B]"}
+                className={`hover:text-[#234F8B] focus:text-[#234F8B] border-b-2 border-transparent hover:border-current transition-all duration-300 ${
+                  location.hash === item.link
+                    ? "text-[#234F8B] border-current"
+                    : ""
+                }`}
               >
-                {item.name} {item.icon}
+                {item.name}
               </NavLink>
             ))}
           </div>
@@ -147,27 +153,13 @@ const Navigation = () => {
           <div className="hidden sm:block md:flex ">
             {userData && (
               <ul className="flex lg:gap-8  sm:gap-5 xs:gap-4 items-center text-[#787878] font-medium">
-                {/* {navigationAuth.map((item) => (
-                  <NavLink
-                    key={item.name}
-                    to={item.link}
-                    className={"hover:text-[#234F8B] focus:text-[#234F8B]"}
-                  >
-                    {item.name}
-                  </NavLink>
-                ))} */}
-                {/* <li>
-                  <NavLink
-                    to={"/pwd"}
-                    className="hover:text-[#234F8B] active:text-[#234F8B]"
-                  >
-                    PWD ID
-                  </NavLink>
-                </li>*/}
                 <li>
                   <Link
                     to="/#home"
-                    className="hover:text-[#234F8B] active:text-[#234F8B]"
+                    className={`hover:text-[#234F8B] active:text-[#234F8B] border-b-2 py-1 border-transparent hover:border-current transition-all duration-500 ease-in-out ${
+                      location.hash === "#home" &&
+                      "border-current text-[#234F8B]"
+                    }`}
                   >
                     Home
                   </Link>
@@ -200,7 +192,16 @@ const Navigation = () => {
                       </ul>
                     }
                   >
-                    <div className="hover:text-[#234F8B] active:text-[#234F8B]">
+                    <div
+                      className={`hover:text-[#234F8B] active:text-[#234F8B] ${
+                        location.pathname === "/senior" ||
+                        location.pathname === "/pwd" ||
+                        location.pathname === "/upao" ||
+                        location.pathname === "/gad"
+                          ? "border-current text-[#234F8B]"
+                          : ""
+                      } border-b-2 py-1 border-transparent hover:border-current transition-all duration-500 ease-in-out`}
+                    >
                       Departments
                     </div>
                   </Popover>
@@ -208,7 +209,10 @@ const Navigation = () => {
                 <li>
                   <Link
                     to="/#aboutUs"
-                    className="hover:text-[#234F8B] active:text-[#234F8B]"
+                    className={`hover:text-[#234F8B] active:text-[#234F8B] border-b-2 py-1 border-transparent hover:border-current transition-all duration-500 ease-in-out ${
+                      location.hash === "#aboutUs" &&
+                      "border-current text-[#234F8B]"
+                    }`}
                   >
                     About
                   </Link>
@@ -216,7 +220,10 @@ const Navigation = () => {
                 <li>
                   <Link
                     to="/#announcement"
-                    className="hover:text-[#234F8B] active::text-[#234F8B]"
+                    className={`hover:text-[#234F8B] active:text-[#234F8B] border-b-2 py-1 border-transparent hover:border-current transition-all duration-500 ease-in-out ${
+                      location.hash === "#announcement" &&
+                      "border-current text-[#234F8B]"
+                    }`}
                   >
                     Announcement
                   </Link>
@@ -235,13 +242,16 @@ const Navigation = () => {
               </ul>
             )}
             {!userData && (
-              <ul className="flex gap-8 items-center text-[#787878] font-medium  ">
+              <ul className="flex gap-8 items-center text-[#787878] font-medium">
                 {navigationUnAuth.map((item) => (
                   <NavLink
                     key={item.name}
                     to={item.link}
-                    className={"hover:text-[#234F8B] focus:text-[#234F8B]"}
-                    activeClassName="text-[#234F8B]"
+                    className={`hover:text-[#234F8B] focus:text-[#234F8B] border-b-2 border-transparent hover:border-current transition-all duration-300 ${
+                      location.hash === item.link
+                        ? "text-[#234F8B] border-current"
+                        : ""
+                    }`}
                   >
                     {item.name}
                   </NavLink>
@@ -249,7 +259,7 @@ const Navigation = () => {
                 <NavLink to="/login">
                   <Button
                     type="primary"
-                    className=" px-8 rounded-2xl bg-[#234F8B]"
+                    className="px-8 rounded-2xl bg-[#234F8B]"
                   >
                     Login
                   </Button>
@@ -257,21 +267,12 @@ const Navigation = () => {
               </ul>
             )}
           </div>
-          {userData ? (
-            <div
-              className="flex sm:hidden md:hidden lg:hidden cursor-pointer "
-              onClick={() => setOpen(true)}
-            >
-              <BurgerIcon />
-            </div>
-          ) : (
-            <div
-              className="flex sm:hidden md:hidden lg:hidden cursor-pointer "
-              onClick={() => setOpen(true)}
-            >
-              <BurgerIcon />
-            </div>
-          )}
+          <div
+            className="flex sm:hidden md:hidden lg:hidden cursor-pointer"
+            onClick={() => setOpen(true)}
+          >
+            <BurgerIcon />
+          </div>
         </div>
       </div>
     </>

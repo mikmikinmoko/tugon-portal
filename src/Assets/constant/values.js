@@ -45,6 +45,33 @@ export const itemsPWD = [
     description: "Physician Information",
   },
 ];
+export const items = [
+  {
+    step: 0,
+    title: "Step 1",
+    description: "Personal Information",
+  },
+  {
+    step: 1,
+    title: "Step 2",
+    description: "Additional Information",
+  },
+  {
+    step: 2,
+    title: "Step 3",
+    description: "Family Composition",
+  },
+  {
+    step: 3,
+    title: "Step 4",
+    description: "Membership to Senior Citizens Association",
+  },
+  {
+    step: 4,
+    title: "Step 5",
+    description: "Documents",
+  },
+];
 export const educationalAttainment = [
   { id: 0, value: "NONE" },
   { id: 1, value: "KINDERGARTEN" },
@@ -54,6 +81,13 @@ export const educationalAttainment = [
   { id: 5, value: "VAOCATIONAL" },
   { id: 6, value: "COLLEGE" },
   { id: 7, value: "POST GRADUATE" },
+];
+export const educationalLevels = [
+  { id: 0, value: 0, label: "Elementary Level" },
+  { id: 1, value: 1, label: "High School Level" },
+  { id: 2, value: 2, label: "College Level" },
+  { id: 3, value: 3, label: "College Graduate" },
+  { id: 4, value: 4, label: "Vocational / Technical Course" },
 ];
 
 export const causeOfDisability = [

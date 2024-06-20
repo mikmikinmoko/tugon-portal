@@ -23,6 +23,7 @@ const OSCAPage = () => {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.9 }}
+                className="transition-transform duration-300 ease-in-out"
               >
                 {getIdStatus && (
                   <div className="absolute overflow-hidden  w-[405px] h-[395px] font-['Poppins']">
@@ -43,6 +44,7 @@ const OSCAPage = () => {
               <motion.img
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.9 }}
+                className="transition-transform duration-300 ease-in-out"
                 src={seniorImg2}
               />
             </NavLink>
@@ -50,7 +52,7 @@ const OSCAPage = () => {
         </div>
       </section>
 
-      <div className="flex   justify-end items-end">
+      <div className="flex justify-end items-end">
         <Footer />
       </div>
     </>

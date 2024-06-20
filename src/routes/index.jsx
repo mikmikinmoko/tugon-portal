@@ -1,9 +1,9 @@
 const routesAuth = [
-  { name: "Announcement", path: "/annoucement" },
-  { name: "PWD ID", path: "" },
-  { name: "Senior Citizen ID", path: "" },
-  { name: "About", path: "/aboutUs" },
-  { name: "Home", link: "/" },
+  { name: "Announcement", path: "/#announcement" },
+  { name: "PWD ID", path: "/pwd" },
+  { name: "Senior Citizen ID", path: "/senior" },
+  { name: "About", path: "/#aboutUs" },
+  { name: "Home", path: "/#home" },
 ];
 
 export { routesAuth };

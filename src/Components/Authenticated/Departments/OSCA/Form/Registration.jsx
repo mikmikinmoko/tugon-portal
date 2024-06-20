@@ -28,12 +28,18 @@ import { Footer } from "../../../../UnAuthenticated/LandingPage/Pages/Page5";
 import NotEligible from "../../../../../Reusable/NotEligible";
 import { useCreateSeniorId } from "../../../../../store/controller/registration";
 import { useCitizenAuthStore } from "../../../../../store/storage/useAuth";
-import { civilStatusOSCA } from "../../../../constant/values";
+import {
+  civilStatusOSCA,
+  educationalLevels,
+} from "../../../../../Assets/constant/values";
+import { items } from "../../../../../Assets/constant/values";
 
 const { Dragger } = Upload;
 
 const Registration = () => {
   const [form] = Form.useForm();
+  const pensioner = Form.useWatch(["pensioner"], form);
+  console.log(pensioner);
   const navigate = useNavigate();
 
   const [file, setFile] = useState({});
@@ -51,7 +57,7 @@ const Registration = () => {
   const nextForm = async () => {
     try {
       await form.validateFields("");
-      setStep((n) => n + 1);
+      return setStep((n) => n + 1);
     } catch {
       message.warning("Make sure input fields has a value");
     }
@@ -174,7 +180,7 @@ const Registration = () => {
       {
         onSuccess: ({ data }) => {
           message.success(
-            `${data.message}. Please wait for the approval of your Application`
+            `${data.message}. Please wait for the approval of your Application an email notifying you when your application is approved`
           );
           form.resetFields("");
           navigate("/senior");
@@ -194,21 +200,6 @@ const Registration = () => {
     //   })
     // );
   };
-  const items = [
-    {
-      step: 0,
-      title: "Step 1",
-      description: "Personal Information",
-    },
-    { step: 1, title: "Step 2", description: "Additional Information" },
-    { step: 2, title: "Step 3", description: "Family Composition" },
-    {
-      step: 3,
-      title: "Step 4",
-      description: "Membership to Senior Citizens Association",
-    },
-    { step: 4, title: "Step 5", description: "Documents" },
-  ];
 
   return (
     <>
@@ -244,7 +235,6 @@ const Registration = () => {
                     <Form
                       form={form}
                       layout="vertical"
-                      requiredMark="optional"
                       onFinish={onFinish}
                       className="font-['Poppins']"
                     >
@@ -618,21 +608,11 @@ const Registration = () => {
                                 ]}
                               >
                                 <Select>
-                                  <Select.Option value={0}>
-                                    Elementary Level
-                                  </Select.Option>
-                                  <Select.Option value={1}>
-                                    High School Level
-                                  </Select.Option>
-                                  <Select.Option value={2}>
-                                    College Level
-                                  </Select.Option>
-                                  <Select.Option value={3}>
-                                    College Graduate
-                                  </Select.Option>
-                                  <Select.Option value={4}>
-                                    Vocational / Technical Course
-                                  </Select.Option>
+                                  {educationalLevels.map((s) => (
+                                    <Select.Option value={s.value} key={s.id}>
+                                      {s.label}
+                                    </Select.Option>
+                                  ))}
                                 </Select>
                               </Form.Item>
                             </div>
@@ -841,6 +821,13 @@ const Registration = () => {
                             <Form.Item
                               label="Name of Association"
                               name="nameOfAssociation"
+                              rules={[
+                                {
+                                  required: true,
+                                  message:
+                                    "Please input your Name of Association",
+                                },
+                              ]}
                             >
                               <Input placeholder="Name of Association" />
                             </Form.Item>

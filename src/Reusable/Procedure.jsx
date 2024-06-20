@@ -21,7 +21,7 @@ const Procedure = () => {
           approved.
         </p>
       </div>
-      <div className="flex flex-col text-[14px] items-center font-['Poppins'] ">
+      <div className="flex flex-col text-[14px] items-center font-['Poppins']">
         <div className="py-5">
           <p className=" bg-[#F4F7FF] text-[#3452AE] py-5 px-10 shadow-md">
             Step 1
