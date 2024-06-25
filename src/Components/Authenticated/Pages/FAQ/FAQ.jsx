@@ -44,11 +44,9 @@ const FAQ = () => {
     console.log(key);
   };
   return (
-    <div className="font-['Poppins'] w-full h-full">
-      <div className="p-5 lg:py-8 lg:px-32">
-        <div className="py-5">
-          <Title>FAQ</Title>
-        </div>
+    <div className="px-5 lg:px-32 ">
+      <Title>FAQ</Title>
+      <div className="py-8">
         <Collapse
           items={items}
           accordion

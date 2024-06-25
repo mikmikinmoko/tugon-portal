@@ -6,6 +6,7 @@ import Registration from "../Departments/OSCA/Form/Registration";
 import PWDPage from "../Departments/PDAO/PWDPage";
 import PWDRegistration from "../Departments/PDAO/Form/PWDRegistration";
 import Navigation from "../../UnAuthenticated/LandingPage/Navigation/Navigation";
+import ProfileInformation from "./ProfileInformation.jsx/Profile";
 
 const Authenticated = () => {
   return (
@@ -21,6 +22,7 @@ const Authenticated = () => {
         />
         <Route path="pwd" element={<PWDPage />} />
         <Route path="pwd/PWDregistration" element={<PWDRegistration />} />
+        <Route path="profile" element={<ProfileInformation />} />
         {/* </Route> */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

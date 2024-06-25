@@ -21,13 +21,13 @@ const navigationAuth = [
 const navigationUnAuth = [
   { name: "About Us", link: "#aboutUs" },
   { name: "Contact", link: "#contact" },
-  { name: "Home", link: "/" },
+  { name: "Home", link: "#home" },
 ];
 
 const Navigation = () => {
   const [open, setOpen] = useState(false);
   const { userData, reset } = useCitizenAuthStore();
-  const location = useLocation(); // Use useLocation hook to get the current path
+  const location = useLocation();
   const navigate = useNavigate();
 
   const fullName = [userData?.firstName]
@@ -42,6 +42,7 @@ const Navigation = () => {
     reset();
     navigate("/");
   };
+  console.log(location);
 
   const content = (
     <div className="flex flex-col gap-1 text-[14px] font-['Poppins'] ">
@@ -50,12 +51,14 @@ const Navigation = () => {
         <span className="text-[#898989] text-[12px]">{userData?.email}</span>
       </div>
       <hr />
-      <div className="flex gap-1 items-center  p-2 hover:bg-[#ebebeb] hover:rounded-md  cursor-pointer ">
-        <MyAccountIcon />
-        <p>Account Settings</p>
-      </div>
+      <NavLink to="/profile">
+        <div className="flex gap-1 items-center p-2 hover:bg-[#ebebeb] hover:rounded-md cursor-pointer">
+          <MyAccountIcon />
+          <p>Account Settings</p>
+        </div>
+      </NavLink>
       <div
-        className="flex gap-1 items-center text-[#DF3838]  p-2 hover:bg-[#ebebeb] hover:rounded-md  cursor-pointer"
+        className="flex gap-1 items-center text-[#DF3838]  p-2 hover:bg-[#ebebeb] hover:rounded-md cursor-pointer"
         onClick={signOut}
       >
         <SignoutIcon /> <p>Log out</p>
@@ -116,8 +119,10 @@ const Navigation = () => {
             </div>
             <div className="flex flex-col items-end font-['Poppins'] text-[12px] md:text-[14px] lg:text-[16px] ">
               <div className="flex flex-row-reverse gap-3 p-2 items-center hover:bg-[#ebebeb] hover:rounded-md  cursor-pointer ">
-                <MyAccountIcon />
-                <p>Account Settings</p>
+                <NavLink to="profile">
+                  <MyAccountIcon />
+                  <p>Account Settings</p>
+                </NavLink>
               </div>
               <div
                 className="flex flex-row-reverse gap-2 items-center p-2 text-[#DF3838]   hover:bg-[#ebebeb] hover:rounded-md  cursor-pointer"
@@ -133,10 +138,9 @@ const Navigation = () => {
               <NavLink
                 key={item.name}
                 to={item.link}
-                className={`hover:text-[#234F8B] focus:text-[#234F8B] border-b-2 border-transparent hover:border-current transition-all duration-300 ${
-                  location.hash === item.link
-                    ? "text-[#234F8B] border-current"
-                    : ""
+                className={`hover:text-[#234F8B]  border-b-2 py-1 border-transparent hover:border-current transition-all duration-500 ease-in-out ${
+                  location.hash === item.link &&
+                  "border-[#234F8B]  text-[#234F8B]"
                 }`}
               >
                 {item.name}
@@ -156,9 +160,9 @@ const Navigation = () => {
                 <li>
                   <Link
                     to="/#home"
-                    className={`hover:text-[#234F8B] active:text-[#234F8B] border-b-2 py-1 border-transparent hover:border-current transition-all duration-500 ease-in-out ${
+                    className={`hover:text-[#234F8B]  border-b-2 py-1 border-transparent hover:border-current transition-all duration-500 ease-in-out ${
                       location.hash === "#home" &&
-                      "border-current text-[#234F8B]"
+                      "border-[#234F8B] text-[#234F8B]"
                     }`}
                   >
                     Home
@@ -193,12 +197,12 @@ const Navigation = () => {
                     }
                   >
                     <div
-                      className={`hover:text-[#234F8B] active:text-[#234F8B] ${
+                      className={`hover:text-[#234F8B]  ${
                         location.pathname === "/senior" ||
                         location.pathname === "/pwd" ||
                         location.pathname === "/upao" ||
                         location.pathname === "/gad"
-                          ? "border-current text-[#234F8B]"
+                          ? "border-[#234F8B]  text-[#234F8B]"
                           : ""
                       } border-b-2 py-1 border-transparent hover:border-current transition-all duration-500 ease-in-out`}
                     >
@@ -209,9 +213,9 @@ const Navigation = () => {
                 <li>
                   <Link
                     to="/#aboutUs"
-                    className={`hover:text-[#234F8B] active:text-[#234F8B] border-b-2 py-1 border-transparent hover:border-current transition-all duration-500 ease-in-out ${
+                    className={`hover:text-[#234F8B]  border-b-2 py-1 border-transparent hover:border-current transition-all duration-500 ease-in-out ${
                       location.hash === "#aboutUs" &&
-                      "border-current text-[#234F8B]"
+                      "border-[#234F8B]  text-[#234F8B]"
                     }`}
                   >
                     About
@@ -220,9 +224,9 @@ const Navigation = () => {
                 <li>
                   <Link
                     to="/#announcement"
-                    className={`hover:text-[#234F8B] active:text-[#234F8B] border-b-2 py-1 border-transparent hover:border-current transition-all duration-500 ease-in-out ${
+                    className={`hover:text-[#234F8B]  border-b-2 py-1 border-transparent hover:border-current transition-all duration-500 ease-in-out ${
                       location.hash === "#announcement" &&
-                      "border-current text-[#234F8B]"
+                      "border-[#234F8B]  text-[#234F8B]"
                     }`}
                   >
                     Announcement
@@ -249,7 +253,7 @@ const Navigation = () => {
                     to={item.link}
                     className={`hover:text-[#234F8B] focus:text-[#234F8B] border-b-2 border-transparent hover:border-current transition-all duration-300 ${
                       location.hash === item.link
-                        ? "text-[#234F8B] border-current"
+                        ? "border-[#234F8B]  text-[#234F8B]"
                         : ""
                     }`}
                   >

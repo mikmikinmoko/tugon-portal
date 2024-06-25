@@ -10,7 +10,7 @@ import {
 } from "../../../../store/controller/registration";
 import Logo from "../Logo/Logo";
 import { useLoginApi } from "../../../../store/controller/login";
-import { suffix } from "../../../constant/values";
+import { suffix } from "../../../../Assets/constant/values";
 
 const Registration = () => {
   const [form] = Form.useForm();
@@ -19,7 +19,6 @@ const Registration = () => {
 
   const getMunicipalities = useGetMunicipalities();
   const signupCitizenApi = useSignupCitizenApi();
-  const logInApi = useLoginApi();
 
   const onFinish = (values) => {
     signupCitizenApi.mutate(
@@ -109,7 +108,7 @@ const Registration = () => {
               Up for Community Collaboration and Empowerment.
             </p>
           </div>
-          <div className=" py-5">
+          <div className=" py-5 h-full">
             <Form
               // requiredMark="optional"
               form={form}

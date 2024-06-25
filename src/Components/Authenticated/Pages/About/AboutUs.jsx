@@ -20,10 +20,10 @@ const AboutUs = () => {
         id="aboutUs"
       > */}
       <section
-        className="font-normal text-[18px] text-[#000000] w-full h-full  text-justify  font-['Poppins'] scroll-mt-16 "
+        className="font-normal sm:text-[16px] lg:text-[18px] text-[#000000] w-full h-full  text-justify  font-['Poppins'] ] scroll-mt-16 "
         id="aboutUs"
       >
-        <div className="flex justify-center items-center px-5 lg:px-32 py-8 ">
+        <div className="flex justify-center items-center px-5 lg:px-32 ">
           <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-x-6">
             <div>
               <div className="py-3 lg:py-16">

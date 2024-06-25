@@ -33,6 +33,7 @@ import {
   educationalLevels,
 } from "../../../../../Assets/constant/values";
 import { items } from "../../../../../Assets/constant/values";
+import { ageCalc } from "../../../../../helpers/ageCalc";
 
 const { Dragger } = Upload;
 
@@ -130,7 +131,7 @@ const Registration = () => {
     form.setFieldsValue({
       dateOfBirth: dayjs(birthdate),
       sex: +sex,
-      age: age,
+      age: ageCalc(birthDate),
       ...rest,
     });
   }, [userData, age]);
