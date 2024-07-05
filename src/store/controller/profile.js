@@ -1,10 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import {
-  getProfile,
-  getProfileAccountId,
-  updatePassword,
-  updateProfile,
-} from "../api/profile";
+import { getProfile, updatePassword, updateProfile } from "../api/profile";
 import { useCitizenAuthStore } from "../storage/useAuth";
 
 export const useGetProfile = () => {
