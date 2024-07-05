@@ -12,6 +12,7 @@ import {
 import { useState } from "react";
 import { routesAuth } from "../../../../routes";
 import { useCitizenAuthStore } from "../../../../store/storage/useAuth";
+import { useGetProfile } from "../../../../store/controller/profile";
 
 const navigationAuth = [
   { name: "PWD ID", link: "/pwd" },
@@ -27,12 +28,19 @@ const navigationUnAuth = [
 const Navigation = () => {
   const [open, setOpen] = useState(false);
   const { userData, reset } = useCitizenAuthStore();
+  const getProfile = useGetProfile();
   const location = useLocation();
   const navigate = useNavigate();
 
-  const fullName = [userData?.firstName]
-    .concat(userData?.middleName, userData?.lastName, userData?.suffix)
-    .join(" ");
+  console.log(getProfile);
+
+  // const fullName = [getProfile.data?.data?.firstName]
+  //   .concat(
+  //     getProfile.data?.data?.middleName,
+  //     getProfile.data?.data?.lastName,
+  //     getProfile.data?.data?.suffix
+  //   )
+  //   .join(" ");
 
   const closeDrawer = () => {
     setOpen(false);
@@ -47,8 +55,10 @@ const Navigation = () => {
   const content = (
     <div className="flex flex-col gap-1 text-[14px] font-['Poppins'] ">
       <div className="px-4">
-        <div className="capitalize">{fullName}</div>
-        <span className="text-[#898989] text-[12px]">{userData?.email}</span>
+        <div className="capitalize">{getProfile.data?.data?.fullName}</div>
+        <span className="text-[#898989] text-[12px]">
+          {getProfile.data?.data?.contacts?.primaryEmail}
+        </span>
       </div>
       <hr />
       <NavLink to="/profile">
@@ -75,7 +85,7 @@ const Navigation = () => {
         style={{ height: "60%" }}
         extra={
           <div className="flex flex-col items-end font-['Poppins'] text-[10px] md:text-[14px] lg:text-[16px] font-normal gap-1 px-3">
-            {userData && (
+            {getProfile && (
               <>
                 <Avatar
                   size={35}
@@ -86,17 +96,17 @@ const Navigation = () => {
                   }}
                 />
                 <div className="font-medium text-[#000000] lg:text-[18px]">
-                  {fullName}
+                  {getProfile.data?.data?.fullName}
                 </div>
                 <div className=" text-[#898989] lg:text-[12px]">
-                  {userData?.email}
+                  {getProfile.data?.data?.contacts?.primaryEmail}
                 </div>
               </>
             )}
           </div>
         }
       >
-        {userData ? (
+        {getProfile ? (
           <>
             <div className="flex items-end flex-col-reverse gap-4 px-3 text-[12px] md:text-[14px] lg:text-[16px] text-[#474747]">
               {routesAuth.map((item) => (

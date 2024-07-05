@@ -176,21 +176,19 @@ const Registration = () => {
     formData.append("familyComposition", JSON.stringify(familyComposition));
     formData.append("dateOfMembership", dateOfMembership.format("YYYY-MM-DD"));
 
-    createSeniorId.mutate(
-      { body: formData },
-      {
-        onSuccess: ({ data }) => {
-          message.success(
-            `${data.message}. Please wait for the approval of your Application an email notifying you when your application is approved`
-          );
-          form.resetFields("");
-          navigate("/senior");
-        },
-        onError: (err) => {
-          message.warning(err?.response?.data?.message);
-        },
-      }
-    );
+    createSeniorId.mutate(formData, {
+      onSuccess: ({ data }) => {
+        message.success(
+          `${data.message}. Please wait for the approval of your Application an email notifying you when your application is approved`
+        );
+        form.resetFields("");
+        navigate("/senior");
+      },
+      onError: (err) => {
+        console.log(err);
+        message.warning(err?.response?.data?.message || "asd");
+      },
+    });
     // dispatch(
     //   createSeniorId({
     //     body: formData,

@@ -1,7 +1,6 @@
 import { Button, DatePicker, Form, Input, Select } from "antd";
 import TitleForm from "../../../../../Reusable/TitleForm";
-import { useEffect, useState } from "react";
-import { useCitizenAuthStore } from "../../../../../store/storage/useAuth";
+import { useEffect } from "react";
 import { suffix } from "../../../../../Assets/constant/values";
 import { ageCalc } from "../../../../../helpers/ageCalc";
 import dayjs from "dayjs";
@@ -10,45 +9,28 @@ import refcitymun from "../../../../../Assets/Resources/json/refcitymun.json";
 import refprovince from "../../../../../Assets/Resources/json/refprovince.json";
 import refregion from "../../../../../Assets/Resources/json/refregion.json";
 
-const EditProfileForm = () => {
-  const [editForm] = Form.useForm();
-  const [enabledForms, setEnabledForms] = useState(true);
-  const { userData } = useCitizenAuthStore();
-  console.log(userData);
+const EditProfileForm = ({ onFinish, form, getProfile }) => {
+  // const lgu = Form.useWatch("regionId", editForm);
+  // const province = Form.useWatch("provinceId", editForm);
+  // const city = Form.useWatch("cityId", editForm);
 
   useEffect(() => {
-    const { birthdate, ...rest } = userData;
-    editForm.setFieldsValue({
+    const { birthdate, contacts, ...rest } = getProfile.data?.data;
+    form.setFieldsValue({
       ...rest,
       age: ageCalc(birthdate),
       birthdate: dayjs(birthdate),
+      primaryEmail: contacts.primaryEmail,
+      primaryMobile: contacts.primaryMobile,
     });
-  }, [userData, enabledForms]);
-
-  //   useEffect(() => {
-  //     const { birthdate, ...rest } = userData;
-  //     editForm.setFieldsValue({
-  //       ...rest,
-  //       age: ageCalc(birthdate),
-  //       birthdate: dayjs(birthdate),
-  //     });
-  //   }, [enabledForms]);
-  const onFinish = (values) => {
-    const { birthdate, ...rest } = values;
-    console.log(rest);
-    console.log(dayjs(birthdate).format("YYYY-MM-DD"));
-  };
+  }, []);
 
   return (
-    <Form
-      layout="vertical"
-      form={editForm}
-      disabled={enabledForms}
-      onFinish={onFinish}
-    >
+    // <div>asd</div>
+    <Form layout="vertical" form={form} onFinish={onFinish}>
       <div className="px-2 py-4">
-        <TitleForm>Personal Information</TitleForm>
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        {/* <TitleForm>Personal Information</TitleForm> */}
+        <div className="grid sm:grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-3">
           <Form.Item label="First Name" name="firstName">
             <Input />
           </Form.Item>
@@ -67,7 +49,7 @@ const EditProfileForm = () => {
               ))}
             </Select>
           </Form.Item>
-          <Form.Item label="Age" name="birthdate">
+          <Form.Item label="Birthdate" name="birthdate">
             <DatePicker className="w-full" format="YYYY-MM-DD" />
           </Form.Item>
           <Form.Item label="Age" name="age">
@@ -80,8 +62,8 @@ const EditProfileForm = () => {
             </Select>
           </Form.Item>
         </div>
-        <TitleForm>Address Information</TitleForm>
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        {/* <TitleForm>Address Information</TitleForm> */}
+        {/* <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           <Form.Item label="Region" name="regionId">
             <Select>
               {refregion.map((s) => (
@@ -94,7 +76,7 @@ const EditProfileForm = () => {
           <Form.Item label="Province" name="provinceId">
             <Select>
               {refprovince
-                .filter((p) => p.regCode === userData.regionId)
+                .filter((p) => p.regCode === lgu)
                 .map((s) => (
                   <Select.Option key={s.id} value={s.provCode}>
                     {s.provDesc}
@@ -105,7 +87,7 @@ const EditProfileForm = () => {
           <Form.Item label="City/Municipality" name="cityId">
             <Select>
               {refcitymun
-                .filter((c) => c.provCode === userData.provinceId)
+                .filter((c) => c.provCode === province)
                 .map((c) => (
                   <Select.Option key={c.id} value={c.citymunCode}>
                     {c.citymunDesc}
@@ -116,7 +98,7 @@ const EditProfileForm = () => {
           <Form.Item label="Barangay" name="brgyId">
             <Select>
               {refbrgy
-                .filter((b) => b.citymunCode === userData.cityId)
+                .filter((b) => b.citymunCode === city)
                 .map((b) => (
                   <Select.Option key={b.id} value={b.brgyCode}>
                     {b.brgyDesc}
@@ -124,31 +106,32 @@ const EditProfileForm = () => {
                 ))}
             </Select>
           </Form.Item>
-        </div>
-        <TitleForm>Other Information</TitleForm>
+        </div> */}
+        {/* <TitleForm>Other Information</TitleForm> */}
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-          <Form.Item label="Email" name="email">
+          <Form.Item label="Email" name="primaryEmail">
             <Input />
           </Form.Item>
-          <Form.Item label="Mobile Number" name="mobileNumber">
+          <Form.Item label="Mobile Number" name="primaryMobile">
             <Input />
           </Form.Item>
         </div>
       </div>
       <div className="flex items-end justify-end px-5 gap-2">
-        <Button
+        {/* <Button
           disabled={false}
           type="primary"
           ghost
           onClick={() => setEnabledForms(!enabledForms)}
         >
           {enabledForms ? "Edit Profile" : "Cancel Edit"}
-        </Button>
+        </Button> */}
 
         <Button
           htmlType="submit"
           type="primary"
-          onClick={() => editForm.submit()}
+          onClick={() => form.submit()}
+          loading={getProfile.isLoading}
         >
           Submit
         </Button>

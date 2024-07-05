@@ -8,6 +8,7 @@ import { Badge } from "antd";
 
 const OSCAPage = () => {
   const getIdStatus = useGetIdStatus();
+  console.log(getIdStatus);
   return (
     <>
       <Navigation />
@@ -25,12 +26,14 @@ const OSCAPage = () => {
                 whileTap={{ scale: 0.9 }}
                 className="transition-transform duration-300 ease-in-out"
               >
-                {getIdStatus && (
+                {getIdStatus === 1 ? (
                   <div className="absolute overflow-hidden  w-[405px] h-[395px] font-['Poppins']">
                     <div className="absolute transform -rotate-45 bg-gray-600 text-center text-white font-semibold py-1 left-[-170px] top-[200px] w-[700px] overflow-hidden">
                       {getIdStatus?.data?.data[0]?.status}
                     </div>
                   </div>
+                ) : (
+                  ""
                 )}
                 <img
                   // whileHover={{ scale: 1.05 }}

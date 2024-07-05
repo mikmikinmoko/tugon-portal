@@ -58,9 +58,11 @@ import arrowDown from "../Assets/img/arrowDown.png";
 import eventImg1 from "../Assets/img/eventImg1.png";
 import eventImg2 from "../Assets/img/eventImg2.png";
 import sampleIcon from "../Assets/img/sampleIcon.png";
+import user from "../Assets/img/user.jpg";
 
 export {
   home,
+  user,
   homeMobile,
   sampleIcon,
   eventImg1,

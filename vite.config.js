@@ -10,6 +10,6 @@ export default defineConfig({
       host: "localhost",
       protocol: "ws",
     },
-    port: 3001,
+    port: 3000,
   },
 });

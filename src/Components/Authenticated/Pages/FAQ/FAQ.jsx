@@ -44,7 +44,7 @@ const FAQ = () => {
     console.log(key);
   };
   return (
-    <div className="px-5 lg:px-32 ">
+    <div className="px-5 lg:px-32 py-8 ">
       <Title>FAQ</Title>
       <div className="py-8">
         <Collapse
