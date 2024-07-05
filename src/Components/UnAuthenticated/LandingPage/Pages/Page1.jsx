@@ -14,8 +14,6 @@ import { NavLink } from "react-router-dom";
 const Page1 = () => {
   return (
     <>
-      <Navigation />
-
       <section
         style={{
           backgroundImage: `url(${home})`,

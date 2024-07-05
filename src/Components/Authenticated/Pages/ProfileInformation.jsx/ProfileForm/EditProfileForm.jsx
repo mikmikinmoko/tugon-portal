@@ -15,13 +15,14 @@ const EditProfileForm = ({ onFinish, form, getProfile }) => {
   // const city = Form.useWatch("cityId", editForm);
 
   useEffect(() => {
-    const { birthdate, contacts, ...rest } = getProfile.data?.data;
+    const { birthdate, primaryEmail, primaryMobile, ...rest } =
+      getProfile.data?.data;
     form.setFieldsValue({
       ...rest,
       age: ageCalc(birthdate),
       birthdate: dayjs(birthdate),
-      primaryEmail: contacts.primaryEmail,
-      primaryMobile: contacts.primaryMobile,
+      primaryEmail: primaryEmail,
+      primaryMobile: primaryMobile,
     });
   }, []);
 

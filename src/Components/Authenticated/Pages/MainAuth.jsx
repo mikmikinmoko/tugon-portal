@@ -9,12 +9,10 @@ import FAQ from "./FAQ/FAQ";
 const MainAuth = () => {
   return (
     <>
-      <Navigation />
       <Home />
       <AboutUs />
       <Announcement />
       <FAQ />
-      <Footer />
     </>
   );
 };

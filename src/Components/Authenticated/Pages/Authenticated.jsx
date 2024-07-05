@@ -7,23 +7,25 @@ import PWDPage from "../Departments/PDAO/PWDPage";
 import PWDRegistration from "../Departments/PDAO/Form/PWDRegistration";
 import Navigation from "../../UnAuthenticated/LandingPage/Navigation/Navigation";
 import ProfileInformation from "./ProfileInformation.jsx/Profile";
+import Layout from "../../../layout/Layout";
+import AboutUs from "./About/AboutUs";
 
 const Authenticated = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="" element={<Navigation />}> */}
-        <Route path="/" element={<MainAuth />} />
-        <Route path="senior" element={<OSCAPage />} />
-        <Route path="senior/:services" element={<OSCAServicesPage />} />
-        <Route
-          path="senior/:services/:registration"
-          element={<Registration />}
-        />
-        <Route path="pwd" element={<PWDPage />} />
-        <Route path="pwd/PWDregistration" element={<PWDRegistration />} />
-        <Route path="profile" element={<ProfileInformation />} />
-        {/* </Route> */}
+        <Route path="/" element={<Layout />}>
+          <Route index element={<MainAuth />} />
+          <Route path="senior" element={<OSCAPage />} />
+          <Route path="senior/:services" element={<OSCAServicesPage />} />
+          <Route
+            path="senior/:services/:registration"
+            element={<Registration />}
+          />
+          <Route path="pwd" element={<PWDPage />} />
+          <Route path="pwd/PWDregistration" element={<PWDRegistration />} />
+          <Route path="profile" element={<ProfileInformation />} />
+        </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>

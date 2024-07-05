@@ -234,13 +234,13 @@ const ProfileCard = ({ getProfile }) => {
                   <div className="flex flex-col gap-2">
                     <span className="text-[#9a9999]">Email</span>
                     <span className="text-[14px]">
-                      {getProfile.data?.data?.contacts?.primaryEmail}
+                      {getProfile.data?.data?.primaryEmail}
                     </span>
                   </div>
                   <div className="flex flex-col gap-2">
                     <span className="text-[#9a9999]">Mobile Number</span>
                     <span className="text-[14px] capitalize">
-                      {getProfile.data?.data?.contacts?.primaryMobile}
+                      {getProfile.data?.data?.primaryMobile}
                     </span>
                   </div>
                 </div>

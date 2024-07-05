@@ -11,7 +11,6 @@ const OSCAPage = () => {
   console.log(getIdStatus);
   return (
     <>
-      <Navigation />
       <section className=" w-full h-full font-['Poppins'] text-[18px]">
         <div className="flex flex-col min-h-screen justify-center items-center py-8">
           <div className=" text-[#001862] text-[36px]">OSCA: Citizen</div>
@@ -55,9 +54,7 @@ const OSCAPage = () => {
         </div>
       </section>
 
-      <div className="flex justify-end items-end">
-        <Footer />
-      </div>
+      <div className="flex justify-end items-end"></div>
     </>
   );
 };

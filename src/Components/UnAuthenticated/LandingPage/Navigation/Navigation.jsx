@@ -10,20 +10,10 @@ import {
   UsersIcon,
 } from "../../../../Assets/Resources/Icons/Icons";
 import { useState } from "react";
-import { routesAuth } from "../../../../routes";
+import routes from "../../../../routes";
 import { useCitizenAuthStore } from "../../../../store/storage/useAuth";
 import { useGetProfile } from "../../../../store/controller/profile";
-
-const navigationAuth = [
-  { name: "PWD ID", link: "/pwd" },
-  { name: "Senior Citizen ID", link: "/senior" },
-  { name: "Home", link: "/" },
-];
-const navigationUnAuth = [
-  { name: "About Us", link: "#aboutUs" },
-  { name: "Contact", link: "#contact" },
-  { name: "Home", link: "#home" },
-];
+import { UserOutlined } from "@ant-design/icons";
 
 const Navigation = () => {
   const [open, setOpen] = useState(false);
@@ -32,7 +22,11 @@ const Navigation = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  console.log(getProfile);
+  console.log(routes.auth);
+
+  const filteredRoutes = routes.auth.filter(
+    (route) => route.name !== "Departments"
+  );
 
   // const fullName = [getProfile.data?.data?.firstName]
   //   .concat(
@@ -50,7 +44,6 @@ const Navigation = () => {
     reset();
     navigate("/");
   };
-  console.log(location);
 
   const content = (
     <div className="flex flex-col gap-1 text-[14px] font-['Poppins'] ">
@@ -95,7 +88,7 @@ const Navigation = () => {
                     cursor: "pointer",
                   }}
                 />
-                <div className="font-medium text-[#000000] lg:text-[18px]">
+                <div className="font-medium text-[#000000] lg:text-[18px] capitalize">
                   {getProfile.data?.data?.fullName}
                 </div>
                 <div className=" text-[#898989] lg:text-[12px]">
@@ -108,8 +101,8 @@ const Navigation = () => {
       >
         {getProfile ? (
           <>
-            <div className="flex items-end flex-col-reverse gap-4 px-3 text-[12px] md:text-[14px] lg:text-[16px] text-[#474747]">
-              {routesAuth.map((item) => (
+            <div className="flex items-end flex-col gap-4 px-3 text-[12px] md:text-[14px] lg:text-[16px] text-[#474747]">
+              {routes.auth.map((item) => (
                 <Link
                   onClick={closeDrawer}
                   key={item.name}
@@ -128,8 +121,8 @@ const Navigation = () => {
               <hr />
             </div>
             <div className="flex flex-col items-end font-['Poppins'] text-[12px] md:text-[14px] lg:text-[16px] ">
-              <div className="flex flex-row-reverse gap-3 p-2 items-center hover:bg-[#ebebeb] hover:rounded-md  cursor-pointer ">
-                <NavLink to="profile">
+              <div className="flex flex-row-reverse gap-3 p-2 items-center hover:bg-[#ebebeb] hover:rounded-md cursor-pointer ">
+                <NavLink to="profile" className="flex gap-1 items-center">
                   <MyAccountIcon />
                   <p>Account Settings</p>
                 </NavLink>
@@ -144,12 +137,12 @@ const Navigation = () => {
           </>
         ) : (
           <div className="flex flex-col-reverse items-end gap-2 font-['Poppins'] text-[16px]">
-            {navigationUnAuth.map((item) => (
+            {routes.unAuth.map((item) => (
               <NavLink
                 key={item.name}
-                to={item.link}
+                to={item.path}
                 className={`hover:text-[#234F8B]  border-b-2 py-1 border-transparent hover:border-current transition-all duration-500 ease-in-out ${
-                  location.hash === item.link &&
+                  location.hash === item.path &&
                   "border-[#234F8B]  text-[#234F8B]"
                 }`}
               >
@@ -159,55 +152,47 @@ const Navigation = () => {
           </div>
         )}
       </Drawer>
-      <div className=" font-sans py-3 px-5 sm:px-5 md:px-14 text-[14px] top-0 sticky z-10 bg-[#ffffff] shadow-md">
+      <div className=" font-['Poppins'] py-3 px-5 sm:px-5 md:px-14 text-[14px] top-0 sticky z-10 bg-[#ffffff] shadow-md">
         <div className="flex justify-between items-center">
           <NavLink to="/">
             <Logo width="100px" />
           </NavLink>
-          <div className="hidden sm:block md:flex ">
+          <div className="hidden sm:hidden md:hidden lg:flex ">
             {userData && (
               <ul className="flex lg:gap-8  sm:gap-5 xs:gap-4 items-center text-[#787878] font-medium">
-                <li>
-                  <Link
-                    to="/#home"
-                    className={`hover:text-[#234F8B]  border-b-2 py-1 border-transparent hover:border-current transition-all duration-500 ease-in-out ${
-                      location.hash === "#home" &&
-                      "border-[#234F8B] text-[#234F8B]"
-                    }`}
-                  >
-                    Home
-                  </Link>
-                </li>
+                {filteredRoutes.map((item) => (
+                  <li>
+                    <Link
+                      to={item.path}
+                      className={`hover:text-[#234F8B] flex items-center gap-1 justify-center px-2 border-b-2 py-1 border-transparent hover:border-current transition-all duration-500 ease-in-out ${
+                        location.hash === item.path &&
+                        "border-[#234F8B] text-[#234F8B]"
+                      }`}
+                    >
+                      {item.icon}
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
                 <li className="cursor-pointer">
                   <Popover
                     placement="bottom"
                     content={
                       <ul className=" font-normal text-[15px] font-['Poppins']">
-                        <NavLink to="/senior">
-                          <li className="transition-all duration-200 ease-in  font-normal rounded-sm py-1 px-2 w-full hover:text-[#234F8B] hover:bg-[#f1efef]">
-                            OSCA (Office of the Senior Citizen Affair)
-                          </li>
-                        </NavLink>
-                        <NavLink to="/pwd">
-                          <li className="transition-all duration-200 ease-in  font-normal rounded-sm py-1 px-2 w-full hover:text-[#234F8B] hover:bg-[#f1efef]">
-                            PDAO (Person with Disability Affair Office)
-                          </li>
-                        </NavLink>
-                        <NavLink to="">
-                          <li className="transition-all duration-200 ease-in  font-normal rounded-sm py-1 px-2 w-full hover:text-[#234F8B] hover:bg-[#f1efef]">
-                            UPAO (Urban Poor Affair Office)
-                          </li>
-                        </NavLink>
-                        <NavLink to="">
-                          <li className="transition-all duration-200 ease-in  font-normal rounded-sm py-1 px-2 w-full hover:text-[#234F8B] hover:bg-[#f1efef]">
-                            GAD (Gender and Development)
-                          </li>
-                        </NavLink>
+                        {routes.auth.map(
+                          (route) =>
+                            route.children &&
+                            route.children.map((child) => (
+                              <li className="transition-all duration-200 ease-in  font-normal rounded-sm py-1 px-2 w-full hover:text-[#234F8B] hover:bg-[#f1efef]">
+                                <NavLink to={child.path}>{child.name}</NavLink>
+                              </li>
+                            ))
+                        )}
                       </ul>
                     }
                   >
                     <div
-                      className={`hover:text-[#234F8B]  ${
+                      className={`hover:text-[#234F8B] flex items-center gap-1 px-2  ${
                         location.pathname === "/senior" ||
                         location.pathname === "/pwd" ||
                         location.pathname === "/upao" ||
@@ -216,31 +201,10 @@ const Navigation = () => {
                           : ""
                       } border-b-2 py-1 border-transparent hover:border-current transition-all duration-500 ease-in-out`}
                     >
+                      <UserOutlined />
                       Departments
                     </div>
                   </Popover>
-                </li>
-                <li>
-                  <Link
-                    to="/#aboutUs"
-                    className={`hover:text-[#234F8B]  border-b-2 py-1 border-transparent hover:border-current transition-all duration-500 ease-in-out ${
-                      location.hash === "#aboutUs" &&
-                      "border-[#234F8B]  text-[#234F8B]"
-                    }`}
-                  >
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/#announcement"
-                    className={`hover:text-[#234F8B]  border-b-2 py-1 border-transparent hover:border-current transition-all duration-500 ease-in-out ${
-                      location.hash === "#announcement" &&
-                      "border-[#234F8B]  text-[#234F8B]"
-                    }`}
-                  >
-                    Announcement
-                  </Link>
                 </li>
 
                 <Popover placement="bottomRight" content={content}>
@@ -257,17 +221,20 @@ const Navigation = () => {
             )}
             {!userData && (
               <ul className="flex gap-8 items-center text-[#787878] font-medium">
-                {navigationUnAuth.map((item) => (
+                {routes.unAuth.map((item) => (
                   <NavLink
                     key={item.name}
-                    to={item.link}
-                    className={`hover:text-[#234F8B] focus:text-[#234F8B] border-b-2 border-transparent hover:border-current transition-all duration-300 ${
-                      location.hash === item.link
+                    to={item.path}
+                    className={`hover:text-[#234F8B] focus:text-[#234F8B] px-2 border-b-2 border-transparent hover:border-current transition-all duration-300 ${
+                      location.hash === item.path
                         ? "border-[#234F8B]  text-[#234F8B]"
                         : ""
                     }`}
                   >
-                    {item.name}
+                    <div className="flex justify-center items-center gap-2">
+                      {item.icon}
+                      {item.name}
+                    </div>
                   </NavLink>
                 ))}
                 <NavLink to="/login">
@@ -282,7 +249,7 @@ const Navigation = () => {
             )}
           </div>
           <div
-            className="flex sm:hidden md:hidden lg:hidden cursor-pointer"
+            className="flex sm:flex md:flex lg:hidden cursor-pointer"
             onClick={() => setOpen(true)}
           >
             <BurgerIcon />

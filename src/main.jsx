@@ -36,7 +36,7 @@ root.render(
     <App />
     {/* </Suspense>
     </PersistGate> */}
-    <ReactQueryDevtools />
+    {/* <ReactQueryDevtools /> */}
     {/* </Provider> */}
   </QueryClientProvider>
 );

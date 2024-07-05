@@ -8,7 +8,6 @@ import FAQ from "../../../Pages/FAQ/FAQ";
 const OSCAServicesPage = () => {
   return (
     <>
-      <Navigation />
       <section className=" w-full h-full font-['Poppins'] text-[18px]">
         <div className=" bg-senior bg-cover bg-center  h-[418px] flex flex-col justify-center items-center">
           <div className="  lg:pt-14 md:px-32 lg:px-32">

@@ -27,13 +27,13 @@ import dayjs from "dayjs";
 import { Footer } from "../../../../UnAuthenticated/LandingPage/Pages/Page5";
 import NotEligible from "../../../../../Reusable/NotEligible";
 import { useCreateSeniorId } from "../../../../../store/controller/registration";
-import { useCitizenAuthStore } from "../../../../../store/storage/useAuth";
 import {
   civilStatusOSCA,
   educationalLevels,
 } from "../../../../../Assets/constant/values";
 import { items } from "../../../../../Assets/constant/values";
 import { ageCalc } from "../../../../../helpers/ageCalc";
+import { useGetProfile } from "../../../../../store/controller/profile";
 
 const { Dragger } = Upload;
 
@@ -47,7 +47,9 @@ const Registration = () => {
   const [validId, setValidId] = useState({});
   const [imagePreview, setImagePreview] = useState(null);
   const [step, setStep] = useState(0);
-  const { userData } = useCitizenAuthStore();
+  const getProfile = useGetProfile();
+  console.log(getProfile);
+  const userData = getProfile?.data?.data;
 
   // const { createSeniorId } = seniorActions;
   const createSeniorId = useCreateSeniorId();
@@ -202,7 +204,6 @@ const Registration = () => {
 
   return (
     <>
-      <Navigation />
       {age <= 60 ? (
         <>
           <NotEligible />

@@ -129,7 +129,6 @@ const PWDRegistration = () => {
 
   return (
     <>
-      <Navigation />
       <section className="w-full h-screen font-['Poppins']">
         <div className="px-5 lg:px-32 flex-col flex">
           <div className="bg-[#E0E6F2] px-10 py-2 ">

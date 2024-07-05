@@ -9,7 +9,6 @@ import { pwd } from "../../../../helpers/image";
 const PWDPage = () => {
   return (
     <>
-      <Navigation />
       <section
         className=" w-full h-full text-[16px] font-['Poppins']"
         id="pwdSection"
@@ -182,7 +181,6 @@ const PWDPage = () => {
         </div>
         <FAQ />
       </section>
-      <Footer />
     </>
   );
 };
