@@ -100,7 +100,7 @@ const Registration = () => {
             </p>
           </div>
         </div>
-        <div className=" text-[16px] p-5 lg:px-10">
+        <div className=" text-[16px] p-5 lg:px-10 ">
           <div className="flex flex-col justify-center items-center gap-2">
             <Logo />
             <p className="text-center w-3/4">
@@ -108,7 +108,7 @@ const Registration = () => {
               Up for Community Collaboration and Empowerment.
             </p>
           </div>
-          <div className=" py-5 h-full">
+          <div className=" py-5">
             <Form
               // requiredMark="optional"
               form={form}

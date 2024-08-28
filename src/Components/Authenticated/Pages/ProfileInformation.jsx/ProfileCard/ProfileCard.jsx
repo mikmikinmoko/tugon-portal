@@ -14,6 +14,13 @@ import { useCitizenAuthStore } from "../../../../../store/storage/useAuth";
 const ProfileCard = ({ getProfile }) => {
   const [editForm] = Form.useForm();
 
+  const { data } = getProfile;
+
+  // const files = data?.data?.files;
+  const files = data?.data?.files;
+  const profilePicture = files?.filter((file) => file.type === "PROFILE");
+  console.log(profilePicture);
+
   const [open, setOpen] = useState(false);
   const [changePassword, setChangePassword] = useState(false);
   const updateProfile = useUpdateProfile();
@@ -39,7 +46,6 @@ const ProfileCard = ({ getProfile }) => {
     );
   };
 
-  console.log(getProfile);
   // const fullName = [getProfile.data?.data?.firstName]
   //   .concat(
   //     getProfile.data?.data?.middleName,
@@ -47,28 +53,34 @@ const ProfileCard = ({ getProfile }) => {
   //     getProfile.data?.data?.suffix
   //   )
   //   .join(" ");
+
+  console.log(import.meta.env.VITE_BASE_URL + "/" + profilePicture?.image);
   return (
     // <div className="md:border-8 md:border-transparent md:shadow-2xl lg:border-8 lg:border-transparent lg:shadow-xl w-full  flex flex-col items-center justify-center ">
-    <div className=" ">
+    <div className="  w-full">
       <div className="grid sm:grid-cols-1 lg:grid-cols-4 gap-5">
         <div className="py-3">
           <div className="lg:border-r-2 lg:shadow-md  overflow-hidden h-full">
-            <div className=" border-2 w-full h-[19rem] rounded-full shadow-md overflow-hidden">
-              <Image src={user} height={"100%"} width={"100%"} />
+            <div className="relative border-2 w-full h-[19rem] rounded-full shadow-md overflow-hidden">
+              <Image
+                src={
+                  import.meta.env.VITE_BASE_URL + "/" + data?.data?.files.image
+                }
+                height={"100%"}
+                width={"100%"}
+              />
             </div>
             <div className="py-2 text-center flex flex-col">
-              <span className="capitalize">
-                {getProfile.data?.data?.fullName}
-              </span>
+              <span className="capitalize">{data?.data?.fullName}</span>
               <span className="text-stone-400 text-[14px]">
-                {getProfile.data?.data?.email}
+                {data?.data?.primaryEmail}
               </span>
               <div>
                 <span className="text-stone-400 text-[14px] capitalize px-1">
                   Account ID:
                 </span>
                 <span className="text-[14px] capitalize">
-                  {getProfile.data?.data?.accountId}
+                  {data?.data?.accountId}
                 </span>
               </div>
               <div className="flex flex-col p-2 gap-2 ">
@@ -137,43 +149,37 @@ const ProfileCard = ({ getProfile }) => {
                   <div className="flex flex-col gap-2">
                     <span className="text-[#9a9999]">First Name</span>
                     <span className="text-[14px] capitalize">
-                      {getProfile.data?.data?.firstName}
+                      {data?.data?.firstName}
                     </span>
                   </div>
                   <div className="flex flex-col gap-2">
                     <span className="text-[#9a9999]">Middle Name</span>
                     <span className="text-[14px] capitalize">
-                      {getProfile.data?.data?.middleName
-                        ? getProfile.data?.data?.middleName
-                        : "-"}
+                      {data?.data?.middleName ? data?.data?.middleName : "-"}
                     </span>
                   </div>
                   <div className="flex flex-col gap-2">
                     <span className="text-[#9a9999]">Last Name</span>
                     <span className="text-[14px] capitalize">
-                      {getProfile.data?.data?.lastName}
+                      {data?.data?.lastName}
                     </span>
                   </div>
                   <div className="flex flex-col gap-2">
                     <span className="text-[#9a9999]">Suffix</span>
                     <span className="text-[14px] capitalize">
-                      {getProfile.data?.data?.suffix
-                        ? getProfile.data?.data?.suffix
-                        : "-"}
+                      {data?.data?.suffix ? data?.data?.suffix : "-"}
                     </span>
                   </div>
                   <div className="flex flex-col gap-2">
                     <span className="text-[#9a9999]">Birth Date</span>
                     <span className="text-[14px] capitalize">
-                      {dayjs(getProfile.data?.data?.birthdate).format(
-                        "MMMM D, YYYY"
-                      )}
+                      {dayjs(data?.data?.birthdate).format("MMMM D, YYYY")}
                     </span>
                   </div>
                   <div className="flex flex-col gap-2">
                     <span className="text-[#9a9999]">Sex</span>
                     <span className="text-[14px] capitalize">
-                      {+getProfile.data?.data?.sex === 0 ? "Male" : "Female"}
+                      {+data?.data?.sex === 0 ? "Male" : "Female"}
                     </span>
                   </div>
                 </div>
@@ -234,13 +240,13 @@ const ProfileCard = ({ getProfile }) => {
                   <div className="flex flex-col gap-2">
                     <span className="text-[#9a9999]">Email</span>
                     <span className="text-[14px]">
-                      {getProfile.data?.data?.primaryEmail}
+                      {data?.data?.primaryEmail}
                     </span>
                   </div>
                   <div className="flex flex-col gap-2">
                     <span className="text-[#9a9999]">Mobile Number</span>
                     <span className="text-[14px] capitalize">
-                      {getProfile.data?.data?.primaryMobile}
+                      {data?.data?.primaryMobile}
                     </span>
                   </div>
                 </div>

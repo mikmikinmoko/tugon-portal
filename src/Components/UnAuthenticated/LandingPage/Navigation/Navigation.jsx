@@ -50,7 +50,7 @@ const Navigation = () => {
       <div className="px-4">
         <div className="capitalize">{getProfile.data?.data?.fullName}</div>
         <span className="text-[#898989] text-[12px]">
-          {getProfile.data?.data?.contacts?.primaryEmail}
+          {getProfile.data?.data?.primaryEmail}
         </span>
       </div>
       <hr />
@@ -152,7 +152,7 @@ const Navigation = () => {
           </div>
         )}
       </Drawer>
-      <div className=" font-['Poppins'] py-3 px-5 sm:px-5 md:px-14 text-[14px] top-0 sticky z-10 bg-[#ffffff] shadow-md">
+      <div className=" font-['Poppins'] py-3 px-5 sm:px-5 md:px-14 text-[14px] backdrop-blur-lg  top-0 sticky z-10  shadow-md ">
         <div className="flex justify-between items-center">
           <NavLink to="/">
             <Logo width="100px" />

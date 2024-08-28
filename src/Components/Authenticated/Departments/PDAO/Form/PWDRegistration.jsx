@@ -21,6 +21,7 @@ import { useCitizenAuthStore } from "../../../../../store/storage/useAuth";
 import refbrgy from "../../../../../Assets/Resources/json/refbrgy.json";
 import dayjs from "dayjs";
 import { useCreatePwdId } from "../../../../../store/controller/registration";
+import HeaderRegistration from "../../../../../Reusable/HeaderRegistration";
 
 const PWDRegistration = () => {
   const navigate = useNavigate();
@@ -131,7 +132,10 @@ const PWDRegistration = () => {
     <>
       <section className="w-full h-screen font-['Poppins']">
         <div className="px-5 lg:px-32 flex-col flex">
-          <div className="bg-[#E0E6F2] px-10 py-2 ">
+          <HeaderRegistration>
+            Person with Disability Office (PDAO)
+          </HeaderRegistration>
+          {/* <div className="bg-[#E0E6F2] px-10 py-2 ">
             <div className="py-5 text-[#808080] text-[14px]">
               <Button type="text" onClick={() => navigate(-1)}>
                 &larr; back
@@ -143,7 +147,7 @@ const PWDRegistration = () => {
                 Registration Form
               </span>
             </div>
-          </div>
+          </div> */}
           <div className="grid lg:grid-cols-4">
             <div className="lg:border-r-2 border-[#D8E6F6] py-6 lg:py-10 px-5">
               <Step items={itemsPWD} current={step} />

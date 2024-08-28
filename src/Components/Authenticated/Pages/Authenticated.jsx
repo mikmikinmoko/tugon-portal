@@ -9,6 +9,8 @@ import Navigation from "../../UnAuthenticated/LandingPage/Navigation/Navigation"
 import ProfileInformation from "./ProfileInformation.jsx/Profile";
 import Layout from "../../../layout/Layout";
 import AboutUs from "./About/AboutUs";
+import { UPAOPage } from "../Departments/UPAO/UPAOPage";
+import UPAOForm from "../Departments/UPAO/Form/UPAOForm";
 
 const Authenticated = () => {
   return (
@@ -23,7 +25,9 @@ const Authenticated = () => {
             element={<Registration />}
           />
           <Route path="pwd" element={<PWDPage />} />
-          <Route path="pwd/PWDregistration" element={<PWDRegistration />} />
+          <Route path="pwd/registration/" element={<PWDRegistration />} />
+          <Route path="upao" element={<UPAOPage />} />
+          <Route path="upao/registration" element={<UPAOForm />} />
           <Route path="profile" element={<ProfileInformation />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />

@@ -38,7 +38,7 @@ const LoginForm = () => {
   // }, [logInApi, navigate]);
 
   return (
-    <div className="lg:bg-[#234F8B] md:bg-[#234F8B] font-['Poppins'] w-full h-full  py-24 flex items-center justify-center overflow-hidden">
+    <div className="lg:bg-[#234F8B] md:bg-[#234F8B] font-['Poppins'] w-full min-h-screen  py-24 flex items-center justify-center overflow-hidden">
       <div className="max-w-[450px] bg-[#ffffff] px-4 lg:px-8 py-8 lg:py-16 flex flex-col items-center justify-center rounded-lg shadow-lg">
         <Logo width="253px" height="79px" />
         <div className="text-center py-3">

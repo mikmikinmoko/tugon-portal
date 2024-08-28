@@ -5,8 +5,11 @@ import { NavLink } from "react-router-dom";
 import { Footer } from "../../../UnAuthenticated/LandingPage/Pages/Page5";
 import FAQ from "../../Pages/FAQ/FAQ";
 import { pwd } from "../../../../helpers/image";
+import { useGetProfile } from "../../../../store/controller/profile";
 
 const PWDPage = () => {
+  const { data } = useGetProfile();
+
   return (
     <>
       <section
@@ -30,7 +33,7 @@ const PWDPage = () => {
               instructions carefully for a smooth application experience.
             </div>
             <div className="py-5">
-              <NavLink to="PWDregistration">
+              <NavLink to="registration">
                 <Button type="primary">Proceed to Application</Button>
               </NavLink>
             </div>

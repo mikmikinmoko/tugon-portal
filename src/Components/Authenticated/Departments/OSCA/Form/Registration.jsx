@@ -34,6 +34,7 @@ import {
 import { items } from "../../../../../Assets/constant/values";
 import { ageCalc } from "../../../../../helpers/ageCalc";
 import { useGetProfile } from "../../../../../store/controller/profile";
+import HeaderRegistration from "../../../../../Reusable/HeaderRegistration";
 
 const { Dragger } = Upload;
 
@@ -213,7 +214,10 @@ const Registration = () => {
         <section className="w-full h-full font-['Poppins']">
           <div className="flex justify-center items-center">
             <div className="lg:px-32">
-              <div className=" bg-[#E0E6F2] py-2 px-10">
+              <HeaderRegistration>
+                Office of the Senior {`Citizen's`} Affair (OSCA)
+              </HeaderRegistration>
+              {/* <div className=" bg-[#E0E6F2] py-2 px-10">
                 <div className="py-5 text-[#808080] text-[14px]">
                   <Button type="text" onClick={() => navigate(-1)}>
                     &larr; back
@@ -225,7 +229,7 @@ const Registration = () => {
                     Registration Form
                   </span>
                 </h1>
-              </div>
+              </div> */}
               <div className="h-full w-full ">
                 <div className="lg:grid lg:grid-cols-4 ">
                   <div className=" border-r-2 border-[#D8E6F6] py-6 lg:py-16 px-5">

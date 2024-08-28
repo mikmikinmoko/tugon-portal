@@ -1,11 +1,9 @@
 import { Button } from "antd";
-import Navigation from "../../../../UnAuthenticated/LandingPage/Navigation/Navigation";
-import { Footer } from "../../../../UnAuthenticated/LandingPage/Pages/Page5";
 import { NavLink } from "react-router-dom";
 import Procedure from "../../../../../Reusable/Procedure";
 import FAQ from "../../../Pages/FAQ/FAQ";
 
-const OSCAServicesPage = () => {
+const UPAOServices = () => {
   return (
     <>
       <section className=" w-full h-full font-['Poppins'] text-[18px]">
@@ -29,7 +27,7 @@ const OSCAServicesPage = () => {
               experience, tailored to your needs and convenience.
             </p>
           </div>
-          <NavLink to="registration">
+          <NavLink to="/upao/registration">
             <Button type="primary">Proceed to Application</Button>
           </NavLink>
         </div>
@@ -142,4 +140,4 @@ const OSCAServicesPage = () => {
   );
 };
 
-export default OSCAServicesPage;
+export default UPAOServices;

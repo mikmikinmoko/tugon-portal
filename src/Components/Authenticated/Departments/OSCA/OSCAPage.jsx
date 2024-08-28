@@ -53,8 +53,6 @@ const OSCAPage = () => {
           </div>
         </div>
       </section>
-
-      <div className="flex justify-end items-end"></div>
     </>
   );
 };

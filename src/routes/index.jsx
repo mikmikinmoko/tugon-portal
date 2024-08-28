@@ -7,30 +7,7 @@ import Registration from "../Components/UnAuthenticated/LandingPage/Pages/Regist
 import Login from "../Components/UnAuthenticated/LandingPage/Pages/LoginForm";
 import OscaPage from "../Components/Authenticated/Departments/OSCA/OSCAPage";
 import { UserOutlined } from "@ant-design/icons";
-
-// const routesUnauth = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <Layout />,
-//     children: [
-//       {
-//         name: "Home",
-//         path: "/#home",
-//         // element: <Home />,
-//       },
-//       {
-//         name: "About",
-//         path: "/#aboutUs",
-//         // element: <AboutUs />,
-//       },
-//       {
-//         name: "Annoucement",
-//         path: "/#annoucement",
-//         // element: <Announcement />,
-//       },
-//     ],
-//   },
-// ]);
+import { UPAOPage } from "../Components/Authenticated/Departments/UPAO/UPAOPage";
 
 const routes = {
   unAuth: [
@@ -93,8 +70,8 @@ const routes = {
         },
         {
           name: "UPAO (Urban Poor Affair Office)",
-          // path: "/pwd",
-          // element: <OscaPage />,
+          path: "/upao",
+          element: <UPAOPage />,
         },
         {
           name: "GAD (Gender and Development)",
