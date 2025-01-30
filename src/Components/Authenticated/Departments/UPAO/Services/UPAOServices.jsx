@@ -28,7 +28,12 @@ const UPAOServices = () => {
             </p>
           </div>
           <NavLink to="/upao/registration">
-            <Button type="primary">Proceed to Application</Button>
+            <Button
+              type="primary"
+              onClick={() => <NavLink to="/upao/registration" />}
+            >
+              Proceed to Application
+            </Button>
           </NavLink>
         </div>
       </section>

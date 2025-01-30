@@ -22,8 +22,6 @@ const Navigation = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  console.log(routes.auth);
-
   const filteredRoutes = routes.auth.filter(
     (route) => route.name !== "Departments"
   );
